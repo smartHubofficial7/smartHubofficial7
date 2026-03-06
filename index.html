@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SmartHub Store</title>
 
 <style>
@@ -13,7 +10,7 @@
 body{
 margin:0;
 font-family:Arial;
-background:#f3f3f3;
+background:#f4f4f4;
 }
 
 /* HEADER */
@@ -25,7 +22,7 @@ display:flex;
 flex-wrap:wrap;
 align-items:center;
 justify-content:space-between;
-padding:12px;
+padding:10px;
 }
 
 .logo{
@@ -35,33 +32,34 @@ gap:10px;
 }
 
 .logo img{
-width:40px;
+width:35px;
 }
 
 .search{
-padding:10px;
+padding:8px;
+border-radius:5px;
 border:none;
-border-radius:6px;
 width:40%;
 }
 
 /* BUTTONS */
 
 .top-buttons button{
-padding:10px 15px;
 margin:5px;
+padding:10px 15px;
 border:none;
 background:#ff9800;
-color:white;
-border-radius:6px;
+border-radius:5px;
 cursor:pointer;
-font-size:15px;
+font-size:14px;
 }
 
 #cartCount{
 background:red;
-padding:2px 7px;
+color:white;
+padding:2px 6px;
 border-radius:50%;
+font-size:12px;
 }
 
 /* CATEGORY */
@@ -74,10 +72,10 @@ text-align:center;
 
 .categories button{
 margin:5px;
-padding:7px 12px;
-border:none;
+padding:6px 12px;
 background:#2196f3;
 color:white;
+border:none;
 border-radius:5px;
 cursor:pointer;
 }
@@ -85,38 +83,38 @@ cursor:pointer;
 /* PRODUCTS */
 
 .container{
-padding:20px;
+padding:15px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:18px;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
 }
 
 .card{
 background:white;
 border-radius:10px;
-padding:12px;
+padding:10px;
 text-align:center;
-box-shadow:0 2px 10px rgba(0,0,0,0.15);
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
 .card img{
 width:100%;
-height:170px;
+height:150px;
 object-fit:contain;
 }
 
 .price{
 color:red;
-font-size:18px;
+font-weight:bold;
 margin:8px 0;
 }
 
 .btn{
-padding:8px 12px;
+padding:6px 10px;
 border:none;
 border-radius:5px;
+margin:4px;
 cursor:pointer;
-margin:3px;
 }
 
 .cartbtn{
@@ -132,16 +130,16 @@ color:white;
 
 #cartPanel{
 position:fixed;
-right:-360px;
+right:-350px;
 top:0;
-width:330px;
+width:320px;
 height:100%;
 background:white;
-box-shadow:-3px 0 15px rgba(0,0,0,0.3);
+box-shadow:-3px 0 10px rgba(0,0,0,0.3);
 padding:20px;
 transition:0.4s;
 overflow:auto;
-z-index:999;
+z-index:1000;
 }
 
 .cart-item{
@@ -154,8 +152,7 @@ margin:8px 0;
 background:red;
 color:white;
 border:none;
-padding:5px;
-cursor:pointer;
+padding:4px;
 }
 
 /* LOGIN */
@@ -167,16 +164,17 @@ top:50%;
 left:50%;
 transform:translate(-50%,-50%);
 background:white;
-padding:25px;
+padding:20px;
 border-radius:10px;
 box-shadow:0 10px 30px rgba(0,0,0,0.3);
-z-index:1000;
+text-align:center;
+z-index:2000;
 }
 
 #loginBox input{
-width:95%;
 padding:10px;
-margin:6px;
+margin:8px;
+width:90%;
 }
 
 /* PAYMENT */
@@ -188,35 +186,35 @@ top:50%;
 left:50%;
 transform:translate(-50%,-50%);
 background:white;
-padding:30px;
+padding:25px;
 border-radius:10px;
 box-shadow:0 10px 30px rgba(0,0,0,0.3);
 text-align:center;
-z-index:1000;
+z-index:2000;
 }
 
 /* MOBILE */
 
 @media(max-width:600px){
 
-header{
-flex-direction:column;
-align-items:flex-start;
-}
-
 .search{
 width:100%;
 margin-top:10px;
 }
 
+header{
+flex-direction:column;
+align-items:flex-start;
+}
+
 .top-buttons button{
 width:100%;
+font-size:16px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -228,7 +226,7 @@ width:100%;
 <h2>SmartHub</h2>
 </div>
 
-<input id="searchBox" class="search" placeholder="Search Products">
+<input class="search" id="searchBox" placeholder="Search Products">
 
 <div class="top-buttons">
 <button onclick="openCart()">Cart <span id="cartCount">0</span></button>
@@ -238,12 +236,10 @@ width:100%;
 </header>
 
 <div class="categories">
-
 <button onclick="filter('all')">All</button>
 <button onclick="filter('phone')">Phones</button>
-<button onclick="filter('laptop')">Laptops</button>
-<button onclick="filter('tablet')">Tablets</button>
-
+<button onclick="filter('laptop')">Laptop</button>
+<button onclick="filter('accessory')">Accessories</button>
 </div>
 
 <div class="container">
@@ -251,62 +247,78 @@ width:100%;
 <!-- PHONES -->
 
 <div class="card phone">
-<img src="https://m.media-amazon.com/images/I/71geVdy6-OS.jpg">
-<h3>Samsung Galaxy M17 5G</h3>
-<div class="price">₹13999</div>
-<button class="btn cartbtn" onclick="addCart('Samsung Galaxy M17',13999)">Add Cart</button>
+<img src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX679_.jpg">
+<h3>Samsung Galaxy</h3>
+<div class="price">₹24999</div>
+<button class="btn cartbtn" onclick="addCart('Samsung Galaxy',24999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <div class="card phone">
-<img src="https://m.media-amazon.com/images/I/61uA2UVnYWL.jpg">
-<h3>iQOO Z10 Lite 5G</h3>
-<div class="price">₹12999</div>
-<button class="btn cartbtn" onclick="addCart('iQOO Z10',12999)">Add Cart</button>
+<img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
+<h3>iPhone 14</h3>
+<div class="price">₹79999</div>
+<button class="btn cartbtn" onclick="addCart('iPhone',79999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <div class="card phone">
 <img src="https://m.media-amazon.com/images/I/71yzJoE7WlL.jpg">
-<h3>Redmi A4 5G</h3>
-<div class="price">₹9999</div>
-<button class="btn cartbtn" onclick="addCart('Redmi A4',9999)">Add Cart</button>
+<h3>Redmi Note 12</h3>
+<div class="price">₹15999</div>
+<button class="btn cartbtn" onclick="addCart('Redmi Note 12',15999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
-<div class="card phone">
-<img src="https://m.media-amazon.com/images/I/71H+Jeq9FCL.jpg">
-<h3>Samsung Galaxy M06 5G</h3>
-<div class="price">₹10999</div>
-<button class="btn cartbtn" onclick="addCart('Samsung M06',10999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<div class="card phone">
-<img src="https://m.media-amazon.com/images/I/71Sa3dqz0oL.jpg">
-<h3>Samsung Galaxy S26 Ultra 5G</h3>
-<div class="price">₹119999</div>
-<button class="btn cartbtn" onclick="addCart('Samsung S26 Ultra',119999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<!-- GAMING LAPTOP -->
+<!-- LAPTOP -->
 
 <div class="card laptop">
 <img src="https://m.media-amazon.com/images/I/71jG+e7roXL.jpg">
-<h3>Gaming Laptop RTX</h3>
-<div class="price">₹65999</div>
-<button class="btn cartbtn" onclick="addCart('Gaming Laptop',65999)">Add Cart</button>
+<h3>Gaming Laptop</h3>
+<div class="price">₹55999</div>
+<button class="btn cartbtn" onclick="addCart('Gaming Laptop',55999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
-<!-- TABLET -->
+<div class="card laptop">
+<img src="https://m.media-amazon.com/images/I/61Dw5Z8LzJL.jpg">
+<h3>Primebook Android Laptop</h3>
+<div class="price">₹18999</div>
+<button class="btn cartbtn" onclick="addCart('Android Laptop',18999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
+</div>
 
-<div class="card tablet">
-<img src="https://m.media-amazon.com/images/I/61NGnpjoRDL.jpg">
-<h3>Samsung Galaxy Tablet</h3>
-<div class="price">₹19999</div>
-<button class="btn cartbtn" onclick="addCart('Tablet',19999)">Add Cart</button>
+<div class="card laptop">
+<img src="https://m.media-amazon.com/images/I/71j8damPo5L.jpg">
+<h3>HP Laptop</h3>
+<div class="price">₹42999</div>
+<button class="btn cartbtn" onclick="addCart('HP Laptop',42999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
+</div>
+
+<!-- ACCESSORIES -->
+
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61CGHv6kmWL.jpg">
+<h3>Wireless Headphones</h3>
+<div class="price">₹2999</div>
+<button class="btn cartbtn" onclick="addCart('Headphones',2999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
+</div>
+
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61y2VVWcGBL.jpg">
+<h3>Smart Watch</h3>
+<div class="price">₹1999</div>
+<button class="btn cartbtn" onclick="addCart('Watch',1999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
+</div>
+
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61qQH6GQCAL.jpg">
+<h3>Bluetooth Speaker</h3>
+<div class="price">₹1499</div>
+<button class="btn cartbtn" onclick="addCart('Speaker',1499)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
@@ -315,17 +327,11 @@ width:100%;
 <!-- CART -->
 
 <div id="cartPanel">
-
 <h2>Your Cart</h2>
-
 <button onclick="closeCart()">Close</button>
-
 <div id="cartItems"></div>
-
 <h3 id="total"></h3>
-
 <button onclick="buy()">Checkout</button>
-
 </div>
 
 <!-- LOGIN -->
@@ -335,7 +341,7 @@ width:100%;
 <h2>Delivery Details</h2>
 
 <input id="name" placeholder="Full Name">
-<input id="phone" placeholder="Phone">
+<input id="phone" placeholder="Phone Number">
 <input id="address" placeholder="Address">
 <input id="city" placeholder="City">
 <input id="pincode" placeholder="Pincode">
@@ -372,25 +378,17 @@ localStorage.setItem("cart",JSON.stringify(cart))
 }
 
 function addCart(name,price){
-
 cart.push({name,price})
-
 saveCart()
-
 renderCart()
-
 updateCount()
-
 alert(name+" added to cart")
-
 }
 
 function renderCart(){
 
 let box=document.getElementById("cartItems")
-
 let total=0
-
 box.innerHTML=""
 
 cart.forEach((item,i)=>{
@@ -411,15 +409,10 @@ document.getElementById("total").innerText="Total ₹"+total
 }
 
 function removeItem(i){
-
 cart.splice(i,1)
-
 saveCart()
-
 renderCart()
-
 updateCount()
-
 }
 
 function updateCount(){
@@ -431,7 +424,7 @@ document.getElementById("cartPanel").style.right="0"
 }
 
 function closeCart(){
-document.getElementById("cartPanel").style.right="-360px"
+document.getElementById("cartPanel").style.right="-350px"
 }
 
 function openLogin(){
@@ -451,11 +444,13 @@ let city=document.getElementById("city").value
 let pincode=document.getElementById("pincode").value
 
 if(name==""||phone==""||address==""||city==""||pincode==""){
-alert("Fill all details")
+alert("Please fill all details")
 return
 }
 
-localStorage.setItem("user",JSON.stringify({name,phone,address,city,pincode}))
+let user={name,phone,address,city,pincode}
+
+localStorage.setItem("user",JSON.stringify(user))
 
 alert("Details Saved")
 
@@ -468,7 +463,7 @@ function buy(){
 let user=localStorage.getItem("user")
 
 if(!user){
-alert("Login first")
+alert("Enter delivery details first")
 openLogin()
 return
 }
@@ -486,14 +481,11 @@ function paymentDone(){
 
 let user=JSON.parse(localStorage.getItem("user"))
 
-alert("Order Success 🎉 "+user.name)
+alert("Order Successful 🎉\nName: "+user.name)
 
 cart=[]
-
 saveCart()
-
 renderCart()
-
 updateCount()
 
 document.getElementById("paymentBox").style.display="none"
@@ -505,9 +497,7 @@ document.getElementById("searchBox").addEventListener("keyup",function(){
 let value=this.value.toLowerCase()
 
 document.querySelectorAll(".card").forEach(card=>{
-
 card.style.display=card.innerText.toLowerCase().includes(value)?"block":"none"
-
 })
 
 })
@@ -515,15 +505,12 @@ card.style.display=card.innerText.toLowerCase().includes(value)?"block":"none"
 function filter(type){
 
 document.querySelectorAll(".card").forEach(card=>{
-
 card.style.display=(type=="all"||card.classList.contains(type))?"block":"none"
-
 })
 
 }
 
 renderCart()
-
 updateCount()
 
 </script>
