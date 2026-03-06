@@ -1,60 +1,83 @@
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let cart=[]
+updateCart();
 
 function addCart(item){
 
-cart.push(item)
+cart.push(item);
 
-document.getElementById("cartCount").innerText=cart.length
+localStorage.setItem("cart",JSON.stringify(cart));
 
-document.getElementById("cartItems").innerHTML+=`<li>${item}</li>`
+updateCart();
 
-showNotify(item+" added to cart")
+showNotify(item+" added to cart");
+
+}
+
+function updateCart(){
+
+document.getElementById("cartCount").innerText=cart.length;
+
+let list="";
+
+cart.forEach(item=>{
+
+list+=`<li>${item}</li>`;
+
+});
+
+document.getElementById("cartItems").innerHTML=list;
 
 }
 
 function showNotify(text){
 
-let n=document.getElementById("notify")
+let n=document.getElementById("notify");
 
-n.innerText=text
+n.innerText=text;
 
-n.style.display="block"
+n.style.display="block";
 
 setTimeout(()=>{
 
-n.style.display="none"
+n.style.display="none";
 
-},2000)
+},2000);
 
 }
 
 function openCart(){
 
-document.getElementById("cartPanel").style.right="0"
+document.getElementById("cartPanel").style.right="0";
 
 }
 
 function buy(){
 
-document.getElementById("paymentBox").style.display="block"
+document.getElementById("paymentBox").style.display="block";
 
 }
 
 function closePay(){
 
-document.getElementById("paymentBox").style.display="none"
+document.getElementById("paymentBox").style.display="none";
 
 }
 
 function openLogin(){
 
-document.getElementById("loginBox").style.display="block"
+document.getElementById("loginBox").style.display="block";
 
 }
 
-function closeLogin(){
+function loginUser(){
 
-document.getElementById("loginBox").style.display="none"
+let email=document.getElementById("email").value;
+
+localStorage.setItem("user",email);
+
+alert("Login Successful");
+
+document.getElementById("loginBox").style.display="none";
 
 }
