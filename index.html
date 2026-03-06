@@ -2,18 +2,70 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Product Store</title>
+<title>SmartHub Store</title>
 
 <style>
 
-body{
-font-family: Arial;
-background:#f2f2f2;
+*{
 margin:0;
-padding:20px;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
 
+body{
+background:#f5f5f5;
+}
+
+/* HEADER */
+
+header{
+background:#111;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.search-box input{
+padding:8px;
+width:250px;
+border:none;
+border-radius:4px;
+}
+
+.cart{
+font-size:18px;
+}
+
+/* CATEGORY */
+
+.categories{
+display:flex;
+gap:10px;
+padding:15px;
+background:white;
+flex-wrap:wrap;
+}
+
+.categories button{
+padding:8px 15px;
+border:none;
+background:#ddd;
+cursor:pointer;
+border-radius:5px;
+}
+
+/* PRODUCT GRID */
+
 .container{
+padding:20px;
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
 gap:20px;
@@ -35,7 +87,6 @@ height:150px;
 display:flex;
 align-items:center;
 justify-content:center;
-margin-bottom:10px;
 }
 
 .image-box img{
@@ -46,18 +97,17 @@ object-fit:contain;
 
 .title{
 font-weight:bold;
-margin:10px 0;
+margin-top:10px;
 }
 
 .price{
 color:red;
 font-weight:bold;
-margin:5px 0;
+margin:5px;
 }
 
 .stars{
 color:orange;
-margin:5px 0;
 }
 
 .buttons{
@@ -72,15 +122,25 @@ cursor:pointer;
 font-size:12px;
 }
 
-.cart{
+.cartbtn{
 background:orange;
 color:white;
 }
 
-.buy{
+.buybtn{
 background:#28a745;
 color:white;
 margin-left:5px;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:40px;
+background:#111;
+color:white;
+text-align:center;
+padding:15px;
 }
 
 </style>
@@ -88,9 +148,33 @@ margin-left:5px;
 
 <body>
 
+<header>
+
+<div class="logo">SmartHub</div>
+
+<div class="search-box">
+<input type="text" placeholder="Search product...">
+</div>
+
+<div class="cart">
+🛒 Cart: <span id="cartCount">0</span>
+</div>
+
+</header>
+
+<div class="categories">
+
+<button>All</button>
+<button>Electronics</button>
+<button>Laptop</button>
+<button>Home</button>
+<button>Accessories</button>
+
+</div>
+
 <div class="container">
 
-<!-- Product 1 -->
+<!-- PHONE -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/61-r9zOKBCL._AC_UY218_.jpg">
@@ -99,12 +183,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹7999</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 2 -->
+<!-- GAMING LAPTOP -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/71jG+e7roXL._AC_UY218_.jpg">
@@ -113,12 +197,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹55999</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 3 -->
+<!-- EARBUDS -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_UY218_.jpg">
@@ -127,12 +211,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹1499</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 4 -->
+<!-- WATCH -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UY218_.jpg">
@@ -141,12 +225,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹1999</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 5 -->
+<!-- HEADPHONES -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/61KNJav3S9L._AC_UY218_.jpg">
@@ -155,12 +239,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹2499</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 6 -->
+<!-- GUITAR -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/71vR3d0QFQL._AC_UY218_.jpg">
@@ -169,12 +253,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹5999</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 7 -->
+<!-- WASHING MACHINE -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/71Jv2jVh6nL._AC_UY218_.jpg">
@@ -183,12 +267,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹15999</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 8 -->
+<!-- AC -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/51R5N4CqZXL._AC_UY218_.jpg">
@@ -197,12 +281,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹32999</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 9 -->
+<!-- TV -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/81fxjeu8fdL._AC_UY218_.jpg">
@@ -211,12 +295,12 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹29999</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
-<!-- Product 10 -->
+<!-- FRIDGE -->
 <div class="card">
 <div class="image-box">
 <img src="https://m.media-amazon.com/images/I/71WvVq1W1VL._AC_UY218_.jpg">
@@ -225,12 +309,38 @@ margin-left:5px;
 <div class="stars">★★★★★</div>
 <div class="price">₹18999</div>
 <div class="buttons">
-<button class="btn cart">Add to Cart</button>
-<button class="btn buy">Buy Now</button>
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 </div>
 
 </div>
+
+<footer>
+© 2025 SmartHub Store
+</footer>
+
+<script>
+
+let cart = 0;
+
+function addCart(){
+
+cart++;
+
+document.getElementById("cartCount").innerText = cart;
+
+alert("Product Added To Cart");
+
+}
+
+function buy(){
+
+alert("Redirecting To Payment...");
+
+}
+
+</script>
 
 </body>
 </html>
