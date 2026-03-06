@@ -173,14 +173,13 @@ width:200px;
 <div class="top-buttons">
 <button onclick="history.back()">Back</button>
 <button onclick="openCart()">Cart</button>
+<button onclick="login()">Login</button>
 </div>
 
 </header>
 
 
 <div class="container">
-
-<!-- Smart Watch -->
 
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/61y2VVWcGBL.jpg">
@@ -190,8 +189,6 @@ width:200px;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
-<!-- iPhone -->
-
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
 <h3>iPhone</h3>
@@ -199,8 +196,6 @@ width:200px;
 <button class="btn cartbtn" onclick="addCart('iPhone')">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
-
-<!-- Laptop -->
 
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/71jG+e7roXL.jpg">
@@ -210,8 +205,6 @@ width:200px;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
-<!-- Earbuds -->
-
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
 <h3>Bluetooth Earbuds</h3>
@@ -219,8 +212,6 @@ width:200px;
 <button class="btn cartbtn" onclick="addCart('Earbuds')">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
-
-<!-- LED TV -->
 
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/81Zt42ioCgL.jpg">
@@ -230,10 +221,8 @@ width:200px;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
-<!-- Refrigerator -->
-
 <div class="card">
-<img src="https://m.media-amazon.com/images/I/71Wv8G9F0AL.jpg">
+<img src="https://m.media-amazon.com/images/I/61Dw5Z8LzJL.jpg">
 <h3>Refrigerator</h3>
 <div class="price">₹18999</div>
 <button class="btn cartbtn" onclick="addCart('Refrigerator')">Add To Cart</button>
@@ -243,9 +232,9 @@ width:200px;
 </div>
 
 
-<!-- CART -->
-
 <div id="cartPanel">
+
+<button onclick="closeCart()">Back</button>
 
 <h2>Your Cart</h2>
 
@@ -255,8 +244,6 @@ width:200px;
 
 </div>
 
-
-<!-- PAYMENT -->
 
 <div id="paymentBox">
 
@@ -281,19 +268,14 @@ width:200px;
 let cart=[]
 
 function addCart(item){
-
 cart.push(item)
-
 renderCart()
-
 showNotify(item+" added to cart")
-
 }
 
 function renderCart(){
 
 let box=document.getElementById("cartItems")
-
 box.innerHTML=""
 
 cart.forEach((item,index)=>{
@@ -304,51 +286,45 @@ ${item}
 <button class="remove" onclick="removeItem(${index})">X</button>
 </div>
 `
-
 })
 
 }
 
 function removeItem(i){
-
 cart.splice(i,1)
-
 renderCart()
-
 }
 
 function showNotify(text){
 
 let n=document.getElementById("notify")
-
 n.innerText=text
-
 n.style.display="block"
 
 setTimeout(()=>{
-
 n.style.display="none"
-
 },2000)
 
 }
 
 function openCart(){
-
 document.getElementById("cartPanel").style.right="0"
+}
 
+function closeCart(){
+document.getElementById("cartPanel").style.right="-400px"
 }
 
 function buy(){
-
 document.getElementById("paymentBox").style.display="block"
-
 }
 
 function closePay(){
-
 document.getElementById("paymentBox").style.display="none"
+}
 
+function login(){
+alert("Login system coming soon")
 }
 
 </script>
