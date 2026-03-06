@@ -1,410 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SmartHub Store</title>
-
-<style>
-
-body{
-margin:0;
-font-family:Arial;
-background:#f5f5f5;
-}
-
-/* HEADER */
-
-header{
-background:#0b1a2d;
-color:white;
-padding:15px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-flex-wrap:wrap;
-}
-
-header h1{
-margin:0;
-}
-
-.search{
-width:40%;
-padding:10px;
-border-radius:5px;
-border:none;
-}
-
-.top-buttons button{
-margin-left:10px;
-padding:10px 15px;
-background:#ff9800;
-border:none;
-border-radius:5px;
-cursor:pointer;
-}
-
-.cartcount{
-background:red;
-padding:2px 6px;
-border-radius:50%;
-font-size:12px;
-}
-
-/* PRODUCTS */
-
-.container{
-padding:20px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
-
-.card{
-background:white;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
-padding:15px;
-text-align:center;
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 20px rgba(0,0,0,0.2);
-}
-
-.card img{
-width:100%;
-height:180px;
-object-fit:contain;
-}
-
-.price{
-color:red;
-font-weight:bold;
-margin:10px 0;
-}
-
-.btn{
-padding:8px 12px;
-border:none;
-border-radius:5px;
-cursor:pointer;
-margin:5px;
-}
-
-.cartbtn{
-background:#ff9800;
-}
-
-.buybtn{
-background:#4caf50;
-color:white;
-}
-
-/* CART */
-
-#cartPanel{
-position:fixed;
-right:-400px;
-top:0;
-width:350px;
-height:100%;
-background:white;
-box-shadow:-3px 0 10px rgba(0,0,0,0.2);
-padding:20px;
-transition:0.4s;
-overflow:auto;
-}
-
-.cartItem{
-display:flex;
-justify-content:space-between;
-margin:10px 0;
-}
-
-.remove{
-background:red;
-color:white;
-border:none;
-padding:3px 6px;
-cursor:pointer;
-}
-
-/* NOTIFICATION */
-
-#notify{
-position:fixed;
-right:20px;
-bottom:20px;
-background:#4caf50;
-color:white;
-padding:15px;
-border-radius:5px;
-display:none;
-}
-
-/* PAYMENT */
-
-#paymentBox{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
-text-align:center;
-}
-
-#paymentBox img{
-width:200px;
-}
-
-/* LOGIN */
-
-#loginBox{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
-}
-
-input{
-padding:10px;
-margin:5px;
-width:90%;
-}
-
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMART HUB</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
 
-<h1>SmartHub</h1>
-
-<input class="search" placeholder="Search Products" onkeyup="searchProduct()">
-
-<div class="top-buttons">
-
-<button onclick="openLogin()">Login</button>
-
-<button onclick="openCart()">Cart <span class="cartcount" id="cartCount">0</span></button>
-
+<div class="logo">
+<img src="SMARTHUB-logo.png">
+<h2>SMART HUB</h2>
 </div>
+
+<nav>
+<button onclick="openLogin()">Login</button>
+<button onclick="openCart()">Cart 🛒</button>
+</nav>
 
 </header>
 
 
-<div class="container" id="productContainer">
+<!-- LOGIN PAGE -->
 
-<!-- PRODUCTS -->
+<div id="loginBox" class="loginBox">
 
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg">
-<h3>Smart Watch</h3>
-<div class="price">₹1999</div>
-<button class="btn cartbtn" onclick="addCart('Smart Watch',1999)">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<h2>User Login</h2>
 
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/71YXzeOuslL.jpg">
-<h3>Refrigerator</h3>
-<div class="price">₹18999</div>
-<button class="btn cartbtn" onclick="addCart('Refrigerator',18999)">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<input id="username" placeholder="Enter Username">
+<input id="password" type="password" placeholder="Enter Password">
 
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/61p0G+6YdPL.jpg">
-<h3>Ceiling Fan</h3>
-<div class="price">₹2499</div>
-<button class="btn cartbtn" onclick="addCart('Fan',2499)">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<button onclick="login()">Login</button>
 
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
-<h3>Bluetooth Earbuds</h3>
-<div class="price">₹1499</div>
-<button class="btn cartbtn" onclick="addCart('Earbuds',1499)">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<p onclick="signup()">Create Account</p>
 
 </div>
 
 
 <!-- CART -->
 
-<div id="cartPanel">
+<div id="cart" class="cart">
 
 <h2>Your Cart</h2>
+<ul id="cartItems"></ul>
 
-<div id="cartItems"></div>
-
-<h3>Total: ₹<span id="total">0</span></h3>
-
-<button onclick="buy()">Checkout</button>
-<button onclick="closeCart()">Close</button>
+<button onclick="checkout()">BUY NOW</button>
 
 </div>
+
+
+<!-- NOTIFICATION -->
+
+<div id="notification" class="notification">
+Product added to cart
+</div>
+
+
+
+<!-- PRODUCTS -->
+
+<section class="products">
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b">
+
+<h3>Smart Watch</h3>
+
+<p>$50</p>
+
+<button onclick="addCart('Smart Watch')">Add Cart</button>
+<button onclick="buy()">Buy Now</button>
+
+</div>
+
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9">
+
+<h3>Wireless Headphone</h3>
+
+<p>$80</p>
+
+<button onclick="addCart('Headphone')">Add Cart</button>
+<button onclick="buy()">Buy Now</button>
+
+</div>
+
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+
+<h3>Smart Phone</h3>
+
+<p>$500</p>
+
+<button onclick="addCart('Smart Phone')">Add Cart</button>
+<button onclick="buy()">Buy Now</button>
+
+</div>
+
+
+<div class="product">
+
+<img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
+
+<h3>Laptop</h3>
+
+<p>$900</p>
+
+<button onclick="addCart('Laptop')">Add Cart</button>
+<button onclick="buy()">Buy Now</button>
+
+</div>
+
+</section>
 
 
 <!-- PAYMENT -->
 
-<div id="paymentBox">
+<section class="payment">
 
-<h2>UPI Payment</h2>
-
-<p>Scan QR to Pay</p>
+<h2>Scan To Pay</h2>
 
 <img src="qrcode.png">
 
-<br><br>
-
-<button onclick="closePay()">Close</button>
-
-</div>
+</section>
 
 
-<!-- LOGIN -->
-
-<div id="loginBox">
-
-<h2>User Login</h2>
-
-<input placeholder="Email">
-<input placeholder="Password">
-
-<br>
-
-<button onclick="closeLogin()">Login</button>
-
-</div>
-
-
-<div id="notify"></div>
-
-
-<script>
-
-let cart=[]
-let total=0
-
-function addCart(name,price){
-
-cart.push({name,price})
-
-total+=price
-
-document.getElementById("cartCount").innerText=cart.length
-
-renderCart()
-
-showNotify(name+" added to cart")
-
-}
-
-function renderCart(){
-
-let html=""
-
-cart.forEach((item,i)=>{
-
-html+=`
-<div class="cartItem">
-${item.name} - ₹${item.price}
-<button class="remove" onclick="removeItem(${i})">X</button>
-</div>
-`
-
-})
-
-document.getElementById("cartItems").innerHTML=html
-document.getElementById("total").innerText=total
-
-}
-
-function removeItem(i){
-
-total-=cart[i].price
-
-cart.splice(i,1)
-
-document.getElementById("cartCount").innerText=cart.length
-
-renderCart()
-
-}
-
-function showNotify(text){
-
-let n=document.getElementById("notify")
-
-n.innerText=text
-
-n.style.display="block"
-
-setTimeout(()=>{
-
-n.style.display="none"
-
-},2000)
-
-}
-
-function openCart(){
-document.getElementById("cartPanel").style.right="0"
-}
-
-function closeCart(){
-document.getElementById("cartPanel").style.right="-400px"
-}
-
-function buy(){
-document.getElementById("paymentBox").style.display="block"
-}
-
-function closePay(){
-document.getElementById("paymentBox").style.display="none"
-}
-
-function openLogin(){
-document.getElementById("loginBox").style.display="block"
-}
-
-function closeLogin(){
-document.getElementById("loginBox").style.display="none"
-}
-
-function searchProduct(){
-
-let input=document.querySelector(".search").value.toLowerCase()
-
-let cards=document.querySelectorAll(".card")
-
-cards.forEach(card=>{
-
-let name=card.innerText.toLowerCase()
-
-card.style.display=name.includes(input) ? "block":"none"
-
-})
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
