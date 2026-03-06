@@ -1,9 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SmartHub Electronics</title>
 
 <style>
@@ -11,16 +11,27 @@
 body{
 margin:0;
 font-family:Arial;
-background:#f5f5f5;
+background:#f2f3f5;
 }
 
 header{
-background:#0a0a0a;
+background:#111;
 color:white;
-padding:18px;
-font-size:24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 25px;
+}
+
+.logo{
+font-size:22px;
 font-weight:bold;
-text-align:center;
+}
+
+.cart{
+background:#ff6600;
+padding:6px 12px;
+border-radius:6px;
 }
 
 .products{
@@ -33,21 +44,21 @@ padding:30px;
 .card{
 background:white;
 border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
 padding:15px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
 text-align:center;
 transition:0.3s;
 }
 
 .card:hover{
-transform:scale(1.03);
+transform:scale(1.04);
 }
 
 .card img{
 width:100%;
 height:180px;
 object-fit:cover;
-border-radius:8px;
+border-radius:6px;
 }
 
 .price{
@@ -56,18 +67,23 @@ font-size:20px;
 font-weight:bold;
 }
 
+.rating{
+color:orange;
+margin:5px 0;
+}
+
 button{
 background:#ff6600;
 border:none;
-padding:10px 18px;
-color:white;
+padding:10px 16px;
 border-radius:6px;
+color:white;
 cursor:pointer;
-font-size:15px;
+margin-top:6px;
 }
 
 button:hover{
-background:#e55300;
+background:#e65300;
 }
 
 #payment{
@@ -84,60 +100,67 @@ padding:40px;
 
 .qrimg{
 width:260px;
-margin-top:20px;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:15px;
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
 <header>
-SmartHub Electronics Store
-</header>
 
+<div class="logo">SmartHub Electronics</div>
+
+<div class="cart">🛒 Cart <span id="count">0</span></div>
+
+</header>
 
 <div class="products">
 
 <div class="card">
 <img src="https://cdn.pixabay.com/photo/2018/01/27/17/19/smartwatch-3111598_1280.jpg">
 <h3>Smart Watch</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
 <p class="price">₹1999</p>
+<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
-
 
 <div class="card">
-<img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/fan-1869716_1280.jpg">
-<h3>Fan</h3>
+<img src="https://cdn.pixabay.com/photo/2017/08/01/09/04/fan-2560956_1280.jpg">
+<h3>Ceiling Fan</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
 <p class="price">₹1499</p>
+<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
-
 
 <div class="card">
 <img src="https://cdn.pixabay.com/photo/2016/03/27/21/16/refrigerator-1284504_1280.jpg">
 <h3>Refrigerator</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
 <p class="price">₹15999</p>
+<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
 
 </div>
-
-
 
 <div id="payment">
 
 <h2>Select Payment Method</h2>
 
-<br>
-
-<button onclick="showQR()">Pay With UPI</button>
+<button onclick="showQR()">UPI Payment</button>
 
 </div>
-
-
 
 <div id="qr">
 
@@ -145,32 +168,36 @@ SmartHub Electronics Store
 
 <img src="QRCODE.jpeg" class="qrimg">
 
-<p>After payment send screenshot for confirmation.</p>
+<p>After payment send screenshot to confirm order.</p>
 
 </div>
 
+<footer>
 
+© 2026 SmartHub Electronics
+
+</footer>
 
 <script>
 
+let count=0
+
+function add(){
+count++
+document.getElementById("count").innerText=count
+}
+
 function buy(){
-
 document.querySelector(".products").style.display="none"
-
 document.getElementById("payment").style.display="block"
-
 }
 
 function showQR(){
-
 document.getElementById("payment").style.display="none"
-
 document.getElementById("qr").style.display="block"
-
 }
 
 </script>
-
 
 </body>
 </html>
