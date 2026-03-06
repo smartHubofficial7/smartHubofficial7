@@ -21,6 +21,7 @@ padding:15px;
 display:flex;
 align-items:center;
 justify-content:space-between;
+flex-wrap:wrap;
 }
 
 header h1{
@@ -43,6 +44,13 @@ border-radius:5px;
 cursor:pointer;
 }
 
+.cartcount{
+background:red;
+padding:2px 6px;
+border-radius:50%;
+font-size:12px;
+}
+
 /* PRODUCTS */
 
 .container{
@@ -58,6 +66,12 @@ border-radius:10px;
 box-shadow:0 3px 10px rgba(0,0,0,0.1);
 padding:15px;
 text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
 }
 
 .card img{
@@ -104,8 +118,18 @@ transition:0.4s;
 overflow:auto;
 }
 
-#cartPanel h2{
-margin-top:0;
+.cartItem{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+}
+
+.remove{
+background:red;
+color:white;
+border:none;
+padding:3px 6px;
+cursor:pointer;
 }
 
 /* NOTIFICATION */
@@ -169,98 +193,70 @@ width:90%;
 
 <h1>SmartHub</h1>
 
-<input class="search" placeholder="Search Products">
+<input class="search" placeholder="Search Products" onkeyup="searchProduct()">
 
 <div class="top-buttons">
 
 <button onclick="openLogin()">Login</button>
-<button onclick="openCart()">Cart</button>
+
+<button onclick="openCart()">Cart <span class="cartcount" id="cartCount">0</span></button>
 
 </div>
 
 </header>
 
 
-<div class="container">
+<div class="container" id="productContainer">
 
-<!-- PRODUCT 1 -->
+<!-- PRODUCTS -->
 
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg">
 <h3>Smart Watch</h3>
 <div class="price">₹1999</div>
-<button class="btn cartbtn" onclick="addCart('Smart Watch')">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Smart Watch',1999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
-
-
-<!-- PRODUCT 2 -->
 
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/71YXzeOuslL.jpg">
 <h3>Refrigerator</h3>
 <div class="price">₹18999</div>
-<button class="btn cartbtn" onclick="addCart('Refrigerator')">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Refrigerator',18999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
-
-
-<!-- PRODUCT 3 -->
 
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/61p0G+6YdPL.jpg">
 <h3>Ceiling Fan</h3>
 <div class="price">₹2499</div>
-<button class="btn cartbtn" onclick="addCart('Fan')">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Fan',2499)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
-
-
-<!-- PRODUCT 4 -->
 
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
 <h3>Bluetooth Earbuds</h3>
 <div class="price">₹1499</div>
-<button class="btn cartbtn" onclick="addCart('Earbuds')">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Earbuds',1499)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
-
-<!-- PRODUCT 5 -->
-
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/71TPda7cwUL.jpg">
-<h3>Gaming Laptop</h3>
-<div class="price">₹55999</div>
-<button class="btn cartbtn" onclick="addCart('Laptop')">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
 
-<!-- PRODUCT 6 -->
-
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL.jpg">
-<h3>LED TV</h3>
-<div class="price">₹29999</div>
-<button class="btn cartbtn" onclick="addCart('TV')">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-
-
-</div>
-
-
-<!-- CART PANEL -->
+<!-- CART -->
 
 <div id="cartPanel">
 
 <h2>Your Cart</h2>
 
-<ul id="cartItems"></ul>
+<div id="cartItems"></div>
+
+<h3>Total: ₹<span id="total">0</span></h3>
 
 <button onclick="buy()">Checkout</button>
+<button onclick="closeCart()">Close</button>
 
 </div>
 
@@ -303,15 +299,52 @@ width:90%;
 
 <script>
 
-let cart=[];
+let cart=[]
+let total=0
 
-function addCart(item){
+function addCart(name,price){
 
-cart.push(item)
+cart.push({name,price})
 
-document.getElementById("cartItems").innerHTML+=`<li>${item}</li>`
+total+=price
 
-showNotify(item+" added to cart")
+document.getElementById("cartCount").innerText=cart.length
+
+renderCart()
+
+showNotify(name+" added to cart")
+
+}
+
+function renderCart(){
+
+let html=""
+
+cart.forEach((item,i)=>{
+
+html+=`
+<div class="cartItem">
+${item.name} - ₹${item.price}
+<button class="remove" onclick="removeItem(${i})">X</button>
+</div>
+`
+
+})
+
+document.getElementById("cartItems").innerHTML=html
+document.getElementById("total").innerText=total
+
+}
+
+function removeItem(i){
+
+total-=cart[i].price
+
+cart.splice(i,1)
+
+document.getElementById("cartCount").innerText=cart.length
+
+renderCart()
 
 }
 
@@ -332,32 +365,42 @@ n.style.display="none"
 }
 
 function openCart(){
-
 document.getElementById("cartPanel").style.right="0"
+}
 
+function closeCart(){
+document.getElementById("cartPanel").style.right="-400px"
 }
 
 function buy(){
-
 document.getElementById("paymentBox").style.display="block"
-
 }
 
 function closePay(){
-
 document.getElementById("paymentBox").style.display="none"
-
 }
 
 function openLogin(){
-
 document.getElementById("loginBox").style.display="block"
-
 }
 
 function closeLogin(){
-
 document.getElementById("loginBox").style.display="none"
+}
+
+function searchProduct(){
+
+let input=document.querySelector(".search").value.toLowerCase()
+
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(card=>{
+
+let name=card.innerText.toLowerCase()
+
+card.style.display=name.includes(input) ? "block":"none"
+
+})
 
 }
 
