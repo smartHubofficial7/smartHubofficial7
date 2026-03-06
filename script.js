@@ -1,7 +1,38 @@
+let cart=[]
 
-let userLogged = false
+let userLogged=false
 
-let cart = []
+function addCart(item){
+
+cart.push(item)
+
+document.getElementById("cartItems").innerHTML+=`<li>${item}</li>`
+
+showNotify(item+" added to cart")
+
+}
+
+function showNotify(text){
+
+let n=document.getElementById("notify")
+
+n.innerText=text
+
+n.style.display="block"
+
+setTimeout(()=>{
+
+n.style.display="none"
+
+},2000)
+
+}
+
+function openCart(){
+
+document.getElementById("cartPanel").style.right="0"
+
+}
 
 function openLogin(){
 
@@ -11,12 +42,13 @@ document.getElementById("loginBox").style.display="block"
 
 function login(){
 
-let u = document.getElementById("username").value
-let p = document.getElementById("password").value
+let u=document.getElementById("user").value
+let p=document.getElementById("pass").value
 
 if(u && p){
 
-userLogged = true
+userLogged=true
+
 alert("Login Successful")
 
 document.getElementById("loginBox").style.display="none"
@@ -24,50 +56,6 @@ document.getElementById("loginBox").style.display="none"
 }
 
 }
-
-
-function signup(){
-
-alert("Account Created Successfully")
-userLogged = true
-
-document.getElementById("loginBox").style.display="none"
-
-}
-
-
-function addCart(product){
-
-cart.push(product)
-
-let list = document.getElementById("cartItems")
-
-let li = document.createElement("li")
-
-li.innerText = product
-
-list.appendChild(li)
-
-
-let note = document.getElementById("notification")
-
-note.style.display="block"
-
-setTimeout(()=>{
-
-note.style.display="none"
-
-},2000)
-
-}
-
-
-function openCart(){
-
-document.getElementById("cart").classList.toggle("open")
-
-}
-
 
 function buy(){
 
@@ -81,21 +69,12 @@ return
 
 }
 
-alert("Order Successful")
+document.getElementById("payment").style.display="block"
 
 }
 
+function closePay(){
 
-function checkout(){
-
-if(cart.length==0){
-
-alert("Cart empty")
-
-}else{
-
-alert("Order Placed Successfully")
-
-}
+document.getElementById("payment").style.display="none"
 
 }
