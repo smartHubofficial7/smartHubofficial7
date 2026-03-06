@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="UTF-8">
@@ -206,7 +205,7 @@ box-shadow:0 5px 20px rgba(0,0,0,0.3);
 text-align:center;
 }
 
-/* LOGIN */
+/* LOGIN COOL */
 
 #loginBox{
 display:none;
@@ -248,7 +247,6 @@ display:none;
 }
 
 </style>
-
 </head>
 
 <body>
@@ -284,8 +282,10 @@ display:none;
 
 <div class="container">
 
+<!-- OLD PRODUCTS -->
+
 <div class="card phone">
-<img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab">
+<img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
 <h3>iPhone</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
 <div class="price">₹79999</div>
@@ -294,7 +294,7 @@ display:none;
 </div>
 
 <div class="card laptop">
-<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+<img src="https://m.media-amazon.com/images/I/71jG+e7roXL.jpg">
 <h3>Gaming Laptop</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹55999</div>
@@ -303,7 +303,7 @@ display:none;
 </div>
 
 <div class="card accessory">
-<img src="https://images.unsplash.com/photo-1585386959984-a41552231658">
+<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
 <h3>Bluetooth Earbuds</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹1499</div>
@@ -312,7 +312,7 @@ display:none;
 </div>
 
 <div class="card accessory">
-<img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12">
+<img src="https://m.media-amazon.com/images/I/61y2VVWcGBL.jpg">
 <h3>Smart Watch</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹1999</div>
@@ -320,8 +320,10 @@ display:none;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
+<!-- NEW PRODUCTS -->
+
 <div class="card accessory">
-<img src="https://images.unsplash.com/photo-1518441902112-f5b6c5d7e8f1">
+<img src="https://m.media-amazon.com/images/I/61RZDb2mQxL.jpg">
 <h3>Headphones</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹2499</div>
@@ -330,7 +332,7 @@ display:none;
 </div>
 
 <div class="card accessory">
-<img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
+<img src="https://m.media-amazon.com/images/I/71nK4qvZQ-L.jpg">
 <h3>Guitar</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹5999</div>
@@ -339,7 +341,7 @@ display:none;
 </div>
 
 <div class="card home">
-<img src="https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c">
+<img src="https://m.media-amazon.com/images/I/61+Q6Rh3OQL.jpg">
 <h3>Washing Machine</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹15999</div>
@@ -348,7 +350,7 @@ display:none;
 </div>
 
 <div class="card home">
-<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
+<img src="https://m.media-amazon.com/images/I/71HnP+2g4JL.jpg">
 <h3>Air Conditioner</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹32999</div>
@@ -357,7 +359,7 @@ display:none;
 </div>
 
 <div class="card home">
-<img src="https://images.unsplash.com/photo-1593784991095-a205069470b6">
+<img src="https://m.media-amazon.com/images/I/81Zt42ioCgL.jpg">
 <h3>LED TV</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹29999</div>
@@ -366,7 +368,7 @@ display:none;
 </div>
 
 <div class="card home">
-<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c">
+<img src="https://m.media-amazon.com/images/I/71Wv8G9F0AL.jpg">
 <h3>Refrigerator</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹18999</div>
@@ -375,3 +377,140 @@ display:none;
 </div>
 
 </div>
+
+<div id="cartPanel">
+<h2>Your Cart</h2>
+<button onclick="closeCart()">⬅ Back</button>
+<div id="cartItems"></div>
+<div id="total"></div>
+<button onclick="buy()">Checkout</button>
+</div>
+
+<div id="paymentBox">
+<h2>UPI Payment</h2>
+<p>Scan QR to Pay</p>
+<img src="qrcode.png" width="200">
+<br><br>
+<button onclick="orderSuccess()">I Paid</button>
+</div>
+
+<div id="loginBox">
+<button onclick="closeLogin()">⬅ Back</button>
+<h2>Welcome Back</h2>
+<input placeholder="Email">
+<input placeholder="Password" type="password">
+<br>
+<button onclick="login()">Login</button>
+</div>
+
+<div id="notify"></div>
+
+<script>
+
+setTimeout(()=>{
+document.getElementById("loader").style.display="none"
+},1500)
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[]
+
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart))
+}
+
+function addCart(name,price){
+cart.push({name,price})
+saveCart()
+renderCart()
+updateCount()
+notify(name+" added to cart")
+}
+
+function renderCart(){
+let box=document.getElementById("cartItems")
+let total=0
+box.innerHTML=""
+
+cart.forEach((item,i)=>{
+total+=item.price
+box.innerHTML+=`
+<div class="cart-item">
+${item.name} ₹${item.price}
+<button class="remove" onclick="removeItem(${i})">X</button>
+</div>`
+})
+
+document.getElementById("total").innerText="Total ₹"+total
+}
+
+function removeItem(i){
+cart.splice(i,1)
+saveCart()
+renderCart()
+updateCount()
+}
+
+function updateCount(){
+document.getElementById("cartCount").innerText=cart.length
+}
+
+function openCart(){
+document.getElementById("cartPanel").style.right="0"
+}
+
+function closeCart(){
+document.getElementById("cartPanel").style.right="-400px"
+}
+
+function buy(){
+document.getElementById("paymentBox").style.display="block"
+}
+
+function orderSuccess(){
+document.getElementById("paymentBox").style.display="none"
+notify("✅ Order Successful")
+cart=[]
+saveCart()
+renderCart()
+updateCount()
+}
+
+function openLogin(){
+document.getElementById("loginBox").style.display="block"
+}
+
+function closeLogin(){
+document.getElementById("loginBox").style.display="none"
+}
+
+function login(){
+notify("Login Successful")
+closeLogin()
+}
+
+function notify(text){
+let n=document.getElementById("notify")
+n.innerText=text
+n.style.display="block"
+setTimeout(()=>{n.style.display="none"},2000)
+}
+
+document.getElementById("searchBox").addEventListener("keyup",function(){
+let value=this.value.toLowerCase()
+document.querySelectorAll(".card").forEach(card=>{
+card.style.display=card.innerText.toLowerCase().includes(value)?"block":"none"
+})
+})
+
+function filter(type){
+document.querySelectorAll(".card").forEach(card=>{
+card.style.display=(type=="all"||card.classList.contains(type))?"block":"none"
+})
+}
+
+renderCart()
+updateCount()
+
+</script>
+
+</body>
+</html>
