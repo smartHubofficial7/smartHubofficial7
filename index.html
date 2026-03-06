@@ -16,8 +16,6 @@ font-family:Arial;
 background:#f3f3f3;
 }
 
-/* HEADER */
-
 header{
 background:#0b1a2d;
 color:white;
@@ -62,8 +60,6 @@ padding:2px 7px;
 border-radius:50%;
 }
 
-/* CATEGORY */
-
 .categories{
 background:white;
 padding:10px;
@@ -79,8 +75,6 @@ color:white;
 border-radius:5px;
 cursor:pointer;
 }
-
-/* PRODUCTS */
 
 .container{
 padding:20px;
@@ -126,8 +120,6 @@ background:#4caf50;
 color:white;
 }
 
-/* CART PANEL */
-
 #cartPanel{
 position:fixed;
 right:-360px;
@@ -156,8 +148,6 @@ padding:5px;
 cursor:pointer;
 }
 
-/* LOGIN BOX */
-
 #loginBox{
 display:none;
 position:fixed;
@@ -177,8 +167,6 @@ padding:10px;
 margin:6px;
 }
 
-/* PAYMENT */
-
 #paymentBox{
 display:none;
 position:fixed;
@@ -192,8 +180,6 @@ box-shadow:0 10px 30px rgba(0,0,0,0.3);
 text-align:center;
 z-index:1000;
 }
-
-/* MOBILE */
 
 @media(max-width:600px){
 
@@ -236,125 +222,68 @@ width:100%;
 </header>
 
 <div class="categories">
-
 <button onclick="filter('all')">All</button>
 <button onclick="filter('phone')">Phones</button>
-<button onclick="filter('laptop')">Laptop</button>
-<button onclick="filter('tablet')">Tablet</button>
-<button onclick="filter('accessory')">Accessories</button>
-
 </div>
 
 <div class="container">
 
-<!-- PHONES -->
-
 <div class="card phone">
 <img src="https://m.media-amazon.com/images/I/71geVdy6-OS.jpg">
-<h3>Samsung Galaxy</h3>
-<div class="price">₹24999</div>
-<button class="btn cartbtn" onclick="addCart('Samsung Galaxy',24999)">Add Cart</button>
+<h3>Samsung Galaxy M17 5G</h3>
+<div class="price">₹13999</div>
+<button class="btn cartbtn" onclick="addCart('Samsung Galaxy M17',13999)">Add Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <div class="card phone">
-<img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
-<h3>iPhone 14</h3>
-<div class="price">₹79999</div>
-<button class="btn cartbtn" onclick="addCart('iPhone 14',79999)">Add Cart</button>
+<img src="https://m.media-amazon.com/images/I/61d5GOy9YSL.jpg">
+<h3>iQOO Z10 Lite 5G</h3>
+<p>6000mAh Battery | 4GB RAM | 128GB</p>
+<div class="price">₹9999</div>
+<button class="btn cartbtn" onclick="addCart('iQOO Z10 Lite',9999)">Add Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <div class="card phone">
 <img src="https://m.media-amazon.com/images/I/71yzJoE7WlL.jpg">
-<h3>Redmi Note 12</h3>
-<div class="price">₹15999</div>
-<button class="btn cartbtn" onclick="addCart('Redmi Note',15999)">Add Cart</button>
+<h3>Redmi A4 5G</h3>
+<p>6.88in 120Hz | 50MP Camera</p>
+<div class="price">₹8999</div>
+<button class="btn cartbtn" onclick="addCart('Redmi A4',8999)">Add Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
-<!-- LAPTOP -->
-
-<div class="card laptop">
-<img src="https://m.media-amazon.com/images/I/71jG+e7roXL.jpg">
-<h3>Gaming Laptop</h3>
-<div class="price">₹55999</div>
-<button class="btn cartbtn" onclick="addCart('Gaming Laptop',55999)">Add Cart</button>
+<div class="card phone">
+<img src="https://m.media-amazon.com/images/I/71N+LqF5GHL.jpg">
+<h3>Samsung Galaxy M06 5G</h3>
+<p>Dimensity 6300 | 12 5G Bands</p>
+<div class="price">₹10499</div>
+<button class="btn cartbtn" onclick="addCart('Samsung M06',10499)">Add Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
-<div class="card laptop">
-<img src="https://m.media-amazon.com/images/I/61Dw5Z8LzJL.jpg">
-<h3>Android Laptop</h3>
-<div class="price">₹18999</div>
-<button class="btn cartbtn" onclick="addCart('Android Laptop',18999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<div class="card laptop">
-<img src="https://m.media-amazon.com/images/I/71j8damPo5L.jpg">
-<h3>HP Laptop</h3>
-<div class="price">₹42999</div>
-<button class="btn cartbtn" onclick="addCart('HP Laptop',42999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<!-- TABLET -->
-
-<div class="card tablet">
-<img src="https://m.media-amazon.com/images/I/61NGnpjoRDL.jpg">
-<h3>Samsung Tablet</h3>
-<div class="price">₹19999</div>
-<button class="btn cartbtn" onclick="addCart('Samsung Tablet',19999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<!-- ACCESSORIES -->
-
-<div class="card accessory">
-<img src="https://m.media-amazon.com/images/I/61CGHv6kmWL.jpg">
-<h3>Wireless Headphones</h3>
-<div class="price">₹2999</div>
-<button class="btn cartbtn" onclick="addCart('Headphones',2999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<div class="card accessory">
-<img src="https://m.media-amazon.com/images/I/61qQH6GQCAL.jpg">
-<h3>Bluetooth Speaker</h3>
-<div class="price">₹1499</div>
-<button class="btn cartbtn" onclick="addCart('Speaker',1499)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<div class="card accessory">
-<img src="https://m.media-amazon.com/images/I/61IMRs+o0iL.jpg">
-<h3>Power Bank</h3>
-<div class="price">₹999</div>
-<button class="btn cartbtn" onclick="addCart('Power Bank',999)">Add Cart</button>
+<div class="card phone">
+<img src="https://m.media-amazon.com/images/I/71Sa3dqRqqL.jpg">
+<h3>Samsung Galaxy S26 Ultra</h3>
+<p>12GB RAM | 512GB</p>
+<div class="price">₹129999</div>
+<button class="btn cartbtn" onclick="addCart('S26 Ultra',129999)">Add Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 </div>
 
 <!-- CART -->
-
 <div id="cartPanel">
-
 <h2>Your Cart</h2>
-
 <button onclick="closeCart()">Close</button>
-
 <div id="cartItems"></div>
-
 <h3 id="total"></h3>
-
 <button onclick="buy()">Checkout</button>
-
 </div>
 
 <!-- LOGIN -->
-
 <div id="loginBox">
 
 <h2>Delivery Details</h2>
@@ -573,11 +502,9 @@ card.style.display=(type=="all"||card.classList.contains(type))?"block":"none"
 }
 
 renderCart()
-
 updateCount()
 
 </script>
 
 </body>
 </html>
-
