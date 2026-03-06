@@ -2,8 +2,207 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SMART HUB</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 40px;
+background:#020617;
+box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:35px;
+}
+
+.search{
+width:40%;
+padding:10px;
+border-radius:6px;
+border:none;
+}
+
+.header-btn button{
+margin-left:10px;
+padding:10px 15px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.login{
+background:#22c55e;
+color:white;
+}
+
+.cart{
+background:#3b82f6;
+color:white;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:50px 20px;
+}
+
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#94a3b8;
+}
+
+/* PRODUCTS */
+
+.container{
+max-width:1400px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+padding:40px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
+
+.card img{
+width:100%;
+height:170px;
+object-fit:contain;
+background:white;
+border-radius:10px;
+padding:10px;
+}
+
+.price{
+color:#22c55e;
+font-size:18px;
+margin:10px 0;
+font-weight:bold;
+}
+
+.btn{
+padding:8px 14px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin:5px;
+}
+
+.cartbtn{
+background:#3b82f6;
+color:white;
+}
+
+.buybtn{
+background:#22c55e;
+color:white;
+}
+
+/* CART PANEL */
+
+#cartPanel{
+position:fixed;
+right:-350px;
+top:0;
+width:300px;
+height:100%;
+background:white;
+color:black;
+padding:20px;
+transition:0.4s;
+overflow:auto;
+}
+
+#cartPanel h2{
+margin-top:0;
+}
+
+/* NOTIFICATION */
+
+#notify{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#22c55e;
+color:white;
+padding:12px;
+border-radius:6px;
+display:none;
+}
+
+/* PAYMENT */
+
+#payment{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:black;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+#payment img{
+width:200px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.search{
+display:none;
+}
+
+header{
+flex-wrap:wrap;
+gap:10px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
@@ -15,56 +214,205 @@
 <h2>SMART HUB</h2>
 </div>
 
-<input type="text" id="search" placeholder="Search products...">
+<input class="search" placeholder="Search products..." onkeyup="searchProduct(this.value)">
 
-<div class="icons">
-<button onclick="openCart()">🛒 Cart</button>
+<div class="header-btn">
+<button class="login">Login</button>
+<button class="cart" onclick="openCart()">Cart (<span id="count">0</span>)</button>
 </div>
 
 </header>
 
-<section class="products" id="productList">
+<div class="hero">
 
-<div class="product">
-<img src="https://m.media-amazon.com/images/I/61LtuGzXeaL.jpg">
+<h1>Welcome To SmartHub</h1>
+<p>Best Electronics Store</p>
+
+</div>
+
+<div class="container" id="products">
+
+<!-- PRODUCT -->
+
+<div class="card">
+
+<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg">
+
 <h3>Smart Watch</h3>
-<p>⭐⭐⭐⭐☆</p>
-<p>₹1999</p>
-<button onclick="addCart('Smart Watch',1999)">Add to Cart</button>
+
+<div class="price">₹1999</div>
+
+<button class="btn cartbtn" onclick="addCart('Smart Watch')">Add To Cart</button>
+
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+
 </div>
 
-<div class="product">
-<img src="https://m.media-amazon.com/images/I/71vFKBpKakL.jpg">
-<h3>Wireless Headphones</h3>
-<p>⭐⭐⭐⭐⭐</p>
-<p>₹2999</p>
-<button onclick="addCart('Headphones',2999)">Add to Cart</button>
+<div class="card">
+
+<img src="https://m.media-amazon.com/images/I/71TPda7cwUL.jpg">
+
+<h3>Gaming Laptop</h3>
+
+<div class="price">₹55999</div>
+
+<button class="btn cartbtn" onclick="addCart('Laptop')">Add To Cart</button>
+
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+
 </div>
 
-<div class="product">
-<img src="https://m.media-amazon.com/images/I/61uA2UVnYWL.jpg">
-<h3>Gaming Mouse</h3>
-<p>⭐⭐⭐⭐</p>
-<p>₹999</p>
-<button onclick="addCart('Mouse',999)">Add to Cart</button>
+<div class="card">
+
+<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
+
+<h3>Bluetooth Earbuds</h3>
+
+<div class="price">₹1499</div>
+
+<button class="btn cartbtn" onclick="addCart('Earbuds')">Add To Cart</button>
+
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+
 </div>
 
-</section>
+<div class="card">
 
+<img src="https://m.media-amazon.com/images/I/71YXzeOuslL.jpg">
 
-<div class="cart" id="cart">
+<h3>Refrigerator</h3>
+
+<div class="price">₹18999</div>
+
+<button class="btn cartbtn" onclick="addCart('Refrigerator')">Add To Cart</button>
+
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL.jpg">
+
+<h3>LED TV</h3>
+
+<div class="price">₹29999</div>
+
+<button class="btn cartbtn" onclick="addCart('TV')">Add To Cart</button>
+
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+
+</div>
+
+</div>
+
+<!-- CART -->
+
+<div id="cartPanel">
 
 <h2>Your Cart</h2>
 
 <ul id="cartItems"></ul>
 
-<p id="total"></p>
-
-<button onclick="closeCart()">Close</button>
+<button onclick="buy()">Checkout</button>
 
 </div>
 
-<script src="script.js"></script>
+<!-- PAYMENT -->
+
+<div id="payment">
+
+<h2>Scan QR To Pay</h2>
+
+<img src="qrcode.png">
+
+<br><br>
+
+<button onclick="closePay()">Close</button>
+
+</div>
+
+<div id="notify"></div>
+
+<script>
+
+let cart=[]
+
+function addCart(item){
+
+cart.push(item)
+
+document.getElementById("count").innerText=cart.length
+
+document.getElementById("cartItems").innerHTML+=`<li>${item}</li>`
+
+notify(item+" added to cart")
+
+}
+
+function notify(text){
+
+let n=document.getElementById("notify")
+
+n.innerText=text
+
+n.style.display="block"
+
+setTimeout(()=>{
+
+n.style.display="none"
+
+},2000)
+
+}
+
+function openCart(){
+
+document.getElementById("cartPanel").style.right="0"
+
+}
+
+function buy(){
+
+document.getElementById("payment").style.display="block"
+
+}
+
+function closePay(){
+
+document.getElementById("payment").style.display="none"
+
+}
+
+/* SEARCH */
+
+function searchProduct(value){
+
+value=value.toLowerCase()
+
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(card=>{
+
+let name=card.innerText.toLowerCase()
+
+if(name.includes(value)){
+
+card.style.display="block"
+
+}
+
+else{
+
+card.style.display="none"
+
+}
+
+})
+
+}
+
+</script>
 
 </body>
 </html>
