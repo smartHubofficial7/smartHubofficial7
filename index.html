@@ -1,12 +1,162 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>SmartHub Store</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
 
+body{
+margin:0;
+font-family:Arial;
+background:#f5f5f5;
+}
+
+/* HEADER */
+
+header{
+background:#0b1a2d;
+color:white;
+padding:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:40px;
+}
+
+.search{
+width:40%;
+padding:10px;
+border-radius:5px;
+border:none;
+}
+
+.top-buttons button{
+margin-left:10px;
+padding:10px 15px;
+background:#ff9800;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* PRODUCTS */
+
+.container{
+padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+padding:15px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:contain;
+}
+
+.price{
+color:red;
+font-weight:bold;
+margin:10px 0;
+}
+
+.btn{
+padding:8px 12px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin:5px;
+}
+
+.cartbtn{
+background:#ff9800;
+}
+
+.buybtn{
+background:#4caf50;
+color:white;
+}
+
+/* CART */
+
+#cartPanel{
+position:fixed;
+right:-400px;
+top:0;
+width:350px;
+height:100%;
+background:white;
+box-shadow:-3px 0 10px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.4s;
+overflow:auto;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+}
+
+.remove{
+background:red;
+color:white;
+border:none;
+padding:5px;
+cursor:pointer;
+}
+
+/* NOTIFICATION */
+
+#notify{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#4caf50;
+color:white;
+padding:15px;
+border-radius:5px;
+display:none;
+}
+
+/* PAYMENT */
+
+#paymentBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+text-align:center;
+}
+
+#paymentBox img{
+width:200px;
+}
+
+</style>
 </head>
 
 <body>
@@ -30,6 +180,8 @@
 
 <div class="container">
 
+<!-- Smart Watch -->
+
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/61y2VVWcGBL.jpg">
 <h3>Smart Watch</h3>
@@ -38,6 +190,38 @@
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
+<!-- iPhone -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
+<h3>iPhone</h3>
+<div class="price">₹79999</div>
+<button class="btn cartbtn" onclick="addCart('iPhone')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<!-- Laptop -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/71jG+e7roXL.jpg">
+<h3>Gaming Laptop</h3>
+<div class="price">₹55999</div>
+<button class="btn cartbtn" onclick="addCart('Laptop')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<!-- Earbuds -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
+<h3>Bluetooth Earbuds</h3>
+<div class="price">₹1499</div>
+<button class="btn cartbtn" onclick="addCart('Earbuds')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<!-- LED TV -->
+
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/81Zt42ioCgL.jpg">
 <h3>LED TV</h3>
@@ -45,6 +229,8 @@
 <button class="btn cartbtn" onclick="addCart('LED TV')">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
+
+<!-- Refrigerator -->
 
 <div class="card">
 <img src="https://m.media-amazon.com/images/I/71Wv8G9F0AL.jpg">
@@ -57,6 +243,8 @@
 </div>
 
 
+<!-- CART -->
+
 <div id="cartPanel">
 
 <h2>Your Cart</h2>
@@ -67,6 +255,8 @@
 
 </div>
 
+
+<!-- PAYMENT -->
 
 <div id="paymentBox">
 
@@ -86,7 +276,82 @@
 <div id="notify"></div>
 
 
-<script src="script.js"></script>
+<script>
+
+let cart=[]
+
+function addCart(item){
+
+cart.push(item)
+
+renderCart()
+
+showNotify(item+" added to cart")
+
+}
+
+function renderCart(){
+
+let box=document.getElementById("cartItems")
+
+box.innerHTML=""
+
+cart.forEach((item,index)=>{
+
+box.innerHTML+=`
+<div class="cart-item">
+${item}
+<button class="remove" onclick="removeItem(${index})">X</button>
+</div>
+`
+
+})
+
+}
+
+function removeItem(i){
+
+cart.splice(i,1)
+
+renderCart()
+
+}
+
+function showNotify(text){
+
+let n=document.getElementById("notify")
+
+n.innerText=text
+
+n.style.display="block"
+
+setTimeout(()=>{
+
+n.style.display="none"
+
+},2000)
+
+}
+
+function openCart(){
+
+document.getElementById("cartPanel").style.right="0"
+
+}
+
+function buy(){
+
+document.getElementById("paymentBox").style.display="block"
+
+}
+
+function closePay(){
+
+document.getElementById("paymentBox").style.display="none"
+
+}
+
+</script>
 
 </body>
 </html>
