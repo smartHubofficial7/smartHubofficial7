@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
-<title>SmartHub Electronics</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroMart - Electronics Store</title>
 
 <style>
 
 body{
 margin:0;
 font-family:Arial;
-background:#f2f2f2;
+background:#f5f5f5;
 }
 
-/* HEADER */
+/* NAVBAR */
 
-header{
+.navbar{
 background:#e4002b;
-padding:15px;
 color:white;
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
+padding:12px 20px;
 }
 
 .logo{
@@ -36,6 +37,21 @@ border-radius:20px;
 border:none;
 }
 
+/* CATEGORY BAR */
+
+.categories{
+background:white;
+display:flex;
+gap:25px;
+padding:10px 20px;
+border-bottom:1px solid #ddd;
+}
+
+.categories div{
+cursor:pointer;
+font-weight:bold;
+}
+
 /* BANNER */
 
 .banner img{
@@ -46,36 +62,36 @@ width:100%;
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 padding:25px;
 }
 
-.card{
+.product{
 background:white;
 padding:15px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.15);
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
 text-align:center;
 }
 
-.card img{
+.product img{
 width:100%;
 height:180px;
 object-fit:cover;
 }
 
 .price{
-color:green;
-font-size:18px;
+color:#0a8f00;
 font-weight:bold;
+font-size:18px;
 }
 
 button{
-background:#ff6600;
+background:#ff6a00;
+color:white;
 border:none;
 padding:10px 15px;
-color:white;
 border-radius:6px;
 cursor:pointer;
 }
@@ -94,7 +110,7 @@ text-align:center;
 padding:40px;
 }
 
-.qrimg{
+.qr{
 width:250px;
 }
 
@@ -113,15 +129,26 @@ padding:15px;
 
 <body>
 
-<header>
+<div class="navbar">
 
-<div class="logo">SmartHub Electronics</div>
+<div class="logo">ElectroMart</div>
 
 <input class="search" placeholder="Search products">
 
 <div>Cart 🛒</div>
 
-</header>
+</div>
+
+<div class="categories">
+
+<div>Mobiles</div>
+<div>Smart Watches</div>
+<div>Television</div>
+<div>Fans</div>
+<div>Refrigerators</div>
+<div>Laptops</div>
+
+</div>
 
 <div class="banner">
 
@@ -131,7 +158,7 @@ padding:15px;
 
 <div class="products">
 
-<div class="card">
+<div class="product">
 
 <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12">
 
@@ -143,7 +170,7 @@ padding:15px;
 
 </div>
 
-<div class="card">
+<div class="product">
 
 <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
 
@@ -155,7 +182,7 @@ padding:15px;
 
 </div>
 
-<div class="card">
+<div class="product">
 
 <img src="https://images.unsplash.com/photo-1581579186913-45ac1b3a66c6">
 
@@ -173,7 +200,7 @@ padding:15px;
 
 <h2>Select Payment Method</h2>
 
-<button onclick="showQR()">Pay with UPI</button>
+<button onclick="showQR()">Pay via UPI</button>
 
 </div>
 
@@ -181,15 +208,15 @@ padding:15px;
 
 <h2>Scan QR Code to Pay</h2>
 
-<img src="QRCODE.jpeg" class="qrimg">
+<img src="QRCODE.jpeg" class="qr">
 
-<p>After payment send screenshot.</p>
+<p>Complete payment using your UPI app</p>
 
 </div>
 
 <footer>
 
-© 2026 SmartHub Electronics
+© 2026 ElectroMart Electronics Store
 
 </footer>
 
@@ -198,6 +225,8 @@ padding:15px;
 function buy(){
 
 document.querySelector(".products").style.display="none";
+document.querySelector(".banner").style.display="none";
+
 document.getElementById("payment").style.display="block";
 
 }
@@ -205,6 +234,7 @@ document.getElementById("payment").style.display="block";
 function showQR(){
 
 document.getElementById("payment").style.display="none";
+
 document.getElementById("qr").style.display="block";
 
 }
