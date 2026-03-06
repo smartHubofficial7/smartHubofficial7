@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<title>SMART HUB</title>
+<title>SMART HUB Store</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,13 +22,13 @@
 
 </div>
 
-<input class="search" placeholder="Search products...">
+<input type="text" placeholder="Search products..." class="search">
 
-<div class="buttons">
+<div class="menu">
 
 <button onclick="openLogin()">Login</button>
 
-<button onclick="openCart()">Cart</button>
+<button onclick="openCart()">Cart (<span id="cartCount">0</span>)</button>
 
 </div>
 
@@ -44,81 +44,69 @@
 
 <section class="products">
 
-<div class="card">
+<div class="product">
 
-<img src="https://picsum.photos/300/200">
+<img src="https://images.unsplash.com/photo-1518441902110-9c0b54e7c3c1">
 
 <h3>Wireless Headphone</h3>
 
 <p>$49</p>
 
-<button onclick="buy()">Buy</button>
+<button onclick="addCart()">Add To Cart</button>
 
 </div>
 
-<div class="card">
+<div class="product">
 
-<img src="https://picsum.photos/301/200">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
 
 <h3>Smart Watch</h3>
 
 <p>$89</p>
 
-<button onclick="buy()">Buy</button>
+<button onclick="addCart()">Add To Cart</button>
 
 </div>
 
-<div class="card">
+<div class="product">
 
-<img src="https://picsum.photos/302/200">
+<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
 
 <h3>Gaming Mouse</h3>
 
 <p>$39</p>
 
-<button onclick="buy()">Buy</button>
+<button onclick="addCart()">Add To Cart</button>
 
 </div>
 
-<div class="card">
+<div class="product">
 
-<img src="https://picsum.photos/303/200">
+<img src="https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9">
 
 <h3>Bluetooth Speaker</h3>
 
 <p>$59</p>
 
-<button onclick="buy()">Buy</button>
+<button onclick="addCart()">Add To Cart</button>
 
 </div>
 
-<div class="card">
+<div class="product">
 
-<img src="https://picsum.photos/304/200">
+<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
 
 <h3>Mechanical Keyboard</h3>
 
 <p>$99</p>
 
-<button onclick="buy()">Buy</button>
+<button onclick="addCart()">Add To Cart</button>
 
 </div>
 
 </section>
 
-<div id="loginBox" class="loginBox">
-
-<h2>Create Account</h2>
-
-<input id="user" placeholder="Username">
-
-<input id="pass" type="password" placeholder="Password">
-
-<button onclick="createAccount()">Create</button>
-
-<button onclick="closeLogin()">Close</button>
-
-</div>
+<div id="toast">Product Added To Cart</div>
 
 <script src="script.js"></script>
 
