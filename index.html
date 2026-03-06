@@ -11,16 +11,18 @@
 body{
 margin:0;
 font-family:Arial;
-background:#f2f3f5;
+background:#f5f5f5;
 }
 
-header{
-background:#111;
+/* TOP HEADER */
+
+.topbar{
+background:#e4002b;
 color:white;
+padding:12px;
 display:flex;
-justify-content:space-between;
 align-items:center;
-padding:15px 25px;
+justify-content:space-between;
 }
 
 .logo{
@@ -28,63 +30,81 @@ font-size:22px;
 font-weight:bold;
 }
 
-.cart{
-background:#ff6600;
-padding:6px 12px;
-border-radius:6px;
+.search{
+width:45%;
+padding:8px;
+border-radius:20px;
+border:none;
 }
+
+/* CATEGORY */
+
+.categories{
+background:white;
+display:flex;
+gap:25px;
+padding:12px;
+overflow:auto;
+border-bottom:1px solid #ddd;
+}
+
+.categories div{
+cursor:pointer;
+font-weight:bold;
+}
+
+/* BANNER */
+
+.banner{
+padding:20px;
+}
+
+.banner img{
+width:100%;
+border-radius:10px;
+}
+
+/* PRODUCTS */
 
 .products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:25px;
-padding:30px;
+gap:20px;
+padding:20px;
 }
 
 .card{
 background:white;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.15);
 padding:15px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,0.15);
 text-align:center;
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.04);
 }
 
 .card img{
 width:100%;
 height:180px;
 object-fit:cover;
-border-radius:6px;
+border-radius:8px;
 }
 
 .price{
 color:#0a8f00;
-font-size:20px;
+font-size:18px;
 font-weight:bold;
-}
-
-.rating{
-color:orange;
-margin:5px 0;
 }
 
 button{
 background:#ff6600;
 border:none;
-padding:10px 16px;
-border-radius:6px;
+padding:10px 15px;
 color:white;
+border-radius:6px;
 cursor:pointer;
 margin-top:6px;
 }
 
-button:hover{
-background:#e65300;
-}
+/* PAYMENT */
 
 #payment{
 display:none;
@@ -99,8 +119,10 @@ padding:40px;
 }
 
 .qrimg{
-width:260px;
+width:250px;
 }
+
+/* FOOTER */
 
 footer{
 background:#111;
@@ -115,41 +137,69 @@ padding:15px;
 
 <body>
 
-<header>
+<div class="topbar">
 
-<div class="logo">SmartHub Electronics</div>
+<div class="logo">SmartHub</div>
 
-<div class="cart">🛒 Cart <span id="count">0</span></div>
+<input class="search" placeholder="Search Products & Brands">
 
-</header>
+<div>Cart 🛒</div>
+
+</div>
+
+<div class="categories">
+
+<div>Mobiles</div>
+<div>Smart Watches</div>
+<div>Fans</div>
+<div>Refrigerators</div>
+<div>Laptops</div>
+<div>Headphones</div>
+
+</div>
+
+<div class="banner">
+
+<img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f">
+
+</div>
 
 <div class="products">
 
 <div class="card">
-<img src="https://cdn.pixabay.com/photo/2018/01/27/17/19/smartwatch-3111598_1280.jpg">
+
+<img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12">
+
 <h3>Smart Watch</h3>
-<div class="rating">⭐⭐⭐⭐☆</div>
+
 <p class="price">₹1999</p>
-<button onclick="add()">Add to Cart</button>
+
 <button onclick="buy()">Buy Now</button>
+
 </div>
 
 <div class="card">
-<img src="https://cdn.pixabay.com/photo/2017/08/01/09/04/fan-2560956_1280.jpg">
-<h3>Ceiling Fan</h3>
-<div class="rating">⭐⭐⭐⭐☆</div>
-<p class="price">₹1499</p>
-<button onclick="add()">Add to Cart</button>
-<button onclick="buy()">Buy Now</button>
-</div>
 
-<div class="card">
-<img src="https://cdn.pixabay.com/photo/2016/03/27/21/16/refrigerator-1284504_1280.jpg">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
+
 <h3>Refrigerator</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
+
 <p class="price">₹15999</p>
-<button onclick="add()">Add to Cart</button>
+
 <button onclick="buy()">Buy Now</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1581579186913-45ac1b3a66c6">
+
+<h3>Ceiling Fan</h3>
+
+<p class="price">₹1499</p>
+
+<button onclick="buy()">Buy Now</button>
+
 </div>
 
 </div>
@@ -164,37 +214,36 @@ padding:15px;
 
 <div id="qr">
 
-<h2>Scan QR Code to Pay</h2>
+<h2>Scan QR Code</h2>
 
 <img src="QRCODE.jpeg" class="qrimg">
 
-<p>After payment send screenshot to confirm order.</p>
+<p>After payment send screenshot for confirmation.</p>
 
 </div>
 
 <footer>
 
-© 2026 SmartHub Electronics
+© 2026 SmartHub Electronics Store
 
 </footer>
 
 <script>
 
-let count=0
-
-function add(){
-count++
-document.getElementById("count").innerText=count
-}
-
 function buy(){
-document.querySelector(".products").style.display="none"
-document.getElementById("payment").style.display="block"
+
+document.querySelector(".products").style.display="none";
+
+document.getElementById("payment").style.display="block";
+
 }
 
 function showQR(){
-document.getElementById("payment").style.display="none"
-document.getElementById("qr").style.display="block"
+
+document.getElementById("payment").style.display="none";
+
+document.getElementById("qr").style.display="block";
+
 }
 
 </script>
