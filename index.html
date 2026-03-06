@@ -1,74 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Rehan Electronics Store</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartHub Electronics</title>
 
 <style>
 
 body{
-font-family:Arial;
 margin:0;
-background:#f2f2f2;
+font-family:Arial;
+background:#f5f5f5;
 }
 
 header{
-background:black;
+background:#0a0a0a;
 color:white;
-padding:15px;
-font-size:22px;
+padding:18px;
+font-size:24px;
+font-weight:bold;
 text-align:center;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-padding:20px;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+padding:30px;
 }
 
 .card{
 background:white;
-padding:15px;
 border-radius:10px;
+padding:15px;
 box-shadow:0 5px 15px rgba(0,0,0,0.2);
 text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.03);
 }
 
 .card img{
 width:100%;
 height:180px;
 object-fit:cover;
-border-radius:10px;
+border-radius:8px;
 }
 
 .price{
-color:green;
+color:#0a8f00;
 font-size:20px;
+font-weight:bold;
 }
 
 button{
 background:#ff6600;
 border:none;
-padding:10px 15px;
+padding:10px 18px;
 color:white;
-border-radius:5px;
+border-radius:6px;
 cursor:pointer;
+font-size:15px;
 }
 
 button:hover{
-background:#ff3300;
-}
-
-#cart{
-position:fixed;
-top:10px;
-right:10px;
-background:black;
-color:white;
-padding:10px;
-border-radius:8px;
+background:#e55300;
 }
 
 #payment{
@@ -77,77 +76,101 @@ text-align:center;
 padding:40px;
 }
 
-.qr{
-width:250px;
+#qr{
+display:none;
+text-align:center;
+padding:40px;
+}
+
+.qrimg{
+width:260px;
+margin-top:20px;
 }
 
 </style>
-
 </head>
+
 
 <body>
 
 <header>
-⚡ REHAN ELECTRONICS STORE
+SmartHub Electronics Store
 </header>
 
-<div id="cart">
-🛒 Cart: <span id="count">0</span>
-</div>
 
 <div class="products">
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b">
+<img src="https://cdn.pixabay.com/photo/2018/01/27/17/19/smartwatch-3111598_1280.jpg">
 <h3>Smart Watch</h3>
 <p class="price">₹1999</p>
-<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
 
+
 <div class="card">
-<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
+<img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/fan-1869716_1280.jpg">
 <h3>Fan</h3>
 <p class="price">₹1499</p>
-<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
+
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c">
+<img src="https://cdn.pixabay.com/photo/2016/03/27/21/16/refrigerator-1284504_1280.jpg">
 <h3>Refrigerator</h3>
 <p class="price">₹15999</p>
-<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
 
 </div>
+
+
 
 <div id="payment">
 
-<h2>Scan QR Code to Pay</h2>
+<h2>Select Payment Method</h2>
 
-<img src="QRCODE.jpeg" class="qr">
+<br>
 
-<p>After payment send screenshot on WhatsApp</p>
+<button onclick="showQR()">Pay With UPI</button>
 
 </div>
 
+
+
+<div id="qr">
+
+<h2>Scan QR Code to Pay</h2>
+
+<img src="QRCODE.jpeg" class="qrimg">
+
+<p>After payment send screenshot for confirmation.</p>
+
+</div>
+
+
+
 <script>
 
-let count=0;
+function buy(){
 
-function add(){
-count++;
-document.getElementById("count").innerText=count;
+document.querySelector(".products").style.display="none"
+
+document.getElementById("payment").style.display="block"
+
 }
 
-function buy(){
-document.querySelector(".products").style.display="none";
-document.getElementById("payment").style.display="block";
+function showQR(){
+
+document.getElementById("payment").style.display="none"
+
+document.getElementById("qr").style.display="block"
+
 }
 
 </script>
+
 
 </body>
 </html>
