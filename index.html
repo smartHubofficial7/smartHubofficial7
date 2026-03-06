@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SmartHub Store</title>
 
 <style>
@@ -19,6 +20,7 @@ background:#0b1a2d;
 color:white;
 padding:15px;
 display:flex;
+flex-wrap:wrap;
 align-items:center;
 justify-content:space-between;
 }
@@ -110,6 +112,20 @@ transition:0.4s;
 overflow:auto;
 }
 
+.cart-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.closeCart{
+background:red;
+color:white;
+border:none;
+padding:5px 10px;
+cursor:pointer;
+}
+
 .cart-item{
 display:flex;
 justify-content:space-between;
@@ -156,6 +172,46 @@ text-align:center;
 width:200px;
 }
 
+/* LOGIN */
+
+#loginBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+
+input{
+padding:10px;
+margin:5px;
+width:90%;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.search{
+width:100%;
+margin-top:10px;
+}
+
+header{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.top-buttons{
+margin-top:10px;
+}
+
+}
+
 </style>
 </head>
 
@@ -173,7 +229,7 @@ width:200px;
 <div class="top-buttons">
 <button onclick="history.back()">Back</button>
 <button onclick="openCart()">Cart</button>
-<button onclick="login()">Login</button>
+<button onclick="openLogin()">Login</button>
 </div>
 
 </header>
@@ -222,7 +278,7 @@ width:200px;
 </div>
 
 <div class="card">
-<img src="https://m.media-amazon.com/images/I/61Dw5Z8LzJL.jpg">
+<img src="https://m.media-amazon.com/images/I/71Wv8G9F0AL.jpg">
 <h3>Refrigerator</h3>
 <div class="price">₹18999</div>
 <button class="btn cartbtn" onclick="addCart('Refrigerator')">Add To Cart</button>
@@ -232,11 +288,14 @@ width:200px;
 </div>
 
 
+<!-- CART -->
+
 <div id="cartPanel">
 
-<button onclick="closeCart()">Back</button>
-
+<div class="cart-header">
 <h2>Your Cart</h2>
+<button class="closeCart" onclick="closeCart()">Back</button>
+</div>
 
 <div id="cartItems"></div>
 
@@ -244,6 +303,8 @@ width:200px;
 
 </div>
 
+
+<!-- PAYMENT -->
 
 <div id="paymentBox">
 
@@ -260,6 +321,23 @@ width:200px;
 </div>
 
 
+<!-- LOGIN -->
+
+<div id="loginBox">
+
+<h2>User Login</h2>
+
+<input placeholder="Email">
+
+<input placeholder="Password">
+
+<br>
+
+<button onclick="closeLogin()">Login</button>
+
+</div>
+
+
 <div id="notify"></div>
 
 
@@ -268,14 +346,19 @@ width:200px;
 let cart=[]
 
 function addCart(item){
+
 cart.push(item)
+
 renderCart()
+
 showNotify(item+" added to cart")
+
 }
 
 function renderCart(){
 
 let box=document.getElementById("cartItems")
+
 box.innerHTML=""
 
 cart.forEach((item,index)=>{
@@ -286,45 +369,69 @@ ${item}
 <button class="remove" onclick="removeItem(${index})">X</button>
 </div>
 `
+
 })
 
 }
 
 function removeItem(i){
+
 cart.splice(i,1)
+
 renderCart()
+
 }
 
 function showNotify(text){
 
 let n=document.getElementById("notify")
+
 n.innerText=text
+
 n.style.display="block"
 
 setTimeout(()=>{
+
 n.style.display="none"
+
 },2000)
 
 }
 
 function openCart(){
+
 document.getElementById("cartPanel").style.right="0"
+
 }
 
 function closeCart(){
+
 document.getElementById("cartPanel").style.right="-400px"
+
 }
 
 function buy(){
+
 document.getElementById("paymentBox").style.display="block"
+
 }
 
 function closePay(){
+
 document.getElementById("paymentBox").style.display="none"
+
 }
 
-function login(){
-alert("Login system coming soon")
+function openLogin(){
+
+document.getElementById("loginBox").style.display="block"
+
+}
+
+function closeLogin(){
+
+document.getElementById("loginBox").style.display="none"
+
 }
 
 </script>
