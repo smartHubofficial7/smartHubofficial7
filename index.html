@@ -46,11 +46,12 @@ width:40%;
 
 .top-buttons button{
 margin:5px;
-padding:8px 12px;
+padding:10px 15px;
 border:none;
 background:#ff9800;
 border-radius:5px;
 cursor:pointer;
+font-size:14px;
 }
 
 #cartCount{
@@ -138,6 +139,7 @@ box-shadow:-3px 0 10px rgba(0,0,0,0.3);
 padding:20px;
 transition:0.4s;
 overflow:auto;
+z-index:1000;
 }
 
 .cart-item{
@@ -153,6 +155,22 @@ border:none;
 padding:4px;
 }
 
+/* PAYMENT */
+
+#paymentBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+text-align:center;
+z-index:2000;
+}
+
 /* LOGIN */
 
 #loginBox{
@@ -166,12 +184,17 @@ padding:20px;
 border-radius:10px;
 box-shadow:0 10px 30px rgba(0,0,0,0.3);
 text-align:center;
+z-index:2000;
 }
 
 #loginBox input{
-padding:8px;
-margin:5px;
+padding:10px;
+margin:8px;
 width:90%;
+}
+
+#loginBox button{
+padding:10px 15px;
 }
 
 /* MOBILE */
@@ -186,6 +209,11 @@ margin-top:10px;
 header{
 flex-direction:column;
 align-items:flex-start;
+}
+
+.top-buttons button{
+width:100%;
+font-size:16px;
 }
 
 }
@@ -227,6 +255,7 @@ align-items:flex-start;
 <h3>Samsung Galaxy</h3>
 <div class="price">₹24999</div>
 <button class="btn cartbtn" onclick="addCart('Samsung Galaxy',24999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <div class="card phone">
@@ -234,6 +263,7 @@ align-items:flex-start;
 <h3>iPhone</h3>
 <div class="price">₹79999</div>
 <button class="btn cartbtn" onclick="addCart('iPhone',79999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <!-- LAPTOP -->
@@ -243,6 +273,7 @@ align-items:flex-start;
 <h3>MacBook Air</h3>
 <div class="price">₹89999</div>
 <button class="btn cartbtn" onclick="addCart('MacBook',89999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <div class="card laptop">
@@ -250,6 +281,7 @@ align-items:flex-start;
 <h3>Gaming Laptop</h3>
 <div class="price">₹55999</div>
 <button class="btn cartbtn" onclick="addCart('Laptop',55999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <!-- ACCESSORIES -->
@@ -259,6 +291,7 @@ align-items:flex-start;
 <h3>Wireless Headphones</h3>
 <div class="price">₹2999</div>
 <button class="btn cartbtn" onclick="addCart('Headphones',2999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <div class="card accessory">
@@ -266,6 +299,25 @@ align-items:flex-start;
 <h3>Smart Watch</h3>
 <div class="price">₹1999</div>
 <button class="btn cartbtn" onclick="addCart('Watch',1999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
+</div>
+
+<!-- NEW PRODUCTS -->
+
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
+<h3>Bluetooth Earbuds</h3>
+<div class="price">₹1499</div>
+<button class="btn cartbtn" onclick="addCart('Earbuds',1499)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
+</div>
+
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61L5QgPvgqL.jpg">
+<h3>Android Tablet</h3>
+<div class="price">₹12999</div>
+<button class="btn cartbtn" onclick="addCart('Tablet',12999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 </div>
@@ -282,9 +334,27 @@ align-items:flex-start;
 
 <h3 id="total"></h3>
 
+<button onclick="buy()">Checkout</button>
+
 </div>
 
-<!-- LOGIN BOX -->
+<!-- PAYMENT -->
+
+<div id="paymentBox">
+
+<h2>Scan & Pay</h2>
+
+<p>Scan QR Code</p>
+
+<img src="qrcode.png" width="200">
+
+<br><br>
+
+<button onclick="paymentDone()">I Paid</button>
+
+</div>
+
+<!-- LOGIN -->
 
 <div id="loginBox">
 
@@ -379,6 +449,38 @@ document.getElementById("cartPanel").style.right="-350px"
 
 }
 
+/* PAYMENT */
+
+function buy(){
+
+if(cart.length==0){
+
+alert("Cart empty")
+
+return
+
+}
+
+document.getElementById("paymentBox").style.display="block"
+
+}
+
+function paymentDone(){
+
+alert("Order Successful 🎉")
+
+cart=[]
+
+saveCart()
+
+renderCart()
+
+updateCount()
+
+document.getElementById("paymentBox").style.display="none"
+
+}
+
 /* LOGIN */
 
 function openLogin(){
@@ -409,7 +511,7 @@ return
 
 localStorage.setItem("user",email)
 
-alert("Login Successful")
+alert("Welcome "+email)
 
 closeLogin()
 
@@ -442,7 +544,6 @@ card.style.display=(type=="all"||card.classList.contains(type))?"block":"none"
 }
 
 renderCart()
-
 updateCount()
 
 </script>
