@@ -1,141 +1,150 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SmartHub Electronics</title>
+<title>Rehan Electronics Store</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
 body{
-font-family: Arial;
+font-family:Arial;
 margin:0;
-background:#0f172a;
-color:white;
+background:#f2f2f2;
 }
 
 header{
-background:#020617;
-padding:20px;
+background:black;
+color:white;
+padding:15px;
+font-size:22px;
 text-align:center;
-font-size:28px;
-font-weight:bold;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
-padding:40px;
+padding:20px;
 }
 
 .card{
-background:#1e293b;
-padding:20px;
-border-radius:12px;
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 text-align:center;
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.05);
 }
 
 .card img{
 width:100%;
+height:180px;
+object-fit:cover;
 border-radius:10px;
 }
 
 .price{
+color:green;
 font-size:20px;
-margin:10px 0;
-color:#38bdf8;
 }
 
 button{
-background:#22c55e;
+background:#ff6600;
 border:none;
-padding:10px 20px;
+padding:10px 15px;
 color:white;
-font-size:16px;
-border-radius:8px;
+border-radius:5px;
 cursor:pointer;
 }
 
 button:hover{
-background:#16a34a;
+background:#ff3300;
 }
 
-.payment{
+#cart{
+position:fixed;
+top:10px;
+right:10px;
+background:black;
+color:white;
+padding:10px;
+border-radius:8px;
+}
+
+#payment{
+display:none;
 text-align:center;
 padding:40px;
-background:#020617;
 }
 
 .qr{
-width:220px;
-border-radius:10px;
-}
-
-footer{
-text-align:center;
-padding:20px;
-background:#020617;
+width:250px;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
-SmartHub Electronics Store
+⚡ REHAN ELECTRONICS STORE
 </header>
 
-<section class="products">
+<div id="cart">
+🛒 Cart: <span id="count">0</span>
+</div>
+
+<div class="products">
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+<img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b">
 <h3>Smart Watch</h3>
-<div class="price">₹1499</div>
+<p class="price">₹1999</p>
+<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
-<h3>Ceiling Fan</h3>
-<div class="price">₹2199</div>
+<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
+<h3>Fan</h3>
+<p class="price">₹1499</p>
+<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1586201375761-83865001e17b">
+<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c">
 <h3>Refrigerator</h3>
-<div class="price">₹18999</div>
+<p class="price">₹15999</p>
+<button onclick="add()">Add to Cart</button>
 <button onclick="buy()">Buy Now</button>
 </div>
 
-</section>
+</div>
 
-<section class="payment">
+<div id="payment">
 
-<h2>Scan & Pay</h2>
+<h2>Scan QR Code to Pay</h2>
 
-<p>After payment send screenshot</p>
+<img src="QRCODE.jpeg" class="qr">
 
-<img class="qr" src="QRCODE.jpeg">
+<p>After payment send screenshot on WhatsApp</p>
 
-<p>UPI: 8481944109@fam</p>
-
-</section>
-
-<footer>
-SmartHub © 2026
-</footer>
+</div>
 
 <script>
 
+let count=0;
+
+function add(){
+count++;
+document.getElementById("count").innerText=count;
+}
+
 function buy(){
-alert("Scroll down and scan QR code to complete payment");
-window.location="#payment";
+document.querySelector(".products").style.display="none";
+document.getElementById("payment").style.display="block";
 }
 
 </script>
