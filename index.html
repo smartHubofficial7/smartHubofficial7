@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SMART HUB</title>
+<title>SmartHub Store</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,124 +14,124 @@
 
 <div class="logo">
 <img src="SMARTHUB-logo.png">
-<h2>SMART HUB</h2>
+<h2>SmartHub</h2>
 </div>
 
-<nav>
+<input class="search" placeholder="Search Products">
+
+<div class="navbtn">
+
 <button onclick="openLogin()">Login</button>
 <button onclick="openCart()">Cart 🛒</button>
-</nav>
+
+</div>
 
 </header>
 
 
-<!-- LOGIN PAGE -->
+<div class="products">
 
-<div id="loginBox" class="loginBox">
+<div class="card">
 
-<h2>User Login</h2>
-
-<input id="username" placeholder="Enter Username">
-<input id="password" type="password" placeholder="Enter Password">
-
-<button onclick="login()">Login</button>
-
-<p onclick="signup()">Create Account</p>
-
-</div>
-
-
-<!-- CART -->
-
-<div id="cart" class="cart">
-
-<h2>Your Cart</h2>
-<ul id="cartItems"></ul>
-
-<button onclick="checkout()">BUY NOW</button>
-
-</div>
-
-
-<!-- NOTIFICATION -->
-
-<div id="notification" class="notification">
-Product added to cart
-</div>
-
-
-
-<!-- PRODUCTS -->
-
-<section class="products">
-
-<div class="product">
-
-<img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b">
+<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg">
 
 <h3>Smart Watch</h3>
 
-<p>$50</p>
+<p class="price">₹1999</p>
 
-<button onclick="addCart('Smart Watch')">Add Cart</button>
-<button onclick="buy()">Buy Now</button>
+<button class="cartbtn" onclick="addCart('Smart Watch')">Add Cart</button>
 
-</div>
-
-
-<div class="product">
-
-<img src="https://images.unsplash.com/photo-1518444028785-8fbcd101ebb9">
-
-<h3>Wireless Headphone</h3>
-
-<p>$80</p>
-
-<button onclick="addCart('Headphone')">Add Cart</button>
-<button onclick="buy()">Buy Now</button>
+<button class="buybtn" onclick="buy()">Buy Now</button>
 
 </div>
 
 
-<div class="product">
+<div class="card">
 
-<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
+<img src="https://m.media-amazon.com/images/I/71YXzeOuslL.jpg">
 
-<h3>Smart Phone</h3>
+<h3>Refrigerator</h3>
 
-<p>$500</p>
+<p class="price">₹18999</p>
 
-<button onclick="addCart('Smart Phone')">Add Cart</button>
-<button onclick="buy()">Buy Now</button>
+<button class="cartbtn" onclick="addCart('Refrigerator')">Add Cart</button>
+
+<button class="buybtn" onclick="buy()">Buy Now</button>
+
+</div>
+
+
+<div class="card">
+
+<img src="https://m.media-amazon.com/images/I/71TPda7cwUL.jpg">
+
+<h3>Gaming Laptop</h3>
+
+<p class="price">₹55999</p>
+
+<button class="cartbtn" onclick="addCart('Laptop')">Add Cart</button>
+
+<button class="buybtn" onclick="buy()">Buy Now</button>
 
 </div>
 
 
-<div class="product">
+<div class="card">
 
-<img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
+<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL.jpg">
 
-<h3>Laptop</h3>
+<h3>LED TV</h3>
 
-<p>$900</p>
+<p class="price">₹29999</p>
 
-<button onclick="addCart('Laptop')">Add Cart</button>
-<button onclick="buy()">Buy Now</button>
+<button class="cartbtn" onclick="addCart('TV')">Add Cart</button>
+
+<button class="buybtn" onclick="buy()">Buy Now</button>
 
 </div>
 
-</section>
+</div>
 
 
-<!-- PAYMENT -->
 
-<section class="payment">
+<div id="cartPanel">
 
-<h2>Scan To Pay</h2>
+<h2>Your Cart</h2>
+
+<ul id="cartItems"></ul>
+
+<button onclick="buy()">Checkout</button>
+
+</div>
+
+
+
+<div id="loginBox">
+
+<h2>User Login</h2>
+
+<input id="user" placeholder="Email">
+
+<input id="pass" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+</div>
+
+
+
+<div id="notify"></div>
+
+
+<div id="payment">
+
+<h2>Scan QR To Pay</h2>
 
 <img src="qrcode.png">
 
-</section>
+<button onclick="closePay()">Close</button>
+
+</div>
 
 
 <script src="script.js"></script>
