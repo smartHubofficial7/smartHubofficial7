@@ -2,7 +2,7 @@ body{
 
 margin:0;
 font-family:Arial;
-background:#111;
+background:#0f172a;
 color:white;
 
 }
@@ -10,10 +10,11 @@ color:white;
 header{
 
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
 padding:15px;
-background:#0f6a5f;
+
+background:#020617;
 
 }
 
@@ -34,18 +35,20 @@ width:40px;
 .search{
 
 width:40%;
-padding:8px;
-border-radius:6px;
+padding:10px;
+border-radius:5px;
 border:none;
 
 }
 
-.buttons button{
+.menu button{
 
-padding:8px 15px;
 margin-left:10px;
+padding:8px 15px;
+background:#22c55e;
 border:none;
-border-radius:6px;
+color:white;
+border-radius:5px;
 cursor:pointer;
 
 }
@@ -53,7 +56,7 @@ cursor:pointer;
 .hero{
 
 text-align:center;
-padding:60px;
+padding:40px;
 
 }
 
@@ -66,9 +69,9 @@ padding:20px;
 
 }
 
-.card{
+.product{
 
-background:#222;
+background:#1e293b;
 padding:15px;
 border-radius:10px;
 text-align:center;
@@ -76,49 +79,41 @@ transition:0.3s;
 
 }
 
-.card:hover{
+.product:hover{
 
 transform:scale(1.05);
 
 }
 
-.card img{
+.product img{
 
 width:100%;
+height:150px;
+object-fit:cover;
 border-radius:10px;
 
 }
 
-.card button{
+.product button{
 
-background:#0f6a5f;
-border:none;
-padding:10px;
 margin-top:10px;
-border-radius:6px;
+padding:8px 15px;
+background:#3b82f6;
+border:none;
 color:white;
+border-radius:5px;
 cursor:pointer;
 
 }
 
-.loginBox{
+#toast{
 
-display:none;
 position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:#222;
-padding:30px;
-border-radius:10px;
-
-}
-
-.loginBox input{
-
-display:block;
-margin:10px 0;
-padding:8px;
-width:200px;
+bottom:20px;
+right:20px;
+background:#22c55e;
+padding:15px;
+border-radius:5px;
+display:none;
 
 }
