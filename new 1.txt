@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SmartHub</title>
+</head>
+
+<body>
+
+<h1>Welcome to SmartHub</h1>
+<p>Electronics Store</p>
+
+</body>
+
+</html>
