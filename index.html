@@ -1,58 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>SmartHub Electronics</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>SmartHub Store</title>
 
 <style>
 
 body{
-font-family:Arial;
 margin:0;
+font-family:Arial;
 background:#f5f5f5;
 }
 
-/* NAVBAR */
+/* HEADER */
 
-.navbar{
-background:#131921;
+header{
+background:#0b1a2d;
 color:white;
+padding:15px;
 display:flex;
-flex-wrap:wrap;
-justify-content:space-between;
-padding:12px;
 align-items:center;
+justify-content:space-between;
 }
 
-.logo{
-font-size:22px;
-font-weight:bold;
+header h1{
+margin:0;
 }
 
 .search{
-padding:8px;
-width:300px;
-max-width:100%;
+width:40%;
+padding:10px;
+border-radius:5px;
+border:none;
+}
+
+.top-buttons button{
+margin-left:10px;
+padding:10px 15px;
+background:#ff9800;
 border:none;
 border-radius:5px;
+cursor:pointer;
 }
 
 /* PRODUCTS */
 
 .container{
+padding:20px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
-padding:20px;
 }
 
 .card{
 background:white;
-padding:15px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+padding:15px;
 text-align:center;
 }
 
@@ -64,95 +68,96 @@ object-fit:contain;
 
 .price{
 color:red;
-font-size:18px;
 font-weight:bold;
+margin:10px 0;
 }
 
-/* BUTTON */
-
-button{
-padding:10px 15px;
+.btn{
+padding:8px 12px;
 border:none;
-background:#ff9900;
-margin:5px;
 border-radius:5px;
 cursor:pointer;
+margin:5px;
 }
 
-/* CART PANEL */
+.cartbtn{
+background:#ff9800;
+}
 
-.cart{
+.buybtn{
+background:#4caf50;
+color:white;
+}
+
+/* CART */
+
+#cartPanel{
 position:fixed;
-right:0;
+right:-400px;
 top:0;
-width:320px;
-max-width:90%;
+width:350px;
 height:100%;
 background:white;
-box-shadow:-4px 0 10px rgba(0,0,0,0.2);
+box-shadow:-3px 0 10px rgba(0,0,0,0.2);
 padding:20px;
-display:none;
+transition:0.4s;
 overflow:auto;
+}
+
+#cartPanel h2{
+margin-top:0;
 }
 
 /* NOTIFICATION */
 
-.toast{
+#notify{
 position:fixed;
 right:20px;
 bottom:20px;
-background:#4CAF50;
+background:#4caf50;
 color:white;
-padding:12px 20px;
-border-radius:6px;
+padding:15px;
+border-radius:5px;
 display:none;
 }
 
 /* PAYMENT */
 
-.payment{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
+#paymentBox{
 display:none;
-justify-content:center;
-align-items:center;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+text-align:center;
 }
 
-.paybox{
+#paymentBox img{
+width:200px;
+}
+
+/* LOGIN */
+
+#loginBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 background:white;
 padding:25px;
 border-radius:10px;
-text-align:center;
-max-width:90%;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
-.qr{
-width:200px;
-max-width:100%;
-}
-
-/* MOBILE OPTIMIZATION */
-
-@media(max-width:600px){
-
-.logo{
-font-size:18px;
-}
-
-.search{
-width:100%;
-margin-top:8px;
-}
-
-button{
-width:100%;
-margin-top:8px;
-}
-
+input{
+padding:10px;
+margin:5px;
+width:90%;
 }
 
 </style>
@@ -160,43 +165,115 @@ margin-top:8px;
 
 <body>
 
-<div class="navbar">
+<header>
 
-<div class="logo">SmartHub</div>
+<h1>SmartHub</h1>
 
-<input class="search" placeholder="Search electronics">
+<input class="search" placeholder="Search Products">
 
+<div class="top-buttons">
+
+<button onclick="openLogin()">Login</button>
 <button onclick="openCart()">Cart</button>
 
 </div>
 
-<div class="container" id="products"></div>
+</header>
 
-<div class="cart" id="cart">
+
+<div class="container">
+
+<!-- PRODUCT 1 -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg">
+<h3>Smart Watch</h3>
+<div class="price">₹1999</div>
+<button class="btn cartbtn" onclick="addCart('Smart Watch')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+
+<!-- PRODUCT 2 -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/71YXzeOuslL.jpg">
+<h3>Refrigerator</h3>
+<div class="price">₹18999</div>
+<button class="btn cartbtn" onclick="addCart('Refrigerator')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+
+<!-- PRODUCT 3 -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/61p0G+6YdPL.jpg">
+<h3>Ceiling Fan</h3>
+<div class="price">₹2499</div>
+<button class="btn cartbtn" onclick="addCart('Fan')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+
+<!-- PRODUCT 4 -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
+<h3>Bluetooth Earbuds</h3>
+<div class="price">₹1499</div>
+<button class="btn cartbtn" onclick="addCart('Earbuds')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+
+<!-- PRODUCT 5 -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/71TPda7cwUL.jpg">
+<h3>Gaming Laptop</h3>
+<div class="price">₹55999</div>
+<button class="btn cartbtn" onclick="addCart('Laptop')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+
+<!-- PRODUCT 6 -->
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL.jpg">
+<h3>LED TV</h3>
+<div class="price">₹29999</div>
+<button class="btn cartbtn" onclick="addCart('TV')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+
+</div>
+
+
+<!-- CART PANEL -->
+
+<div id="cartPanel">
 
 <h2>Your Cart</h2>
 
-<div id="cartItems"></div>
+<ul id="cartItems"></ul>
 
-<h3>Total ₹<span id="total">0</span></h3>
-
-<button onclick="showPayment()">Pay Now</button>
+<button onclick="buy()">Checkout</button>
 
 </div>
 
-<div class="toast" id="toast">
-Product Added to Cart
-</div>
 
-<div class="payment" id="payment">
+<!-- PAYMENT -->
 
-<div class="paybox">
+<div id="paymentBox">
 
 <h2>UPI Payment</h2>
 
-<p>Scan QR Code</p>
+<p>Scan QR to Pay</p>
 
-<img src="qrcode.png" class="qr">
+<img src="qrcode.png">
 
 <br><br>
 
@@ -204,126 +281,83 @@ Product Added to Cart
 
 </div>
 
+
+<!-- LOGIN -->
+
+<div id="loginBox">
+
+<h2>User Login</h2>
+
+<input placeholder="Email">
+<input placeholder="Password">
+
+<br>
+
+<button onclick="closeLogin()">Login</button>
+
 </div>
+
+
+<div id="notify"></div>
+
 
 <script>
 
-let products=[
+let cart=[];
 
-{
-name:"Smart Watch",
-price:1999,
-img:"https://m.media-amazon.com/images/I/61akt30bJsL._AC_SL1500_.jpg"
-},
+function addCart(item){
 
-{
-name:"Refrigerator",
-price:18999,
-img:"https://m.media-amazon.com/images/I/61Yx5-N155L._AC_SL1500_.jpg"
-},
+cart.push(item)
 
-{
-name:"Ceiling Fan",
-price:2499,
-img:"https://m.media-amazon.com/images/I/61XKX6D6x0L._AC_SL1500_.jpg"
-},
+document.getElementById("cartItems").innerHTML+=`<li>${item}</li>`
 
-{
-name:"Bluetooth Earbuds",
-price:1499,
-img:"https://m.media-amazon.com/images/I/51HBom8xz7L._AC_SL1500_.jpg"
-}
-
-]
-
-let cart=[]
-let total=0
-
-function loadProducts(){
-
-let html=""
-
-products.forEach((p,i)=>{
-
-html+=`
-
-<div class="card">
-
-<img src="${p.img}">
-
-<h3>${p.name}</h3>
-
-<p class="price">₹${p.price}</p>
-
-<button onclick="addCart(${i})">Add to Cart</button>
-
-<button onclick="buyNow()">Buy Now</button>
-
-</div>
-
-`
-
-})
-
-document.getElementById("products").innerHTML=html
+showNotify(item+" added to cart")
 
 }
 
-loadProducts()
+function showNotify(text){
 
-function addCart(i){
+let n=document.getElementById("notify")
 
-cart.push(products[i])
+n.innerText=text
 
-total+=products[i].price
-
-document.getElementById("total").innerText=total
-
-let item=document.createElement("div")
-
-item.innerHTML=products[i].name+" ₹"+products[i].price
-
-document.getElementById("cartItems").appendChild(item)
-
-showToast()
-
-}
-
-function openCart(){
-
-document.getElementById("cart").style.display="block"
-
-}
-
-function showToast(){
-
-let t=document.getElementById("toast")
-
-t.style.display="block"
+n.style.display="block"
 
 setTimeout(()=>{
 
-t.style.display="none"
+n.style.display="none"
 
 },2000)
 
 }
 
-function buyNow(){
+function openCart(){
 
-showPayment()
+document.getElementById("cartPanel").style.right="0"
 
 }
 
-function showPayment(){
+function buy(){
 
-document.getElementById("payment").style.display="flex"
+document.getElementById("paymentBox").style.display="block"
 
 }
 
 function closePay(){
 
-document.getElementById("payment").style.display="none"
+document.getElementById("paymentBox").style.display="none"
+
+}
+
+function openLogin(){
+
+document.getElementById("loginBox").style.display="block"
+
+}
+
+function closeLogin(){
+
+document.getElementById("loginBox").style.display="none"
 
 }
 
