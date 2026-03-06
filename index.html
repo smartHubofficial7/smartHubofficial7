@@ -7,8 +7,6 @@
 
 <style>
 
-/* LOADING SCREEN */
-
 #loader{
 position:fixed;
 top:0;
@@ -24,15 +22,11 @@ font-size:30px;
 z-index:9999;
 }
 
-/* BODY */
-
 body{
 margin:0;
 font-family:Arial;
 background:#f5f5f5;
 }
-
-/* HEADER */
 
 header{
 background:#0b1a2d;
@@ -61,8 +55,6 @@ border-radius:5px;
 border:none;
 }
 
-/* BUTTONS */
-
 .top-buttons button{
 margin-left:10px;
 padding:10px 15px;
@@ -80,8 +72,6 @@ border-radius:50%;
 font-size:12px;
 }
 
-/* CATEGORY */
-
 .categories{
 padding:10px;
 text-align:center;
@@ -98,15 +88,11 @@ border-radius:5px;
 cursor:pointer;
 }
 
-/* TRENDING */
-
 .trending{
 padding:10px 20px;
 font-size:20px;
 font-weight:bold;
 }
-
-/* PRODUCTS */
 
 .container{
 padding:20px;
@@ -161,8 +147,6 @@ background:#4caf50;
 color:white;
 }
 
-/* CART */
-
 #cartPanel{
 position:fixed;
 right:-400px;
@@ -190,8 +174,6 @@ padding:5px;
 cursor:pointer;
 }
 
-/* PAYMENT */
-
 #paymentBox{
 display:none;
 position:fixed;
@@ -204,8 +186,6 @@ border-radius:10px;
 box-shadow:0 5px 20px rgba(0,0,0,0.3);
 text-align:center;
 }
-
-/* LOGIN COOL */
 
 #loginBox{
 display:none;
@@ -275,14 +255,13 @@ display:none;
 <button onclick="filter('phone')">Phones</button>
 <button onclick="filter('laptop')">Laptop</button>
 <button onclick="filter('accessory')">Accessories</button>
-<button onclick="filter('home')">Home</button>
 </div>
 
 <div class="trending">🔥 Trending Products</div>
 
 <div class="container">
 
-<!-- OLD PRODUCTS -->
+<!-- PHONE -->
 
 <div class="card phone">
 <img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
@@ -293,6 +272,8 @@ display:none;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
+<!-- LAPTOP -->
+
 <div class="card laptop">
 <img src="https://m.media-amazon.com/images/I/71jG+e7roXL.jpg">
 <h3>Gaming Laptop</h3>
@@ -301,6 +282,8 @@ display:none;
 <button class="btn cartbtn" onclick="addCart('Laptop',55999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
+
+<!-- EARBUDS -->
 
 <div class="card accessory">
 <img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
@@ -311,6 +294,8 @@ display:none;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
+<!-- SMART WATCH -->
+
 <div class="card accessory">
 <img src="https://m.media-amazon.com/images/I/61y2VVWcGBL.jpg">
 <h3>Smart Watch</h3>
@@ -320,10 +305,10 @@ display:none;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
-<!-- NEW PRODUCTS -->
+<!-- HEADPHONES (UPDATED IMAGE) -->
 
 <div class="card accessory">
-<img src="https://m.media-amazon.com/images/I/61RZDb2mQxL.jpg">
+<img src="https://m.media-amazon.com/images/I/61CGHv6kmWL.jpg">
 <h3>Headphones</h3>
 <div class="rating">⭐⭐⭐⭐</div>
 <div class="price">₹2499</div>
@@ -331,32 +316,7 @@ display:none;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
-<div class="card accessory">
-<img src="https://m.media-amazon.com/images/I/71nK4qvZQ-L.jpg">
-<h3>Guitar</h3>
-<div class="rating">⭐⭐⭐⭐</div>
-<div class="price">₹5999</div>
-<button class="btn cartbtn" onclick="addCart('Guitar',5999)">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-
-<div class="card home">
-<img src="https://m.media-amazon.com/images/I/61+Q6Rh3OQL.jpg">
-<h3>Washing Machine</h3>
-<div class="rating">⭐⭐⭐⭐</div>
-<div class="price">₹15999</div>
-<button class="btn cartbtn" onclick="addCart('Washing Machine',15999)">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-
-<div class="card home">
-<img src="https://m.media-amazon.com/images/I/71HnP+2g4JL.jpg">
-<h3>Air Conditioner</h3>
-<div class="rating">⭐⭐⭐⭐</div>
-<div class="price">₹32999</div>
-<button class="btn cartbtn" onclick="addCart('AC',32999)">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<!-- LED TV -->
 
 <div class="card home">
 <img src="https://m.media-amazon.com/images/I/81Zt42ioCgL.jpg">
@@ -367,43 +327,7 @@ display:none;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
-<div class="card home">
-<img src="https://m.media-amazon.com/images/I/71Wv8G9F0AL.jpg">
-<h3>Refrigerator</h3>
-<div class="rating">⭐⭐⭐⭐</div>
-<div class="price">₹18999</div>
-<button class="btn cartbtn" onclick="addCart('Refrigerator',18999)">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
-
-</div>
-
-<div id="cartPanel">
-<h2>Your Cart</h2>
-<button onclick="closeCart()">⬅ Back</button>
-<div id="cartItems"></div>
-<div id="total"></div>
-<button onclick="buy()">Checkout</button>
-</div>
-
-<div id="paymentBox">
-<h2>UPI Payment</h2>
-<p>Scan QR to Pay</p>
-<img src="qrcode.png" width="200">
-<br><br>
-<button onclick="orderSuccess()">I Paid</button>
-</div>
-
-<div id="loginBox">
-<button onclick="closeLogin()">⬅ Back</button>
-<h2>Welcome Back</h2>
-<input placeholder="Email">
-<input placeholder="Password" type="password">
-<br>
-<button onclick="login()">Login</button>
-</div>
-
-<div id="notify"></div>
 
 <script>
 
@@ -420,78 +344,16 @@ localStorage.setItem("cart",JSON.stringify(cart))
 function addCart(name,price){
 cart.push({name,price})
 saveCart()
-renderCart()
 updateCount()
-notify(name+" added to cart")
-}
-
-function renderCart(){
-let box=document.getElementById("cartItems")
-let total=0
-box.innerHTML=""
-
-cart.forEach((item,i)=>{
-total+=item.price
-box.innerHTML+=`
-<div class="cart-item">
-${item.name} ₹${item.price}
-<button class="remove" onclick="removeItem(${i})">X</button>
-</div>`
-})
-
-document.getElementById("total").innerText="Total ₹"+total
-}
-
-function removeItem(i){
-cart.splice(i,1)
-saveCart()
-renderCart()
-updateCount()
+alert(name+" added to cart")
 }
 
 function updateCount(){
 document.getElementById("cartCount").innerText=cart.length
 }
 
-function openCart(){
-document.getElementById("cartPanel").style.right="0"
-}
-
-function closeCart(){
-document.getElementById("cartPanel").style.right="-400px"
-}
-
 function buy(){
-document.getElementById("paymentBox").style.display="block"
-}
-
-function orderSuccess(){
-document.getElementById("paymentBox").style.display="none"
-notify("✅ Order Successful")
-cart=[]
-saveCart()
-renderCart()
-updateCount()
-}
-
-function openLogin(){
-document.getElementById("loginBox").style.display="block"
-}
-
-function closeLogin(){
-document.getElementById("loginBox").style.display="none"
-}
-
-function login(){
-notify("Login Successful")
-closeLogin()
-}
-
-function notify(text){
-let n=document.getElementById("notify")
-n.innerText=text
-n.style.display="block"
-setTimeout(()=>{n.style.display="none"},2000)
+alert("Proceeding to Payment")
 }
 
 document.getElementById("searchBox").addEventListener("keyup",function(){
@@ -507,7 +369,6 @@ card.style.display=(type=="all"||card.classList.contains(type))?"block":"none"
 })
 }
 
-renderCart()
 updateCount()
 
 </script>
