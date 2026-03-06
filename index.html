@@ -1,105 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ElectroMart</title>
+<title>SmartHub Electronics</title>
 
 <style>
 
 body{
 font-family:Arial;
 margin:0;
-background:#f1f3f6;
+background:#f2f2f2;
 }
 
 header{
-background:#131921;
-padding:15px;
+background:#e4002b;
 color:white;
-display:flex;
-align-items:center;
-}
-
-.logo{
-font-size:22px;
+padding:15px;
+font-size:24px;
 font-weight:bold;
-margin-right:30px;
 }
 
 .search{
 width:50%;
 padding:10px;
+margin-left:20px;
 border-radius:5px;
 border:none;
 }
 
 .container{
-padding:30px;
-}
-
-.products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
+gap:20px;
+padding:20px;
 }
 
 .card{
 background:white;
 border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 padding:15px;
 text-align:center;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.05);
 }
 
 .card img{
 width:100%;
-height:200px;
+height:180px;
 object-fit:contain;
 }
 
 .price{
-color:#e60023;
+color:red;
 font-size:20px;
 font-weight:bold;
 }
 
-button{
+.btn{
+background:#ff9800;
 border:none;
 padding:10px 15px;
-margin-top:10px;
-cursor:pointer;
+color:white;
 border-radius:5px;
+cursor:pointer;
 }
 
-.buy{
-background:#fb641b;
-color:white;
-}
-
-.cart{
-background:#ff9f00;
-color:white;
-}
-
-.modal{
+#payment{
 display:none;
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.7);
 justify-content:center;
 align-items:center;
 }
 
-.popup{
+.paybox{
 background:white;
-padding:20px;
+padding:30px;
 border-radius:10px;
 text-align:center;
 }
@@ -109,100 +87,64 @@ width:250px;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-<div class="logo">ElectroMart</div>
-
-<input class="search" placeholder="Search electronics...">
-
+SmartHub Electronics
+<input class="search" placeholder="Search Products">
 </header>
 
 <div class="container">
 
-<div class="products">
-
 <div class="card">
-<img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b">
+<img src="https://m.media-amazon.com/images/I/61IMRs+o0iL._AC_SL1500_.jpg">
 <h3>Smart Watch</h3>
 <p class="price">₹1999</p>
-<button class="cart">Add to Cart</button>
-<button class="buy" onclick="buy()">Buy Now</button>
+<button class="btn" onclick="buy()">Buy Now</button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1580910051074-3eb694886505">
-<h3>Bluetooth Earbuds</h3>
-<p class="price">₹1499</p>
-<button class="cart">Add to Cart</button>
-<button class="buy" onclick="buy()">Buy Now</button>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db">
-<h3>LED Smart TV</h3>
-<p class="price">₹24999</p>
-<button class="cart">Add to Cart</button>
-<button class="buy" onclick="buy()">Buy Now</button>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1583224475460-4b3d8c3b27c9">
+<img src="https://m.media-amazon.com/images/I/71v9Lnb8PXL._AC_SL1500_.jpg">
 <h3>Refrigerator</h3>
 <p class="price">₹18999</p>
-<button class="cart">Add to Cart</button>
-<button class="buy" onclick="buy()">Buy Now</button>
+<button class="btn" onclick="buy()">Buy Now</button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1585386959984-a41552231658">
-<h3>Gaming Laptop</h3>
-<p class="price">₹65999</p>
-<button class="cart">Add to Cart</button>
-<button class="buy" onclick="buy()">Buy Now</button>
+<img src="https://m.media-amazon.com/images/I/61S8qkzG2BL._AC_SL1500_.jpg">
+<h3>Ceiling Fan</h3>
+<p class="price">₹2499</p>
+<button class="btn" onclick="buy()">Buy Now</button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd">
-<h3>Wireless Mouse</h3>
-<p class="price">₹699</p>
-<button class="cart">Add to Cart</button>
-<button class="buy" onclick="buy()">Buy Now</button>
+<img src="https://m.media-amazon.com/images/I/61KNJav3S9L._AC_SL1500_.jpg">
+<h3>Bluetooth Earbuds</h3>
+<p class="price">₹1499</p>
+<button class="btn" onclick="buy()">Buy Now</button>
 </div>
 
 </div>
 
-</div>
+<div id="payment">
 
+<div class="paybox">
 
-<div class="modal" id="payment">
+<h2>UPI Payment</h2>
 
-<div class="popup">
+<p>Scan QR Code</p>
 
-<h2>Select Payment Method</h2>
-
-<button onclick="showQR()" class="buy">UPI Payment</button>
-
-<div id="qrbox" style="display:none">
-
-<h3>Scan QR to Pay</h3>
-
-<img src="QRCODE.png" class="qr">
+<img src="qrcode.png" class="qr">
 
 <br><br>
 
-<button onclick="success()" class="cart">Payment Done</button>
+<button onclick="closePay()">Close</button>
 
 </div>
 
 </div>
-
-</div>
-
 
 <script>
 
@@ -210,13 +152,8 @@ function buy(){
 document.getElementById("payment").style.display="flex"
 }
 
-function showQR(){
-document.getElementById("qrbox").style.display="block"
-}
-
-function success(){
-alert("Payment Successful! Order Confirmed.")
-location.reload()
+function closePay(){
+document.getElementById("payment").style.display="none"
 }
 
 </script>
