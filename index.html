@@ -14,7 +14,7 @@ font-family:Arial;
 }
 
 body{
-background:#f5f5f5;
+background:linear-gradient(120deg,#f2f2f2,#e6f0ff);
 }
 
 /* HEADER */
@@ -22,22 +22,23 @@ background:#f5f5f5;
 header{
 background:#111;
 color:white;
-padding:15px;
+padding:15px 30px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
 .logo{
-font-size:22px;
+font-size:24px;
 font-weight:bold;
+color:#00bfff;
 }
 
-.search-box input{
+.search input{
 padding:8px;
-width:250px;
+width:260px;
+border-radius:5px;
 border:none;
-border-radius:4px;
 }
 
 .cart{
@@ -47,43 +48,52 @@ font-size:18px;
 /* CATEGORY */
 
 .categories{
+background:white;
+padding:15px;
 display:flex;
 gap:10px;
-padding:15px;
-background:white;
 flex-wrap:wrap;
+border-bottom:1px solid #ddd;
 }
 
 .categories button{
 padding:8px 15px;
 border:none;
-background:#ddd;
-cursor:pointer;
+background:#eee;
 border-radius:5px;
+cursor:pointer;
+}
+
+.categories button:hover{
+background:#ddd;
 }
 
 /* PRODUCT GRID */
 
 .container{
-padding:20px;
+padding:25px;
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:25px;
 }
+
+/* PRODUCT CARD */
 
 .card{
 background:white;
-border-radius:8px;
+border-radius:10px;
 padding:15px;
 text-align:center;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-display:flex;
-flex-direction:column;
-justify-content:space-between;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
 }
 
 .image-box{
-height:150px;
+height:160px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -91,23 +101,24 @@ justify-content:center;
 
 .image-box img{
 max-width:100%;
-max-height:140px;
+max-height:150px;
 object-fit:contain;
 }
 
 .title{
+font-size:16px;
 font-weight:bold;
 margin-top:10px;
+}
+
+.stars{
+color:orange;
 }
 
 .price{
 color:red;
 font-weight:bold;
-margin:5px;
-}
-
-.stars{
-color:orange;
+margin:5px 0;
 }
 
 .buttons{
@@ -116,8 +127,8 @@ margin-top:10px;
 
 .btn{
 border:none;
-padding:8px 10px;
-border-radius:4px;
+padding:8px 12px;
+border-radius:5px;
 cursor:pointer;
 font-size:12px;
 }
@@ -130,7 +141,6 @@ color:white;
 .buybtn{
 background:#28a745;
 color:white;
-margin-left:5px;
 }
 
 /* FOOTER */
@@ -140,7 +150,7 @@ margin-top:40px;
 background:#111;
 color:white;
 text-align:center;
-padding:15px;
+padding:20px;
 }
 
 </style>
@@ -152,7 +162,7 @@ padding:15px;
 
 <div class="logo">SmartHub</div>
 
-<div class="search-box">
+<div class="search">
 <input type="text" placeholder="Search product...">
 </div>
 
@@ -165,9 +175,10 @@ padding:15px;
 <div class="categories">
 
 <button>All</button>
-<button>Electronics</button>
-<button>Laptop</button>
-<button>Home</button>
+<button>Mobiles</button>
+<button>Laptops</button>
+<button>Gaming</button>
+<button>Home Appliances</button>
 <button>Accessories</button>
 
 </div>
@@ -202,14 +213,28 @@ padding:15px;
 </div>
 </div>
 
-<!-- EARBUDS -->
+<!-- NORMAL LAPTOP -->
 <div class="card">
 <div class="image-box">
-<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_UY218_.jpg">
+<img src="https://m.media-amazon.com/images/I/71TPda7cwUL._AC_UY218_.jpg">
 </div>
-<div class="title">Bluetooth Earbuds</div>
+<div class="title">Office Laptop</div>
+<div class="stars">★★★★☆</div>
+<div class="price">₹35999</div>
+<div class="buttons">
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+</div>
+
+<!-- HEADPHONE -->
+<div class="card">
+<div class="image-box">
+<img src="https://m.media-amazon.com/images/I/61KNJav3S9L._AC_UY218_.jpg">
+</div>
+<div class="title">Gaming Headphones</div>
 <div class="stars">★★★★★</div>
-<div class="price">₹1499</div>
+<div class="price">₹2499</div>
 <div class="buttons">
 <button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
@@ -222,64 +247,8 @@ padding:15px;
 <img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UY218_.jpg">
 </div>
 <div class="title">Smart Watch</div>
-<div class="stars">★★★★★</div>
+<div class="stars">★★★★☆</div>
 <div class="price">₹1999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-</div>
-
-<!-- HEADPHONES -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/61KNJav3S9L._AC_UY218_.jpg">
-</div>
-<div class="title">Headphones</div>
-<div class="stars">★★★★★</div>
-<div class="price">₹2499</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-</div>
-
-<!-- GUITAR -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/71vR3d0QFQL._AC_UY218_.jpg">
-</div>
-<div class="title">Guitar</div>
-<div class="stars">★★★★★</div>
-<div class="price">₹5999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-</div>
-
-<!-- WASHING MACHINE -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/71Jv2jVh6nL._AC_UY218_.jpg">
-</div>
-<div class="title">Washing Machine</div>
-<div class="stars">★★★★★</div>
-<div class="price">₹15999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-</div>
-
-<!-- AC -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/51R5N4CqZXL._AC_UY218_.jpg">
-</div>
-<div class="title">Air Conditioner</div>
-<div class="stars">★★★★★</div>
-<div class="price">₹32999</div>
 <div class="buttons">
 <button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
@@ -306,8 +275,22 @@ padding:15px;
 <img src="https://m.media-amazon.com/images/I/71WvVq1W1VL._AC_UY218_.jpg">
 </div>
 <div class="title">Refrigerator</div>
-<div class="stars">★★★★★</div>
+<div class="stars">★★★★☆</div>
 <div class="price">₹18999</div>
+<div class="buttons">
+<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+</div>
+
+<!-- AC -->
+<div class="card">
+<div class="image-box">
+<img src="https://m.media-amazon.com/images/I/51R5N4CqZXL._AC_UY218_.jpg">
+</div>
+<div class="title">Air Conditioner</div>
+<div class="stars">★★★★★</div>
+<div class="price">₹32999</div>
 <div class="buttons">
 <button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
@@ -317,7 +300,10 @@ padding:15px;
 </div>
 
 <footer>
-© 2025 SmartHub Store
+
+SmartHub Store © 2025  
+Best Online Electronics Store
+
 </footer>
 
 <script>
@@ -336,7 +322,7 @@ alert("Product Added To Cart");
 
 function buy(){
 
-alert("Redirecting To Payment...");
+alert("Redirecting to Payment...");
 
 }
 
