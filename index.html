@@ -1,101 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SmartHub Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroStore</title>
 
 <style>
 
 body{
+font-family: Arial;
 margin:0;
-font-family:Arial;
-background:#f5f5f5;
+background:#f4f6f9;
 }
 
-/* HEADER */
-
 header{
-background:#0b1a2d;
+background:#111;
 color:white;
 padding:15px;
 display:flex;
-align-items:center;
 justify-content:space-between;
+align-items:center;
 }
 
-header h1{
-margin:0;
+.logo{
+font-size:24px;
+font-weight:bold;
 }
 
-.search{
-width:40%;
-padding:10px;
-border-radius:5px;
-border:none;
-}
-
-.top-buttons button{
-margin-left:10px;
-padding:10px 15px;
-background:#ff9800;
-border:none;
-border-radius:5px;
+.cart{
 cursor:pointer;
 }
 
-/* PRODUCTS */
-
-.container{
-padding:20px;
+.products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
+padding:20px;
 }
 
-.card{
+.product{
 background:white;
-border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
 padding:15px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 text-align:center;
 }
 
-.card img{
+.product img{
 width:100%;
 height:180px;
-object-fit:contain;
+object-fit:cover;
 }
 
-.price{
-color:red;
-font-weight:bold;
-margin:10px 0;
-}
-
-.btn{
-padding:8px 12px;
+button{
+padding:10px;
+margin:5px;
 border:none;
 border-radius:5px;
 cursor:pointer;
-margin:5px;
 }
 
-.cartbtn{
-background:#ff9800;
-}
-
-.buybtn{
-background:#4caf50;
+.add{
+background:#007bff;
 color:white;
 }
 
-/* CART */
+.buy{
+background:#28a745;
+color:white;
+}
+
+#notification{
+position:fixed;
+right:-300px;
+top:20px;
+background:#28a745;
+color:white;
+padding:15px;
+border-radius:5px;
+transition:0.5s;
+}
 
 #cartPanel{
 position:fixed;
 right:-400px;
 top:0;
-width:350px;
+width:300px;
 height:100%;
 background:white;
 box-shadow:-3px 0 10px rgba(0,0,0,0.2);
@@ -104,60 +94,27 @@ transition:0.4s;
 overflow:auto;
 }
 
-#cartPanel h2{
-margin-top:0;
-}
-
-/* NOTIFICATION */
-
-#notify{
-position:fixed;
-right:20px;
-bottom:20px;
-background:#4caf50;
-color:white;
-padding:15px;
-border-radius:5px;
-display:none;
-}
-
-/* PAYMENT */
-
-#paymentBox{
+#payment{
 display:none;
 position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+}
+
+.paybox{
 background:white;
 padding:20px;
 border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
 text-align:center;
 }
 
-#paymentBox img{
-width:200px;
-}
-
-/* LOGIN */
-
-#loginBox{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
-}
-
-input{
-padding:10px;
-margin:5px;
-width:90%;
+.paybox img{
+width:220px;
 }
 
 </style>
@@ -167,197 +124,114 @@ width:90%;
 
 <header>
 
-<h1>SmartHub</h1>
+<div class="logo">ElectroStore</div>
 
-<input class="search" placeholder="Search Products">
-
-<div class="top-buttons">
-
-<button onclick="openLogin()">Login</button>
-<button onclick="openCart()">Cart</button>
-
+<div class="cart" onclick="openCart()">
+🛒 Cart (<span id="count">0</span>)
 </div>
 
 </header>
 
+<div id="notification">Added to Cart</div>
 
-<div class="container">
+<div class="products">
 
-<!-- PRODUCT 1 -->
-
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg">
+<div class="product">
+<img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b">
 <h3>Smart Watch</h3>
-<div class="price">₹1999</div>
-<button class="btn cartbtn" onclick="addCart('Smart Watch')">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
+<p>$49</p>
+<button class="add" onclick="addCart('Smart Watch')">Add Cart</button>
+<button class="buy" onclick="buy()">Buy Now</button>
 </div>
 
-
-<!-- PRODUCT 2 -->
-
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/71YXzeOuslL.jpg">
+<div class="product">
+<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952">
 <h3>Refrigerator</h3>
-<div class="price">₹18999</div>
-<button class="btn cartbtn" onclick="addCart('Refrigerator')">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
+<p>$399</p>
+<button class="add" onclick="addCart('Refrigerator')">Add Cart</button>
+<button class="buy" onclick="buy()">Buy Now</button>
 </div>
 
-
-<!-- PRODUCT 3 -->
-
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/61p0G+6YdPL.jpg">
+<div class="product">
+<img src="https://images.unsplash.com/photo-1582719471386-3f2a3a71c64f">
 <h3>Ceiling Fan</h3>
-<div class="price">₹2499</div>
-<button class="btn cartbtn" onclick="addCart('Fan')">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
+<p>$29</p>
+<button class="add" onclick="addCart('Fan')">Add Cart</button>
+<button class="buy" onclick="buy()">Buy Now</button>
 </div>
 
-
-<!-- PRODUCT 4 -->
-
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
-<h3>Bluetooth Earbuds</h3>
-<div class="price">₹1499</div>
-<button class="btn cartbtn" onclick="addCart('Earbuds')">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
+<div class="product">
+<img src="https://images.unsplash.com/photo-1518441902112-fc13a5b94af6">
+<h3>Headphones</h3>
+<p>$59</p>
+<button class="add" onclick="addCart('Headphones')">Add Cart</button>
+<button class="buy" onclick="buy()">Buy Now</button>
 </div>
-
-
-<!-- PRODUCT 5 -->
-
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/71TPda7cwUL.jpg">
-<h3>Gaming Laptop</h3>
-<div class="price">₹55999</div>
-<button class="btn cartbtn" onclick="addCart('Laptop')">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-
-
-<!-- PRODUCT 6 -->
-
-<div class="card">
-<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL.jpg">
-<h3>LED TV</h3>
-<div class="price">₹29999</div>
-<button class="btn cartbtn" onclick="addCart('TV')">Add To Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-
 
 </div>
 
-
-<!-- CART PANEL -->
 
 <div id="cartPanel">
-
 <h2>Your Cart</h2>
-
 <ul id="cartItems"></ul>
-
-<button onclick="buy()">Checkout</button>
-
 </div>
 
 
-<!-- PAYMENT -->
-
-<div id="paymentBox">
-
-<h2>UPI Payment</h2>
-
-<p>Scan QR to Pay</p>
-
+<div id="payment">
+<div class="paybox">
+<h2>Scan & Pay</h2>
 <img src="qrcode.png">
-
 <br><br>
-
 <button onclick="closePay()">Close</button>
-
 </div>
-
-
-<!-- LOGIN -->
-
-<div id="loginBox">
-
-<h2>User Login</h2>
-
-<input placeholder="Email">
-<input placeholder="Password">
-
-<br>
-
-<button onclick="closeLogin()">Login</button>
-
 </div>
-
-
-<div id="notify"></div>
 
 
 <script>
 
-let cart=[];
+let cart=[]
 
-function addCart(item){
+function addCart(product){
 
-cart.push(item)
+cart.push(product)
 
-document.getElementById("cartItems").innerHTML+=`<li>${item}</li>`
+document.getElementById("count").innerText=cart.length
 
-showNotify(item+" added to cart")
+let li=document.createElement("li")
+li.innerText=product
+document.getElementById("cartItems").appendChild(li)
 
-}
+let n=document.getElementById("notification")
 
-function showNotify(text){
-
-let n=document.getElementById("notify")
-
-n.innerText=text
-
-n.style.display="block"
+n.style.right="20px"
 
 setTimeout(()=>{
-
-n.style.display="none"
-
+n.style.right="-300px"
 },2000)
 
 }
 
 function openCart(){
 
-document.getElementById("cartPanel").style.right="0"
+let panel=document.getElementById("cartPanel")
+
+if(panel.style.right=="0px"){
+panel.style.right="-400px"
+}else{
+panel.style.right="0px"
+}
 
 }
 
 function buy(){
 
-document.getElementById("paymentBox").style.display="block"
+document.getElementById("payment").style.display="flex"
 
 }
 
 function closePay(){
 
-document.getElementById("paymentBox").style.display="none"
-
-}
-
-function openLogin(){
-
-document.getElementById("loginBox").style.display="block"
-
-}
-
-function closeLogin(){
-
-document.getElementById("loginBox").style.display="none"
+document.getElementById("payment").style.display="none"
 
 }
 
