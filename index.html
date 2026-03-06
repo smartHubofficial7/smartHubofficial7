@@ -1,454 +1,361 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SmartHub Store</title>
 
 <style>
 
 body{
-margin:0;
 font-family:Arial;
-background:#f3f3f3;
+margin:0;
+background:#f2f2f2;
 }
 
-/* HEADER */
-
 header{
-background:#0b1a2d;
+background:black;
 color:white;
+padding:15px;
 display:flex;
-flex-wrap:wrap;
-align-items:center;
 justify-content:space-between;
-padding:12px;
+align-items:center;
 }
 
 .logo{
-display:flex;
-align-items:center;
-gap:10px;
+font-size:22px;
+font-weight:bold;
 }
 
-.logo img{
-width:40px;
-}
-
-.search{
-padding:10px;
-border:none;
-border-radius:6px;
-width:40%;
-}
-
-.top-buttons button{
-padding:10px 15px;
-margin:5px;
-border:none;
-background:#ff9800;
-color:white;
-border-radius:6px;
+button{
 cursor:pointer;
-font-size:15px;
+border:none;
+padding:10px 15px;
+border-radius:5px;
 }
 
-#cartCount{
-background:red;
-padding:2px 7px;
-border-radius:50%;
+.loginBtn{
+background:#00bcd4;
+color:white;
 }
 
-/* PRODUCTS */
+.cartBtn{
+background:orange;
+color:white;
+}
 
 .container{
 padding:20px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:18px;
+gap:20px;
 }
 
-.card{
+.product{
 background:white;
+padding:15px;
 border-radius:10px;
-padding:12px;
 text-align:center;
-box-shadow:0 2px 10px rgba(0,0,0,0.15);
+box-shadow:0 0 5px rgba(0,0,0,0.2);
 }
 
-.card img{
+.product img{
 width:100%;
-height:170px;
-object-fit:contain;
+height:200px;
+object-fit:cover;
+border-radius:10px;
 }
 
 .price{
-color:red;
-font-size:18px;
-margin:8px 0;
+color:green;
+font-weight:bold;
+margin:10px;
 }
 
-.btn{
-padding:8px 12px;
-border:none;
-border-radius:5px;
-cursor:pointer;
-margin:3px;
-}
-
-.cartbtn{
-background:#ff9800;
-}
-
-.buybtn{
-background:#4caf50;
+.buyBtn{
+background:green;
 color:white;
+width:100%;
 }
 
-/* CART PANEL */
-
-#cartPanel{
+.cartBox{
 position:fixed;
-right:-360px;
+right:-350px;
 top:0;
-width:330px;
+width:300px;
 height:100%;
 background:white;
-box-shadow:-3px 0 15px rgba(0,0,0,0.3);
+box-shadow:-2px 0 10px rgba(0,0,0,0.3);
 padding:20px;
 transition:0.4s;
 overflow:auto;
-z-index:999;
 }
 
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin:8px 0;
+.cartItem{
+border-bottom:1px solid #ddd;
+padding:10px 0;
 }
 
-.remove{
-background:red;
-color:white;
-border:none;
-padding:5px;
-cursor:pointer;
-}
-
-/* LOGIN */
-
-#loginBox{
+.orderPage{
 display:none;
 position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
+top:0;
+left:0;
+width:100%;
+height:100%;
 background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
+padding:20px;
+overflow:auto;
 }
 
-#loginBox input{
-width:95%;
+input{
+width:100%;
 padding:10px;
-margin:6px;
+margin:5px 0 15px;
 }
 
-/* PAYMENT */
-
-#paymentBox{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
+.payBox{
 text-align:center;
+margin-top:20px;
 }
 
-/* MOBILE */
+.payBox img{
+width:200px;
+}
 
 @media(max-width:600px){
 
-header{
-flex-direction:column;
-align-items:flex-start;
+.logo{
+font-size:18px;
 }
 
-.search{
-width:100%;
-margin-top:10px;
-}
-
-.top-buttons button{
-width:100%;
+.loginBtn,.cartBtn{
+padding:8px 10px;
+font-size:14px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">
-<img src="SMARTHUB-logo.png">
-<h2>SmartHub</h2>
-</div>
+<div class="logo">SmartHub</div>
 
-<input id="searchBox" class="search" placeholder="Search Phones">
-
-<div class="top-buttons">
-<button onclick="openCart()">Cart <span id="cartCount">0</span></button>
-<button onclick="openLogin()">Login</button>
+<div>
+<button class="loginBtn" onclick="login()">Login</button>
+<button class="cartBtn" onclick="toggleCart()">Cart (<span id="cartCount">0</span>)</button>
 </div>
 
 </header>
 
-<div class="container">
+<div class="container" id="products"></div>
 
-<!-- Samsung Galaxy M17 -->
+<div class="cartBox" id="cart">
 
-<div class="card phone">
-<img src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX679_.jpg">
-<h3>Samsung Galaxy M17 5G</h3>
-<p>6GB RAM | 128GB Storage</p>
-<div class="price">₹16999</div>
-<button class="btn cartbtn" onclick="addCart('Samsung Galaxy M17',16999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<!-- iQOO Z10 -->
-
-<div class="card phone">
-<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL._SX679_.jpg">
-<h3>iQOO Z10 Lite 5G</h3>
-<p>4GB RAM | 128GB | 6000mAh Battery</p>
-<div class="price">₹10999</div>
-<button class="btn cartbtn" onclick="addCart('iQOO Z10 Lite',10999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<!-- Redmi A4 -->
-
-<div class="card phone">
-<img src="https://m.media-amazon.com/images/I/81WqP1KJ0lL._SX679_.jpg">
-<h3>Redmi A4 5G</h3>
-<p>4GB RAM | 64GB | 120Hz Display</p>
-<div class="price">₹8999</div>
-<button class="btn cartbtn" onclick="addCart('Redmi A4',8999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<!-- Samsung M06 -->
-
-<div class="card phone">
-<img src="https://m.media-amazon.com/images/I/71o8VehMHXL._SX679_.jpg">
-<h3>Samsung Galaxy M06 5G</h3>
-<p>4GB RAM | 64GB | Dimensity 6300</p>
-<div class="price">₹9499</div>
-<button class="btn cartbtn" onclick="addCart('Samsung M06',9499)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-<!-- Samsung S26 -->
-
-<div class="card phone">
-<img src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX679_.jpg">
-<h3>Samsung Galaxy S26 Ultra</h3>
-<p>12GB RAM | 512GB Storage</p>
-<div class="price">₹129999</div>
-<button class="btn cartbtn" onclick="addCart('Samsung S26 Ultra',129999)">Add Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy</button>
-</div>
-
-</div>
-
-<!-- CART -->
-
-<div id="cartPanel">
-
-<h2>Your Cart</h2>
-
-<button onclick="closeCart()">Close</button>
+<h2>Cart</h2>
 
 <div id="cartItems"></div>
 
-<h3 id="total"></h3>
+<h3>Total ₹<span id="total">0</span></h3>
 
-<button onclick="buy()">Checkout</button>
+<button onclick="checkout()">Buy</button>
 
 </div>
 
-<!-- LOGIN -->
+<div class="orderPage" id="orderPage">
 
-<div id="loginBox">
+<h2>Order Details</h2>
 
-<h2>Delivery Details</h2>
+<input id="name" placeholder="Name">
 
-<input id="name" placeholder="Full Name">
-<input id="phone" placeholder="Phone">
+<input id="phone" placeholder="Phone Number">
+
 <input id="address" placeholder="Address">
+
 <input id="city" placeholder="City">
+
 <input id="pincode" placeholder="Pincode">
 
+<div class="payBox">
+
+<h3>Scan QR To Pay</h3>
+
+<img src="qrcode.png">
+
 <br><br>
 
-<button onclick="login()">Save</button>
-<button onclick="closeLogin()">Close</button>
+<button onclick="placeOrder()">Payment Done</button>
 
 </div>
-
-<!-- PAYMENT -->
-
-<div id="paymentBox">
-
-<h2>Scan & Pay</h2>
-
-<img src="qrcode.png" width="200">
-
-<br><br>
-
-<button onclick="paymentDone()">I Paid</button>
 
 </div>
 
 <script>
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[]
+let products=[
+{
+name:"Samsung Galaxy M17 5G",
+price:12999,
+img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+},
 
-function saveCart(){
-localStorage.setItem("cart",JSON.stringify(cart))
+{
+name:"iQOO Z10 Lite 5G",
+price:10999,
+img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5"
+},
+
+{
+name:"Redmi A4 5G",
+price:8999,
+img:"https://images.unsplash.com/photo-1512499617640-c2f999098c01"
+},
+
+{
+name:"Samsung Galaxy M06 5G",
+price:7999,
+img:"https://images.unsplash.com/photo-1580910051074-3eb694886505"
+},
+
+{
+name:"Samsung Galaxy S26 Ultra 5G",
+price:119999,
+img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
 }
 
-function addCart(name,price){
-cart.push({name,price})
-saveCart()
-renderCart()
-updateCount()
-}
+]
 
-function renderCart(){
+let cart=[]
 
-let box=document.getElementById("cartItems")
-let total=0
+function loadProducts(){
 
-box.innerHTML=""
+let box=document.getElementById("products")
 
-cart.forEach((item,i)=>{
-
-total+=item.price
+products.forEach((p,i)=>{
 
 box.innerHTML+=`
-<div class="cart-item">
-${item.name} ₹${item.price}
-<button class="remove" onclick="removeItem(${i})">X</button>
+
+<div class="product">
+
+<img src="${p.img}">
+
+<h3>${p.name}</h3>
+
+<div class="price">₹${p.price}</div>
+
+<button class="buyBtn" onclick="addCart(${i})">Add To Cart</button>
+
 </div>
+
 `
 
 })
 
-document.getElementById("total").innerText="Total ₹"+total
+}
+
+loadProducts()
+
+function addCart(i){
+
+cart.push(products[i])
+
+updateCart()
 
 }
 
-function removeItem(i){
-cart.splice(i,1)
-saveCart()
-renderCart()
-updateCount()
-}
+function updateCart(){
 
-function updateCount(){
+let items=document.getElementById("cartItems")
+
+items.innerHTML=""
+
+let total=0
+
+cart.forEach(p=>{
+
+items.innerHTML+=`
+
+<div class="cartItem">
+
+${p.name}
+
+<br>
+
+₹${p.price}
+
+</div>
+
+`
+
+total+=p.price
+
+})
+
+document.getElementById("total").innerText=total
+
 document.getElementById("cartCount").innerText=cart.length
+
 }
 
-function openCart(){
-document.getElementById("cartPanel").style.right="0"
+function toggleCart(){
+
+let c=document.getElementById("cart")
+
+if(c.style.right=="0px"){
+
+c.style.right="-350px"
+
+}else{
+
+c.style.right="0"
+
 }
 
-function closeCart(){
-document.getElementById("cartPanel").style.right="-360px"
-}
-
-function openLogin(){
-document.getElementById("loginBox").style.display="block"
-}
-
-function closeLogin(){
-document.getElementById("loginBox").style.display="none"
 }
 
 function login(){
 
-let name=document.getElementById("name").value
-let phone=document.getElementById("phone").value
-let address=document.getElementById("address").value
-let city=document.getElementById("city").value
-let pincode=document.getElementById("pincode").value
+let name=prompt("Enter Name")
 
-if(name==""||phone==""||address==""||city==""||pincode==""){
-alert("Fill all details")
+let phone=prompt("Enter Phone")
+
+localStorage.setItem("userName",name)
+
+localStorage.setItem("userPhone",phone)
+
+alert("Login Successful")
+
+}
+
+function checkout(){
+
+if(!localStorage.getItem("userName")){
+
+alert("Login First")
+
 return
-}
-
-localStorage.setItem("user",JSON.stringify({name,phone,address,city,pincode}))
-
-alert("Details Saved")
-
-closeLogin()
 
 }
 
-function buy(){
-
-let user=localStorage.getItem("user")
-
-if(!user){
-alert("Login first")
-openLogin()
-return
-}
-
-if(cart.length==0){
-alert("Cart empty")
-return
-}
-
-document.getElementById("paymentBox").style.display="block"
+document.getElementById("orderPage").style.display="block"
 
 }
 
-function paymentDone(){
+function placeOrder(){
 
-let user=JSON.parse(localStorage.getItem("user"))
-
-alert("Order Success 🎉 "+user.name)
+alert("Order Placed Successfully")
 
 cart=[]
 
-saveCart()
+updateCart()
 
-renderCart()
-
-updateCount()
-
-document.getElementById("paymentBox").style.display="none"
+document.getElementById("orderPage").style.display="none"
 
 }
-
-renderCart()
-updateCount()
 
 </script>
 
