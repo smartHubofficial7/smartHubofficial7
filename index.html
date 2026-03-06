@@ -8,18 +8,18 @@
 body{
 font-family:Arial;
 margin:0;
-background:#f2f2f2;
+background:#f5f5f5;
 }
 
 /* NAVBAR */
 
 .navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
 background:#131921;
 color:white;
+display:flex;
+justify-content:space-between;
 padding:15px;
+align-items:center;
 }
 
 .logo{
@@ -30,25 +30,15 @@ font-weight:bold;
 .search{
 width:40%;
 padding:8px;
-border:none;
-border-radius:5px;
 }
 
-.nav-btn{
-background:#ff9900;
-border:none;
-padding:8px 15px;
-border-radius:5px;
-cursor:pointer;
-}
-
-/* PRODUCT GRID */
+/* PRODUCTS */
 
 .container{
-padding:20px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
+padding:20px;
 }
 
 .card{
@@ -67,43 +57,19 @@ object-fit:contain;
 
 .price{
 color:red;
-font-weight:bold;
 font-size:20px;
+font-weight:bold;
 }
+
+/* BUTTON */
 
 button{
-background:#ff9900;
+padding:10px 15px;
 border:none;
-padding:10px 20px;
+background:#ff9900;
+margin:5px;
 border-radius:5px;
 cursor:pointer;
-}
-
-/* LOGIN POPUP */
-
-.popup{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-justify-content:center;
-align-items:center;
-}
-
-.box{
-background:white;
-padding:30px;
-border-radius:10px;
-text-align:center;
-}
-
-input{
-padding:10px;
-margin:5px;
-width:200px;
 }
 
 /* CART */
@@ -112,18 +78,51 @@ width:200px;
 position:fixed;
 right:0;
 top:0;
-background:white;
 width:300px;
 height:100%;
-box-shadow:-3px 0 10px rgba(0,0,0,0.2);
+background:white;
+box-shadow:-4px 0 10px rgba(0,0,0,0.2);
 padding:20px;
 display:none;
 overflow:auto;
 }
 
+/* NOTIFICATION */
+
+.toast{
+position:fixed;
+right:20px;
+top:80px;
+background:#4CAF50;
+color:white;
+padding:15px;
+border-radius:5px;
+display:none;
+}
+
+/* PAYMENT */
+
+.payment{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.paybox{
+background:white;
+padding:30px;
+border-radius:10px;
+text-align:center;
+}
+
 .qr{
 width:200px;
-margin-top:20px;
 }
 
 </style>
@@ -131,45 +130,17 @@ margin-top:20px;
 
 <body>
 
-<!-- NAVBAR -->
-
 <div class="navbar">
 
 <div class="logo">SmartHub</div>
 
 <input class="search" placeholder="Search Products">
 
-<div>
-
-<button class="nav-btn" onclick="login()">Login</button>
-<button class="nav-btn" onclick="openCart()">Cart</button>
+<button onclick="openCart()">Cart</button>
 
 </div>
-
-</div>
-
-<!-- PRODUCTS -->
 
 <div class="container" id="products"></div>
-
-<!-- LOGIN -->
-
-<div class="popup" id="loginBox">
-
-<div class="box">
-
-<h2>User Login</h2>
-
-<input placeholder="Email"><br>
-<input placeholder="Password" type="password"><br><br>
-
-<button onclick="closeLogin()">Login</button>
-
-</div>
-
-</div>
-
-<!-- CART -->
 
 <div class="cart" id="cart">
 
@@ -177,26 +148,42 @@ margin-top:20px;
 
 <div id="cartItems"></div>
 
-<h3>Total: ₹<span id="total">0</span></h3>
+<h3>Total ₹<span id="total">0</span></h3>
 
-<button onclick="pay()">Pay Now</button>
+<button onclick="showPayment()">Pay Now</button>
+
+</div>
+
+<div class="toast" id="toast">
+Item Added To Cart
+</div>
+
+<div class="payment" id="payment">
+
+<div class="paybox">
+
+<h2>Scan QR to Pay</h2>
+
+<img src="qrcode.png" class="qr">
 
 <br><br>
 
-<img src="qrcode.png" class="qr">
+<button onclick="closePay()">Close</button>
+
+</div>
 
 </div>
 
 <script>
 
-/* PRODUCT DATABASE */
+/* PRODUCTS */
 
 let products=[
 
 {
 name:"Smart Watch",
 price:1999,
-img:"https://m.media-amazon.com/images/I/61y2VVWcGBL._AC_SL1500_.jpg"
+img:"https://m.media-amazon.com/images/I/61akt30bJsL._AC_SL1500_.jpg"
 },
 
 {
@@ -206,21 +193,15 @@ img:"https://m.media-amazon.com/images/I/61Yx5-N155L._AC_SL1500_.jpg"
 },
 
 {
-name:"Bluetooth Earbuds",
-price:1499,
-img:"https://m.media-amazon.com/images/I/51HBom8xz7L._AC_SL1500_.jpg"
-},
-
-{
 name:"Ceiling Fan",
 price:2499,
 img:"https://m.media-amazon.com/images/I/61XKX6D6x0L._AC_SL1500_.jpg"
 },
 
 {
-name:"Laptop",
-price:55999,
-img:"https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg"
+name:"Bluetooth Earbuds",
+price:1499,
+img:"https://m.media-amazon.com/images/I/51HBom8xz7L._AC_SL1500_.jpg"
 }
 
 ]
@@ -248,6 +229,8 @@ html+=`
 
 <button onclick="addCart(${i})">Add To Cart</button>
 
+<button onclick="buyNow(${i})">Buy Now</button>
+
 </div>
 
 `
@@ -260,7 +243,7 @@ document.getElementById("products").innerHTML=html
 
 loadProducts()
 
-/* CART */
+/* ADD CART */
 
 function addCart(i){
 
@@ -270,13 +253,38 @@ total+=products[i].price
 
 document.getElementById("total").innerText=total
 
-let item=document.createElement("p")
+let item=document.createElement("div")
 
-item.innerText=products[i].name+" ₹"+products[i].price
+item.innerHTML=products[i].name+" ₹"+products[i].price+
+` <button onclick="removeItem(this,${products[i].price})">X</button>`
 
 document.getElementById("cartItems").appendChild(item)
 
+showToast()
+
 }
+
+/* REMOVE ITEM */
+
+function removeItem(btn,price){
+
+btn.parentElement.remove()
+
+total-=price
+
+document.getElementById("total").innerText=total
+
+}
+
+/* BUY NOW */
+
+function buyNow(i){
+
+showPayment()
+
+}
+
+/* CART */
 
 function openCart(){
 
@@ -284,25 +292,33 @@ document.getElementById("cart").style.display="block"
 
 }
 
-/* LOGIN */
+/* TOAST */
 
-function login(){
+function showToast(){
 
-document.getElementById("loginBox").style.display="flex"
+let t=document.getElementById("toast")
 
-}
+t.style.display="block"
 
-function closeLogin(){
+setTimeout(()=>{
 
-document.getElementById("loginBox").style.display="none"
+t.style.display="none"
+
+},2000)
 
 }
 
 /* PAYMENT */
 
-function pay(){
+function showPayment(){
 
-alert("Scan QR Code to Pay")
+document.getElementById("payment").style.display="flex"
+
+}
+
+function closePay(){
+
+document.getElementById("payment").style.display="none"
 
 }
 
