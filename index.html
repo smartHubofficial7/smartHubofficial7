@@ -1,98 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SmartHub Store</title>
 
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">
-<img src="SMARTHUB-logo.png">
+<div class="logoBox">
+<img src="SMARTHUB-logo.png" class="logo">
 <h2>SmartHub</h2>
 </div>
 
-<input class="search" placeholder="Search Products">
+<input id="search" placeholder="Search Products">
 
-<div class="navbtn">
+<div class="navButtons">
 
 <button onclick="openLogin()">Login</button>
-<button onclick="openCart()">Cart 🛒</button>
+
+<button onclick="openCart()">
+Cart (<span id="cartCount">0</span>)
+</button>
 
 </div>
 
 </header>
 
-
-<div class="products">
-
-<div class="card">
-
-<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg">
-
-<h3>Smart Watch</h3>
-
-<p class="price">₹1999</p>
-
-<button class="cartbtn" onclick="addCart('Smart Watch')">Add Cart</button>
-
-<button class="buybtn" onclick="buy()">Buy Now</button>
-
-</div>
+<div class="container" id="products"></div>
 
 
-<div class="card">
-
-<img src="https://m.media-amazon.com/images/I/71YXzeOuslL.jpg">
-
-<h3>Refrigerator</h3>
-
-<p class="price">₹18999</p>
-
-<button class="cartbtn" onclick="addCart('Refrigerator')">Add Cart</button>
-
-<button class="buybtn" onclick="buy()">Buy Now</button>
-
-</div>
-
-
-<div class="card">
-
-<img src="https://m.media-amazon.com/images/I/71TPda7cwUL.jpg">
-
-<h3>Gaming Laptop</h3>
-
-<p class="price">₹55999</p>
-
-<button class="cartbtn" onclick="addCart('Laptop')">Add Cart</button>
-
-<button class="buybtn" onclick="buy()">Buy Now</button>
-
-</div>
-
-
-<div class="card">
-
-<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL.jpg">
-
-<h3>LED TV</h3>
-
-<p class="price">₹29999</p>
-
-<button class="cartbtn" onclick="addCart('TV')">Add Cart</button>
-
-<button class="buybtn" onclick="buy()">Buy Now</button>
-
-</div>
-
-</div>
-
-
+<!-- CART -->
 
 <div id="cartPanel">
 
@@ -100,39 +45,42 @@
 
 <ul id="cartItems"></ul>
 
-<button onclick="buy()">Checkout</button>
+<button class="buyMain" onclick="buyCart()">Checkout</button>
 
 </div>
 
 
+<!-- LOGIN -->
 
 <div id="loginBox">
 
-<h2>User Login</h2>
+<h2>Create Account</h2>
 
-<input id="user" placeholder="Email">
+<input id="email" placeholder="Email">
 
-<input id="pass" type="password" placeholder="Password">
+<input id="password" placeholder="Password">
 
-<button onclick="login()">Login</button>
+<button onclick="createAccount()">Create Account</button>
 
 </div>
 
 
+<!-- PAYMENT -->
 
-<div id="notify"></div>
+<div id="paymentBox">
 
+<h2>UPI Payment</h2>
 
-<div id="payment">
-
-<h2>Scan QR To Pay</h2>
+<p>Scan QR Code</p>
 
 <img src="qrcode.png">
 
-<button onclick="closePay()">Close</button>
+<button onclick="closePayment()">Close</button>
 
 </div>
 
+
+<div id="notify"></div>
 
 <script src="script.js"></script>
 
