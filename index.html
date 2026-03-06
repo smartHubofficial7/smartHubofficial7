@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>SmartHub Store</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <header>
 
+<div class="logo">
+<img src="SMARTHUB-logo.png">
 <h1>SmartHub</h1>
+</div>
 
-<input id="search" class="search" placeholder="Search Products" onkeyup="searchProduct()">
+<input class="search" placeholder="Search Products">
 
 <div class="top-buttons">
-<button onclick="openLogin()">Login</button>
+<button onclick="history.back()">Back</button>
 <button onclick="openCart()">Cart</button>
 </div>
 
 </header>
 
-<div class="container" id="productContainer">
+
+<div class="container">
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/61y2VVWcGBL.jpg">
+<h3>Smart Watch</h3>
+<div class="price">₹1999</div>
+<button class="btn cartbtn" onclick="addCart('Smart Watch')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/81Zt42ioCgL.jpg">
+<h3>LED TV</h3>
+<div class="price">₹29999</div>
+<button class="btn cartbtn" onclick="addCart('LED TV')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card">
+<img src="https://m.media-amazon.com/images/I/71Wv8G9F0AL.jpg">
+<h3>Refrigerator</h3>
+<div class="price">₹18999</div>
+<button class="btn cartbtn" onclick="addCart('Refrigerator')">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
 
 </div>
 
@@ -30,9 +61,7 @@
 
 <h2>Your Cart</h2>
 
-<ul id="cartItems"></ul>
-
-<h3>Total : ₹<span id="total">0</span></h3>
+<div id="cartItems"></div>
 
 <button onclick="buy()">Checkout</button>
 
@@ -45,7 +74,7 @@
 
 <p>Scan QR to Pay</p>
 
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=UPI-PAYMENT">
+<img src="qrcode.png">
 
 <br><br>
 
@@ -54,21 +83,8 @@
 </div>
 
 
-<div id="loginBox">
-
-<h2>User Login</h2>
-
-<input placeholder="Email">
-<input placeholder="Password">
-
-<br>
-
-<button onclick="closeLogin()">Login</button>
-
-</div>
-
-
 <div id="notify"></div>
+
 
 <script src="script.js"></script>
 
