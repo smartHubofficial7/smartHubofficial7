@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMART HUB</title>
 
-<title>SmartHub Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="style.css">
 
@@ -15,72 +14,111 @@
 
 <header>
 
-<div class="logoBox">
-<img src="SMARTHUB-logo.png" class="logo">
-<h2>SmartHub</h2>
+<div class="logo">
+
+<img src="SMARTHUB-logo.png">
+
+<h2>SMART HUB</h2>
+
 </div>
 
-<input id="search" placeholder="Search Products">
+<input class="search" placeholder="Search products...">
 
-<div class="navButtons">
+<div class="buttons">
 
 <button onclick="openLogin()">Login</button>
 
-<button onclick="openCart()">
-Cart (<span id="cartCount">0</span>)
-</button>
+<button onclick="openCart()">Cart</button>
 
 </div>
 
 </header>
 
-<div class="container" id="products"></div>
+<section class="hero">
 
+<h1>Welcome To SMART HUB</h1>
 
-<!-- CART -->
+<p>Best Online Electronics Store</p>
 
-<div id="cartPanel">
+</section>
 
-<h2>Your Cart</h2>
+<section class="products">
 
-<ul id="cartItems"></ul>
+<div class="card">
 
-<button class="buyMain" onclick="buyCart()">Checkout</button>
+<img src="https://picsum.photos/300/200">
+
+<h3>Wireless Headphone</h3>
+
+<p>$49</p>
+
+<button onclick="buy()">Buy</button>
 
 </div>
 
+<div class="card">
 
-<!-- LOGIN -->
+<img src="https://picsum.photos/301/200">
 
-<div id="loginBox">
+<h3>Smart Watch</h3>
+
+<p>$89</p>
+
+<button onclick="buy()">Buy</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://picsum.photos/302/200">
+
+<h3>Gaming Mouse</h3>
+
+<p>$39</p>
+
+<button onclick="buy()">Buy</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://picsum.photos/303/200">
+
+<h3>Bluetooth Speaker</h3>
+
+<p>$59</p>
+
+<button onclick="buy()">Buy</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://picsum.photos/304/200">
+
+<h3>Mechanical Keyboard</h3>
+
+<p>$99</p>
+
+<button onclick="buy()">Buy</button>
+
+</div>
+
+</section>
+
+<div id="loginBox" class="loginBox">
 
 <h2>Create Account</h2>
 
-<input id="email" placeholder="Email">
+<input id="user" placeholder="Username">
 
-<input id="password" placeholder="Password">
+<input id="pass" type="password" placeholder="Password">
 
-<button onclick="createAccount()">Create Account</button>
+<button onclick="createAccount()">Create</button>
 
-</div>
-
-
-<!-- PAYMENT -->
-
-<div id="paymentBox">
-
-<h2>UPI Payment</h2>
-
-<p>Scan QR Code</p>
-
-<img src="qrcode.png">
-
-<button onclick="closePayment()">Close</button>
+<button onclick="closeLogin()">Close</button>
 
 </div>
-
-
-<div id="notify"></div>
 
 <script src="script.js"></script>
 
