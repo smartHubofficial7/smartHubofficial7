@@ -1,18 +1,128 @@
+let products=[
+
+{
+name:"Smart Watch",
+price:1999,
+img:"https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UF1000,1000_QL80_.jpg"
+},
+
+{
+name:"Refrigerator",
+price:18999,
+img:"https://m.media-amazon.com/images/I/71YXzeOuslL.jpg"
+},
+
+{
+name:"Ceiling Fan",
+price:2499,
+img:"https://m.media-amazon.com/images/I/61p0G+6YdPL.jpg"
+},
+
+{
+name:"Bluetooth Earbuds",
+price:1499,
+img:"https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg"
+},
+
+{
+name:"Gaming Laptop",
+price:55999,
+img:"https://m.media-amazon.com/images/I/71TPda7cwUL.jpg"
+},
+
+{
+name:"LED TV",
+price:29999,
+img:"https://m.media-amazon.com/images/I/61-r9zOKBCL.jpg"
+}
+
+]
+
 let cart=[]
 
-let userLogged=false
+function loadProducts(){
 
-function addCart(item){
+let html=""
 
-cart.push(item)
+products.forEach((p,i)=>{
 
-document.getElementById("cartItems").innerHTML+=`<li>${item}</li>`
+html+=`
 
-showNotify(item+" added to cart")
+<div class="card">
+
+<img src="${p.img}">
+
+<h3>${p.name}</h3>
+
+<div class="price">₹${p.price}</div>
+
+<button class="btn cartbtn" onclick="addCart(${i})">
+Add To Cart
+</button>
+
+<button class="btn buybtn" onclick="buyNow()">
+Buy Now
+</button>
+
+</div>
+
+`
+
+})
+
+document.getElementById("products").innerHTML=html
 
 }
 
-function showNotify(text){
+loadProducts()
+
+
+function addCart(i){
+
+cart.push(products[i])
+
+document.getElementById("cartCount").innerText=cart.length
+
+document.getElementById("cartItems").innerHTML+=`<li>${products[i].name}</li>`
+
+notify(products[i].name+" added to cart")
+
+}
+
+
+function openCart(){
+
+document.getElementById("cartPanel").style.right="0"
+
+}
+
+
+function buyNow(){
+
+checkLogin()
+
+document.getElementById("paymentBox").style.display="block"
+
+}
+
+
+function buyCart(){
+
+checkLogin()
+
+document.getElementById("paymentBox").style.display="block"
+
+}
+
+
+function closePayment(){
+
+document.getElementById("paymentBox").style.display="none"
+
+}
+
+
+function notify(text){
 
 let n=document.getElementById("notify")
 
@@ -28,11 +138,6 @@ n.style.display="none"
 
 }
 
-function openCart(){
-
-document.getElementById("cartPanel").style.right="0"
-
-}
 
 function openLogin(){
 
@@ -40,41 +145,32 @@ document.getElementById("loginBox").style.display="block"
 
 }
 
-function login(){
 
-let u=document.getElementById("user").value
-let p=document.getElementById("pass").value
+function createAccount(){
 
-if(u && p){
+let email=document.getElementById("email").value
 
-userLogged=true
+let pass=document.getElementById("password").value
 
-alert("Login Successful")
+localStorage.setItem("user",email)
+
+alert("Account Created")
 
 document.getElementById("loginBox").style.display="none"
 
 }
 
-}
 
-function buy(){
+function checkLogin(){
 
-if(!userLogged){
+let u=localStorage.getItem("user")
 
-alert("Please Login First")
+if(!u){
+
+alert("Please login first")
 
 openLogin()
 
-return
-
 }
-
-document.getElementById("payment").style.display="block"
-
-}
-
-function closePay(){
-
-document.getElementById("payment").style.display="none"
 
 }
