@@ -1,83 +1,64 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = []
+let total = 0
 
-updateCart();
+function addCart(name,price){
 
-function addCart(item){
+cart.push({name,price})
+total += price
 
-cart.push(item);
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-updateCart();
-
-showNotify(item+" added to cart");
+updateCart()
 
 }
 
 function updateCart(){
 
-document.getElementById("cartCount").innerText=cart.length;
+let list = document.getElementById("cartItems")
+list.innerHTML=""
 
-let list="";
+cart.forEach(item =>{
 
-cart.forEach(item=>{
+let li = document.createElement("li")
 
-list+=`<li>${item}</li>`;
+li.innerText = item.name + " - ₹" + item.price
 
-});
+list.appendChild(li)
 
-document.getElementById("cartItems").innerHTML=list;
+})
 
-}
-
-function showNotify(text){
-
-let n=document.getElementById("notify");
-
-n.innerText=text;
-
-n.style.display="block";
-
-setTimeout(()=>{
-
-n.style.display="none";
-
-},2000);
+document.getElementById("total").innerText="Total ₹"+total
 
 }
 
 function openCart(){
 
-document.getElementById("cartPanel").style.right="0";
+document.getElementById("cart").classList.add("active")
 
 }
 
-function buy(){
+function closeCart(){
 
-document.getElementById("paymentBox").style.display="block";
-
-}
-
-function closePay(){
-
-document.getElementById("paymentBox").style.display="none";
+document.getElementById("cart").classList.remove("active")
 
 }
 
-function openLogin(){
+document.getElementById("search").addEventListener("keyup",function(){
 
-document.getElementById("loginBox").style.display="block";
+let value = this.value.toLowerCase()
+
+document.querySelectorAll(".product").forEach(p=>{
+
+let name = p.querySelector("h3").innerText.toLowerCase()
+
+if(name.includes(value)){
+
+p.style.display="block"
+
+}else{
+
+p.style.display="none"
 
 }
 
-function loginUser(){
+})
 
-let email=document.getElementById("email").value;
-
-localStorage.setItem("user",email);
-
-alert("Login Successful");
-
-document.getElementById("loginBox").style.display="none";
-
-}
+})
