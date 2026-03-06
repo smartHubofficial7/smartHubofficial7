@@ -8,7 +8,7 @@
 body{
 font-family:Arial;
 margin:0;
-background:#f2f2f2;
+background:#f5f5f5;
 }
 
 header{
@@ -19,32 +19,24 @@ font-size:24px;
 font-weight:bold;
 }
 
-.search{
-width:50%;
-padding:10px;
-margin-left:20px;
-border-radius:5px;
-border:none;
-}
-
 .container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 padding:20px;
 }
 
 .card{
 background:white;
+padding:20px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-padding:15px;
 text-align:center;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
 }
 
 .card img{
 width:100%;
-height:180px;
+height:200px;
 object-fit:contain;
 }
 
@@ -54,16 +46,20 @@ font-size:20px;
 font-weight:bold;
 }
 
-.btn{
-background:#ff9800;
+button{
+background:#ff9900;
 border:none;
-padding:10px 15px;
+padding:10px 20px;
 color:white;
 border-radius:5px;
 cursor:pointer;
 }
 
-#payment{
+button:hover{
+background:#ff7700;
+}
+
+.popup{
 display:none;
 position:fixed;
 top:0;
@@ -75,7 +71,7 @@ justify-content:center;
 align-items:center;
 }
 
-.paybox{
+.payment{
 background:white;
 padding:30px;
 border-radius:10px;
@@ -83,7 +79,8 @@ text-align:center;
 }
 
 .qr{
-width:250px;
+width:220px;
+margin-top:20px;
 }
 
 </style>
@@ -91,50 +88,47 @@ width:250px;
 
 <body>
 
-<header>
-SmartHub Electronics
-<input class="search" placeholder="Search Products">
-</header>
+<header>SmartHub Electronics</header>
 
 <div class="container">
 
 <div class="card">
-<img src="https://m.media-amazon.com/images/I/61IMRs+o0iL._AC_SL1500_.jpg">
+<img src="https://m.media-amazon.com/images/I/61y2VVWcGBL._AC_SL1500_.jpg">
 <h3>Smart Watch</h3>
 <p class="price">₹1999</p>
-<button class="btn" onclick="buy()">Buy Now</button>
+<button onclick="buy()">Buy Now</button>
 </div>
 
 <div class="card">
-<img src="https://m.media-amazon.com/images/I/71v9Lnb8PXL._AC_SL1500_.jpg">
+<img src="https://m.media-amazon.com/images/I/61Yx5-N155L._AC_SL1500_.jpg">
 <h3>Refrigerator</h3>
 <p class="price">₹18999</p>
-<button class="btn" onclick="buy()">Buy Now</button>
+<button onclick="buy()">Buy Now</button>
 </div>
 
 <div class="card">
-<img src="https://m.media-amazon.com/images/I/61S8qkzG2BL._AC_SL1500_.jpg">
+<img src="https://m.media-amazon.com/images/I/61XKX6D6x0L._AC_SL1500_.jpg">
 <h3>Ceiling Fan</h3>
 <p class="price">₹2499</p>
-<button class="btn" onclick="buy()">Buy Now</button>
+<button onclick="buy()">Buy Now</button>
 </div>
 
 <div class="card">
-<img src="https://m.media-amazon.com/images/I/61KNJav3S9L._AC_SL1500_.jpg">
+<img src="https://m.media-amazon.com/images/I/51HBom8xz7L._AC_SL1500_.jpg">
 <h3>Bluetooth Earbuds</h3>
 <p class="price">₹1499</p>
-<button class="btn" onclick="buy()">Buy Now</button>
+<button onclick="buy()">Buy Now</button>
 </div>
 
 </div>
 
-<div id="payment">
+<div class="popup" id="payment">
 
-<div class="paybox">
+<div class="payment">
 
 <h2>UPI Payment</h2>
 
-<p>Scan QR Code</p>
+<p>Scan QR Code to Pay</p>
 
 <img src="qrcode.png" class="qr">
 
@@ -149,11 +143,11 @@ SmartHub Electronics
 <script>
 
 function buy(){
-document.getElementById("payment").style.display="flex"
+document.getElementById("payment").style.display="flex";
 }
 
 function closePay(){
-document.getElementById("payment").style.display="none"
+document.getElementById("payment").style.display="none";
 }
 
 </script>
