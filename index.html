@@ -4,6 +4,8 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SMART HUB</title>
 
 <link rel="stylesheet" href="style.css">
@@ -18,11 +20,12 @@
 <div class="logo">
 
 <img src="SMARTHUB-logo.png">
+
 <h1>SMART HUB</h1>
 
 </div>
 
-<input class="search" placeholder="Search Products">
+<input id="searchBox" class="search" placeholder="Search Products">
 
 <div class="top-buttons">
 
@@ -40,12 +43,15 @@ Cart (<span id="cartCount">0</span>)
 <section class="hero">
 
 <h2>Welcome To SMART HUB</h2>
+
 <p>Best Online Electronics Store</p>
 
 </section>
 
 
-<div class="container">
+<div class="container" id="productContainer">
+
+<!-- PRODUCT -->
 
 <div class="card">
 
@@ -70,7 +76,7 @@ Cart (<span id="cartCount">0</span>)
 
 <div class="price">₹55999</div>
 
-<button onclick="addCart('Laptop')" class="btn cartbtn">Add To Cart</button>
+<button onclick="addCart('Gaming Laptop')" class="btn cartbtn">Add To Cart</button>
 
 <button onclick="buy()" class="btn buybtn">Buy Now</button>
 
@@ -100,7 +106,7 @@ Cart (<span id="cartCount">0</span>)
 
 <div class="price">₹18999</div>
 
-<button onclick="addCart('Fridge')" class="btn cartbtn">Add To Cart</button>
+<button onclick="addCart('Refrigerator')" class="btn cartbtn">Add To Cart</button>
 
 <button onclick="buy()" class="btn buybtn">Buy Now</button>
 
@@ -108,6 +114,8 @@ Cart (<span id="cartCount">0</span>)
 
 </div>
 
+
+<!-- CART PANEL -->
 
 <div id="cartPanel">
 
@@ -120,6 +128,8 @@ Cart (<span id="cartCount">0</span>)
 </div>
 
 
+<!-- PAYMENT -->
+
 <div id="paymentBox">
 
 <h2>UPI Payment</h2>
@@ -128,28 +138,32 @@ Cart (<span id="cartCount">0</span>)
 
 <img src="qrcode.png">
 
+<br><br>
+
 <button onclick="closePay()">Close</button>
 
 </div>
 
 
+<!-- LOGIN -->
+
 <div id="loginBox">
 
 <h2>User Login</h2>
 
-<input placeholder="Email">
+<input id="email" placeholder="Email">
 
-<input placeholder="Password">
+<input id="password" placeholder="Password">
 
-<button onclick="closeLogin()">Login</button>
+<button onclick="loginUser()">Login</button>
 
 </div>
 
 
 <div id="notify"></div>
 
+
 <script src="script.js"></script>
 
 </body>
-
 </html>
