@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SmartHub Store</title>
+
+<title>SmartHub Electronics</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
@@ -17,8 +20,9 @@ background:#f5f5f5;
 background:#131921;
 color:white;
 display:flex;
+flex-wrap:wrap;
 justify-content:space-between;
-padding:15px;
+padding:12px;
 align-items:center;
 }
 
@@ -28,15 +32,18 @@ font-weight:bold;
 }
 
 .search{
-width:40%;
 padding:8px;
+width:300px;
+max-width:100%;
+border:none;
+border-radius:5px;
 }
 
 /* PRODUCTS */
 
 .container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 padding:20px;
 }
@@ -51,13 +58,13 @@ text-align:center;
 
 .card img{
 width:100%;
-height:200px;
+height:180px;
 object-fit:contain;
 }
 
 .price{
 color:red;
-font-size:20px;
+font-size:18px;
 font-weight:bold;
 }
 
@@ -72,13 +79,14 @@ border-radius:5px;
 cursor:pointer;
 }
 
-/* CART */
+/* CART PANEL */
 
 .cart{
 position:fixed;
 right:0;
 top:0;
-width:300px;
+width:320px;
+max-width:90%;
 height:100%;
 background:white;
 box-shadow:-4px 0 10px rgba(0,0,0,0.2);
@@ -92,11 +100,11 @@ overflow:auto;
 .toast{
 position:fixed;
 right:20px;
-top:80px;
+bottom:20px;
 background:#4CAF50;
 color:white;
-padding:15px;
-border-radius:5px;
+padding:12px 20px;
+border-radius:6px;
 display:none;
 }
 
@@ -116,13 +124,35 @@ align-items:center;
 
 .paybox{
 background:white;
-padding:30px;
+padding:25px;
 border-radius:10px;
 text-align:center;
+max-width:90%;
 }
 
 .qr{
 width:200px;
+max-width:100%;
+}
+
+/* MOBILE OPTIMIZATION */
+
+@media(max-width:600px){
+
+.logo{
+font-size:18px;
+}
+
+.search{
+width:100%;
+margin-top:8px;
+}
+
+button{
+width:100%;
+margin-top:8px;
+}
+
 }
 
 </style>
@@ -134,7 +164,7 @@ width:200px;
 
 <div class="logo">SmartHub</div>
 
-<input class="search" placeholder="Search Products">
+<input class="search" placeholder="Search electronics">
 
 <button onclick="openCart()">Cart</button>
 
@@ -155,14 +185,16 @@ width:200px;
 </div>
 
 <div class="toast" id="toast">
-Item Added To Cart
+Product Added to Cart
 </div>
 
 <div class="payment" id="payment">
 
 <div class="paybox">
 
-<h2>Scan QR to Pay</h2>
+<h2>UPI Payment</h2>
+
+<p>Scan QR Code</p>
 
 <img src="qrcode.png" class="qr">
 
@@ -175,8 +207,6 @@ Item Added To Cart
 </div>
 
 <script>
-
-/* PRODUCTS */
 
 let products=[
 
@@ -209,8 +239,6 @@ img:"https://m.media-amazon.com/images/I/51HBom8xz7L._AC_SL1500_.jpg"
 let cart=[]
 let total=0
 
-/* LOAD PRODUCTS */
-
 function loadProducts(){
 
 let html=""
@@ -227,9 +255,9 @@ html+=`
 
 <p class="price">₹${p.price}</p>
 
-<button onclick="addCart(${i})">Add To Cart</button>
+<button onclick="addCart(${i})">Add to Cart</button>
 
-<button onclick="buyNow(${i})">Buy Now</button>
+<button onclick="buyNow()">Buy Now</button>
 
 </div>
 
@@ -243,8 +271,6 @@ document.getElementById("products").innerHTML=html
 
 loadProducts()
 
-/* ADD CART */
-
 function addCart(i){
 
 cart.push(products[i])
@@ -255,8 +281,7 @@ document.getElementById("total").innerText=total
 
 let item=document.createElement("div")
 
-item.innerHTML=products[i].name+" ₹"+products[i].price+
-` <button onclick="removeItem(this,${products[i].price})">X</button>`
+item.innerHTML=products[i].name+" ₹"+products[i].price
 
 document.getElementById("cartItems").appendChild(item)
 
@@ -264,35 +289,11 @@ showToast()
 
 }
 
-/* REMOVE ITEM */
-
-function removeItem(btn,price){
-
-btn.parentElement.remove()
-
-total-=price
-
-document.getElementById("total").innerText=total
-
-}
-
-/* BUY NOW */
-
-function buyNow(i){
-
-showPayment()
-
-}
-
-/* CART */
-
 function openCart(){
 
 document.getElementById("cart").style.display="block"
 
 }
-
-/* TOAST */
 
 function showToast(){
 
@@ -308,7 +309,11 @@ t.style.display="none"
 
 }
 
-/* PAYMENT */
+function buyNow(){
+
+showPayment()
+
+}
 
 function showPayment(){
 
