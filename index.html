@@ -2,19 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>SmartHub Store</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
 body{
-background:linear-gradient(120deg,#f2f2f2,#e6f0ff);
+margin:0;
+font-family:Arial;
+background:#f2f4f8;
 }
 
 /* HEADER */
@@ -22,135 +18,130 @@ background:linear-gradient(120deg,#f2f2f2,#e6f0ff);
 header{
 background:#111;
 color:white;
-padding:15px 30px;
+padding:15px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+flex-wrap:wrap;
 }
 
 .logo{
 font-size:24px;
 font-weight:bold;
-color:#00bfff;
+color:#00c3ff;
 }
 
 .search input{
 padding:8px;
-width:260px;
-border-radius:5px;
+width:250px;
+border-radius:4px;
 border:none;
 }
 
-.cart{
-font-size:18px;
+.cartbtn{
+background:orange;
+padding:8px 15px;
+border:none;
+border-radius:5px;
+cursor:pointer;
 }
 
 /* CATEGORY */
 
 .categories{
 background:white;
-padding:15px;
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-border-bottom:1px solid #ddd;
+padding:10px;
+text-align:center;
 }
 
 .categories button{
-padding:8px 15px;
+padding:8px 12px;
+margin:5px;
 border:none;
 background:#eee;
-border-radius:5px;
 cursor:pointer;
+border-radius:4px;
 }
 
 .categories button:hover{
 background:#ddd;
 }
 
-/* PRODUCT GRID */
+/* PRODUCTS */
 
 .container{
-padding:25px;
+padding:20px;
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
-
-/* PRODUCT CARD */
 
 .card{
 background:white;
 border-radius:10px;
 padding:15px;
 text-align:center;
-box-shadow:0 4px 15px rgba(0,0,0,0.1);
-transition:0.3s;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+transition:.3s;
 }
 
 .card:hover{
 transform:scale(1.05);
 }
 
-.image-box{
-height:160px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.image-box img{
-max-width:100%;
-max-height:150px;
+.card img{
+width:100%;
+height:150px;
 object-fit:contain;
-}
-
-.title{
-font-size:16px;
-font-weight:bold;
-margin-top:10px;
-}
-
-.stars{
-color:orange;
 }
 
 .price{
 color:red;
 font-weight:bold;
-margin:5px 0;
 }
 
-.buttons{
-margin-top:10px;
-}
-
-.btn{
+button{
+padding:7px 10px;
 border:none;
-padding:8px 12px;
-border-radius:5px;
 cursor:pointer;
-font-size:12px;
+border-radius:4px;
+margin:4px;
 }
 
-.cartbtn{
+.add{
 background:orange;
 color:white;
 }
 
-.buybtn{
+.buy{
 background:#28a745;
 color:white;
 }
 
-/* FOOTER */
+/* CART PANEL */
 
-footer{
-margin-top:40px;
-background:#111;
-color:white;
-text-align:center;
+#cartPanel{
+position:fixed;
+right:-350px;
+top:0;
+width:300px;
+height:100%;
+background:white;
+box-shadow:-3px 0 10px rgba(0,0,0,0.3);
 padding:20px;
+transition:.4s;
+overflow:auto;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+}
+
+.remove{
+background:red;
+color:white;
 }
 
 </style>
@@ -163,166 +154,222 @@ padding:20px;
 <div class="logo">SmartHub</div>
 
 <div class="search">
-<input type="text" placeholder="Search product...">
+<input type="text" id="search" placeholder="Search product">
 </div>
 
-<div class="cart">
-🛒 Cart: <span id="cartCount">0</span>
-</div>
+<button class="cartbtn" onclick="openCart()">Cart (<span id="count">0</span>)</button>
 
 </header>
 
 <div class="categories">
 
-<button>All</button>
-<button>Mobiles</button>
-<button>Laptops</button>
-<button>Gaming</button>
-<button>Home Appliances</button>
-<button>Accessories</button>
+<button onclick="filter('all')">All</button>
+<button onclick="filter('phone')">Phones</button>
+<button onclick="filter('laptop')">Laptop</button>
+<button onclick="filter('gaming')">Gaming</button>
+<button onclick="filter('home')">Home</button>
+<button onclick="filter('accessory')">Accessories</button>
 
 </div>
 
-<div class="container">
+<div class="container" id="products">
 
 <!-- PHONE -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL._AC_UY218_.jpg">
-</div>
-<div class="title">Smart Phone</div>
-<div class="stars">★★★★★</div>
+
+<div class="card phone">
+<img src="https://m.media-amazon.com/images/I/61-r9zOKBCL.jpg">
+<h3>Smart Phone</h3>
 <div class="price">₹7999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
+<button class="add" onclick="addCart('Phone',7999)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
+
+<div class="card phone">
+<img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
+<h3>iPhone</h3>
+<div class="price">₹79999</div>
+<button class="add" onclick="addCart('iPhone',79999)">Add Cart</button>
+<button class="buy">Buy</button>
+</div>
+
+<!-- LAPTOP -->
+
+<div class="card laptop">
+<img src="https://m.media-amazon.com/images/I/71TPda7cwUL.jpg">
+<h3>Office Laptop</h3>
+<div class="price">₹35999</div>
+<button class="add" onclick="addCart('Laptop',35999)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
 
 <!-- GAMING LAPTOP -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/71jG+e7roXL._AC_UY218_.jpg">
-</div>
-<div class="title">Gaming Laptop</div>
-<div class="stars">★★★★★</div>
+
+<div class="card gaming">
+<img src="https://m.media-amazon.com/images/I/71jG+e7roXL.jpg">
+<h3>Gaming Laptop</h3>
 <div class="price">₹55999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<button class="add" onclick="addCart('Gaming Laptop',55999)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
 
-<!-- NORMAL LAPTOP -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/71TPda7cwUL._AC_UY218_.jpg">
-</div>
-<div class="title">Office Laptop</div>
-<div class="stars">★★★★☆</div>
-<div class="price">₹35999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
-</div>
+<!-- ACCESSORIES -->
 
-<!-- HEADPHONE -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/61KNJav3S9L._AC_UY218_.jpg">
-</div>
-<div class="title">Gaming Headphones</div>
-<div class="stars">★★★★★</div>
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61KNJav3S9L.jpg">
+<h3>Headphones</h3>
 <div class="price">₹2499</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<button class="add" onclick="addCart('Headphones',2499)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
 
-<!-- WATCH -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL._AC_UY218_.jpg">
-</div>
-<div class="title">Smart Watch</div>
-<div class="stars">★★★★☆</div>
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL.jpg">
+<h3>Smart Watch</h3>
 <div class="price">₹1999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<button class="add" onclick="addCart('Watch',1999)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
 
-<!-- TV -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/81fxjeu8fdL._AC_UY218_.jpg">
-</div>
-<div class="title">LED TV</div>
-<div class="stars">★★★★★</div>
-<div class="price">₹29999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61SUj2aKoEL.jpg">
+<h3>Bluetooth Earbuds</h3>
+<div class="price">₹1499</div>
+<button class="add" onclick="addCart('Earbuds',1499)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
 
-<!-- FRIDGE -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/71WvVq1W1VL._AC_UY218_.jpg">
-</div>
-<div class="title">Refrigerator</div>
-<div class="stars">★★★★☆</div>
-<div class="price">₹18999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<!-- HOME APPLIANCES -->
+
+<div class="card home">
+<img src="https://m.media-amazon.com/images/I/71Jv2jVh6nL.jpg">
+<h3>Washing Machine</h3>
+<div class="price">₹15999</div>
+<button class="add" onclick="addCart('Washing Machine',15999)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
 
-<!-- AC -->
-<div class="card">
-<div class="image-box">
-<img src="https://m.media-amazon.com/images/I/51R5N4CqZXL._AC_UY218_.jpg">
-</div>
-<div class="title">Air Conditioner</div>
-<div class="stars">★★★★★</div>
+<div class="card home">
+<img src="https://m.media-amazon.com/images/I/51R5N4CqZXL.jpg">
+<h3>Air Conditioner</h3>
 <div class="price">₹32999</div>
-<div class="buttons">
-<button class="btn cartbtn" onclick="addCart()">Add to Cart</button>
-<button class="btn buybtn" onclick="buy()">Buy Now</button>
-</div>
+<button class="add" onclick="addCart('AC',32999)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
 
+<div class="card home">
+<img src="https://m.media-amazon.com/images/I/81fxjeu8fdL.jpg">
+<h3>LED TV</h3>
+<div class="price">₹29999</div>
+<button class="add" onclick="addCart('TV',29999)">Add Cart</button>
+<button class="buy">Buy</button>
 </div>
 
-<footer>
+<div class="card home">
+<img src="https://m.media-amazon.com/images/I/71WvVq1W1VL.jpg">
+<h3>Refrigerator</h3>
+<div class="price">₹18999</div>
+<button class="add" onclick="addCart('Fridge',18999)">Add Cart</button>
+<button class="buy">Buy</button>
+</div>
 
-SmartHub Store © 2025  
-Best Online Electronics Store
+</div>
 
-</footer>
+<!-- CART -->
+
+<div id="cartPanel">
+
+<h2>Your Cart</h2>
+
+<button onclick="closeCart()">Close</button>
+
+<div id="cartItems"></div>
+
+<h3 id="total"></h3>
+
+</div>
 
 <script>
 
-let cart = 0;
+let cart=[]
 
-function addCart(){
+function addCart(name,price){
 
-cart++;
+cart.push({name,price})
 
-document.getElementById("cartCount").innerText = cart;
-
-alert("Product Added To Cart");
+renderCart()
 
 }
 
-function buy(){
+function renderCart(){
 
-alert("Redirecting to Payment...");
+let box=document.getElementById("cartItems")
+
+let total=0
+
+box.innerHTML=""
+
+cart.forEach((item,i)=>{
+
+total+=item.price
+
+box.innerHTML+=`
+<div class="cart-item">
+${item.name} ₹${item.price}
+<button class="remove" onclick="removeItem(${i})">X</button>
+</div>
+`
+
+})
+
+document.getElementById("total").innerText="Total ₹"+total
+
+document.getElementById("count").innerText=cart.length
+
+}
+
+function removeItem(i){
+
+cart.splice(i,1)
+
+renderCart()
+
+}
+
+function openCart(){
+
+document.getElementById("cartPanel").style.right="0"
+
+}
+
+function closeCart(){
+
+document.getElementById("cartPanel").style.right="-350px"
+
+}
+
+/* SEARCH */
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let v=this.value.toLowerCase()
+
+document.querySelectorAll(".card").forEach(card=>{
+
+card.style.display=card.innerText.toLowerCase().includes(v)?"block":"none"
+
+})
+
+})
+
+/* FILTER */
+
+function filter(type){
+
+document.querySelectorAll(".card").forEach(card=>{
+
+card.style.display=(type=="all"||card.classList.contains(type))?"block":"none"
+
+})
 
 }
 
