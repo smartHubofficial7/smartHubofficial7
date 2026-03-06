@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -276,11 +275,14 @@ display:none;
 <button onclick="filter('phone')">Phones</button>
 <button onclick="filter('laptop')">Laptop</button>
 <button onclick="filter('accessory')">Accessories</button>
+<button onclick="filter('home')">Home</button>
 </div>
 
 <div class="trending">🔥 Trending Products</div>
 
-<div class="container" id="productContainer">
+<div class="container">
+
+<!-- OLD PRODUCTS -->
 
 <div class="card phone">
 <img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
@@ -318,10 +320,67 @@ display:none;
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
+<!-- NEW PRODUCTS -->
+
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61RZDb2mQxL.jpg">
+<h3>Headphones</h3>
+<div class="rating">⭐⭐⭐⭐</div>
+<div class="price">₹2499</div>
+<button class="btn cartbtn" onclick="addCart('Headphones',2499)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/71nK4qvZQ-L.jpg">
+<h3>Guitar</h3>
+<div class="rating">⭐⭐⭐⭐</div>
+<div class="price">₹5999</div>
+<button class="btn cartbtn" onclick="addCart('Guitar',5999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card home">
+<img src="https://m.media-amazon.com/images/I/61+Q6Rh3OQL.jpg">
+<h3>Washing Machine</h3>
+<div class="rating">⭐⭐⭐⭐</div>
+<div class="price">₹15999</div>
+<button class="btn cartbtn" onclick="addCart('Washing Machine',15999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card home">
+<img src="https://m.media-amazon.com/images/I/71HnP+2g4JL.jpg">
+<h3>Air Conditioner</h3>
+<div class="rating">⭐⭐⭐⭐</div>
+<div class="price">₹32999</div>
+<button class="btn cartbtn" onclick="addCart('AC',32999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card home">
+<img src="https://m.media-amazon.com/images/I/81Zt42ioCgL.jpg">
+<h3>LED TV</h3>
+<div class="rating">⭐⭐⭐⭐</div>
+<div class="price">₹29999</div>
+<button class="btn cartbtn" onclick="addCart('LED TV',29999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card home">
+<img src="https://m.media-amazon.com/images/I/71Wv8G9F0AL.jpg">
+<h3>Refrigerator</h3>
+<div class="rating">⭐⭐⭐⭐</div>
+<div class="price">₹18999</div>
+<button class="btn cartbtn" onclick="addCart('Refrigerator',18999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy Now</button>
+</div>
+
 </div>
 
 <div id="cartPanel">
 <h2>Your Cart</h2>
+<button onclick="closeCart()">⬅ Back</button>
 <div id="cartItems"></div>
 <div id="total"></div>
 <button onclick="buy()">Checkout</button>
@@ -336,6 +395,7 @@ display:none;
 </div>
 
 <div id="loginBox">
+<button onclick="closeLogin()">⬅ Back</button>
 <h2>Welcome Back</h2>
 <input placeholder="Email">
 <input placeholder="Password" type="password">
@@ -397,6 +457,10 @@ function openCart(){
 document.getElementById("cartPanel").style.right="0"
 }
 
+function closeCart(){
+document.getElementById("cartPanel").style.right="-400px"
+}
+
 function buy(){
 document.getElementById("paymentBox").style.display="block"
 }
@@ -414,9 +478,13 @@ function openLogin(){
 document.getElementById("loginBox").style.display="block"
 }
 
+function closeLogin(){
+document.getElementById("loginBox").style.display="none"
+}
+
 function login(){
 notify("Login Successful")
-document.getElementById("loginBox").style.display="none"
+closeLogin()
 }
 
 function notify(text){
@@ -446,4 +514,3 @@ updateCount()
 
 </body>
 </html>
-```
