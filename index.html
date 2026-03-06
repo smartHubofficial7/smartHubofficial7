@@ -257,7 +257,7 @@ margin-top:10px;
 <img src="https://m.media-amazon.com/images/I/71jG+e7roXL.jpg">
 <h3>Gaming Laptop</h3>
 <div class="price">₹55999</div>
-<button class="btn cartbtn" onclick="addCart('Laptop')">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Gaming Laptop')">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
@@ -278,17 +278,15 @@ margin-top:10px;
 </div>
 
 <div class="card">
-<img src="https://m.media-amazon.com/images/I/71Wv8G9F0AL.jpg">
-<h3>Refrigerator</h3>
-<div class="price">₹18999</div>
-<button class="btn cartbtn" onclick="addCart('Refrigerator')">Add To Cart</button>
+<img src="https://m.media-amazon.com/images/I/619BkvKW35L.jpg">
+<h3>Gaming Console</h3>
+<div class="price">₹44990</div>
+<button class="btn cartbtn" onclick="addCart('Gaming Console')">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy Now</button>
 </div>
 
 </div>
 
-
-<!-- CART -->
 
 <div id="cartPanel">
 
@@ -303,8 +301,6 @@ margin-top:10px;
 
 </div>
 
-
-<!-- PAYMENT -->
 
 <div id="paymentBox">
 
@@ -321,14 +317,11 @@ margin-top:10px;
 </div>
 
 
-<!-- LOGIN -->
-
 <div id="loginBox">
 
 <h2>User Login</h2>
 
 <input placeholder="Email">
-
 <input placeholder="Password">
 
 <br>
@@ -346,92 +339,62 @@ margin-top:10px;
 let cart=[]
 
 function addCart(item){
-
 cart.push(item)
-
 renderCart()
-
 showNotify(item+" added to cart")
-
 }
 
 function renderCart(){
-
 let box=document.getElementById("cartItems")
-
 box.innerHTML=""
 
 cart.forEach((item,index)=>{
-
 box.innerHTML+=`
 <div class="cart-item">
 ${item}
 <button class="remove" onclick="removeItem(${index})">X</button>
 </div>
 `
-
 })
-
 }
 
 function removeItem(i){
-
 cart.splice(i,1)
-
 renderCart()
-
 }
 
 function showNotify(text){
-
 let n=document.getElementById("notify")
-
 n.innerText=text
-
 n.style.display="block"
 
 setTimeout(()=>{
-
 n.style.display="none"
-
 },2000)
-
 }
 
 function openCart(){
-
 document.getElementById("cartPanel").style.right="0"
-
 }
 
 function closeCart(){
-
 document.getElementById("cartPanel").style.right="-400px"
-
 }
 
 function buy(){
-
 document.getElementById("paymentBox").style.display="block"
-
 }
 
 function closePay(){
-
 document.getElementById("paymentBox").style.display="none"
-
 }
 
 function openLogin(){
-
 document.getElementById("loginBox").style.display="block"
-
 }
 
 function closeLogin(){
-
 document.getElementById("loginBox").style.display="none"
-
 }
 
 </script>
