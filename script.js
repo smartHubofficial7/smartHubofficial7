@@ -1,9 +1,26 @@
-let cartCount = 0;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addCart() {
-    cartCount++;
+// page load hone par cart count show karega
+document.addEventListener("DOMContentLoaded", function () {
+    updateCartCount();
+});
 
-    document.getElementById("cart-count").innerText = cartCount;
+function addCart(productName, price) {
 
-    alert("Product added to cart!");
+    let product = {
+        name: productName,
+        price: price
+    };
+
+    cart.push(product);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert(productName + " added to cart!");
+}
+
+function updateCartCount() {
+    document.getElementById("cart-count").innerText = cart.length;
 }
