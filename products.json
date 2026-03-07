@@ -6,8 +6,8 @@
 },
 
 {
-"name":"Gaming Laptop",
-"price":55999,
+"name":"Laptop",
+"price":45999,
 "image":"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
 },
 
@@ -33,89 +33,5 @@
 "name":"Gaming Mouse",
 "price":799,
 "image":"https://images.unsplash.com/photo-1580910051074-3eb694886505"
-},
-
-{
-"name":"Mechanical Keyboard",
-"price":2499,
-"image":"https://images.unsplash.com/photo-1518770660439-4636190af475"
-},
-
-{
-"name":"Noise Cancelling Headphones",
-"price":3999,
-"image":"https://images.unsplash.com/photo-1518444065439-e933c06ce9cd"
-},
-
-{
-"name":"Tablet",
-"price":15999,
-"image":"https://images.unsplash.com/photo-1542751371-adc38448a05e"
-},
-
-{
-"name":"Portable SSD",
-"price":3499,
-"image":"https://images.unsplash.com/photo-1587202372775-e229f172b9d7"
-},
-
-{
-"name":"USB Hub",
-"price":499,
-"image":"https://images.unsplash.com/photo-1581093588401-22b4c8a9a9a2"
-},
-
-{
-"name":"Power Bank",
-"price":899,
-"image":"https://images.unsplash.com/photo-1580910051074-3eb694886505"
-},
-
-{
-"name":"LED Monitor",
-"price":8999,
-"image":"https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc"
-},
-
-{
-"name":"Gaming Headset",
-"price":1999,
-"image":"https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-},
-
-{
-"name":"Webcam",
-"price":1299,
-"image":"https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04"
-},
-
-{
-"name":"Smart TV",
-"price":29999,
-"image":"https://images.unsplash.com/photo-1593784991095-a205069470b6"
-},
-
-{
-"name":"VR Headset",
-"price":8999,
-"image":"https://images.unsplash.com/photo-1593508512255-86ab42a8e620"
-},
-
-{
-"name":"Drone Camera",
-"price":24999,
-"image":"https://images.unsplash.com/photo-1508610048659-a06b669e3321"
-},
-
-{
-"name":"Action Camera",
-"price":12999,
-"image":"https://images.unsplash.com/photo-1519183071298-a2962eadc4bb"
-},
-
-{
-"name":"Smart Home Speaker",
-"price":3999,
-"image":"https://images.unsplash.com/photo-1512446733611-9099a758e34b"
 }
 ]
