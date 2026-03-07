@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>SuperTech Store</title>
+<title>SuperStore</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -13,42 +14,42 @@
 
 <body>
 
-<header class="navbar">
+<header>
 
-<div class="logo">SuperTech</div>
+<div class="logo">SuperStore</div>
 
-<nav class="menu">
+<nav>
 
 <a href="#">Home</a>
 <a href="#">Products</a>
 <a href="#">Deals</a>
-<a href="#">New</a>
+<a href="#">About</a>
 <a href="#">Contact</a>
 
 </nav>
 
-<div class="search-box">
+<div class="right">
 
-<input type="text" id="searchInput" placeholder="Search product">
-
-<button onclick="searchProduct()">Search</button>
-
-</div>
-
-<div class="icons">
+<input type="text" id="search" placeholder="Search product">
 
 <button onclick="toggleDark()">🌙</button>
 
-<span id="cartCount">0</span>
+<div class="cart">
+
+Cart <span id="cartCount">0</span>
+
+</div>
 
 </div>
 
 </header>
 
+
 <section class="hero">
 
-<h1>Best Technology Store</h1>
-<p>Buy latest electronics</p>
+<h1>Welcome to SuperStore</h1>
+
+<p>Best Electronics Store Online</p>
 
 <button>Shop Now</button>
 
@@ -61,12 +62,12 @@
 
 <div class="category-grid">
 
-<div class="cat">Electronics</div>
+<div class="cat">Mobiles</div>
+<div class="cat">Laptops</div>
 <div class="cat">Gaming</div>
 <div class="cat">Accessories</div>
-<div class="cat">Mobile</div>
-<div class="cat">Laptop</div>
 <div class="cat">Headphones</div>
+<div class="cat">Smart Devices</div>
 
 </div>
 
@@ -75,34 +76,20 @@
 
 <section class="products">
 
-<h2>Products</h2>
+<h2>All Products</h2>
 
-<div id="productContainer" class="product-grid">
-
-</div>
+<div id="productContainer" class="product-grid"></div>
 
 </section>
 
 
 <section class="features">
 
-<h2>Why Choose Us</h2>
-
-<div class="feature-grid">
-
 <div class="feature">
 
-<h3>Fast Delivery</h3>
+<h3>Free Shipping</h3>
 
-<p>We deliver products fast worldwide.</p>
-
-</div>
-
-<div class="feature">
-
-<h3>Best Quality</h3>
-
-<p>Top rated products from brands.</p>
+<p>Free delivery worldwide</p>
 
 </div>
 
@@ -110,7 +97,15 @@
 
 <h3>Secure Payment</h3>
 
-<p>All payments are secured.</p>
+<p>Safe checkout</p>
+
+</div>
+
+<div class="feature">
+
+<h3>Fast Delivery</h3>
+
+<p>Delivery in 2-5 days</p>
 
 </div>
 
@@ -118,9 +113,7 @@
 
 <h3>24/7 Support</h3>
 
-<p>Customer support available anytime.</p>
-
-</div>
+<p>Customer support anytime</p>
 
 </div>
 
@@ -135,7 +128,7 @@
 
 <h3>Company</h3>
 
-<p>About us</p>
+<p>About</p>
 <p>Careers</p>
 <p>Blog</p>
 
@@ -143,27 +136,27 @@
 
 <div>
 
-<h3>Help</h3>
+<h3>Support</h3>
 
-<p>Support</p>
-<p>Shipping</p>
+<p>Help Center</p>
 <p>Returns</p>
+<p>Shipping</p>
 
 </div>
 
 <div>
 
-<h3>Social</h3>
+<h3>Follow Us</h3>
 
 <p>Instagram</p>
-<p>Youtube</p>
+<p>YouTube</p>
 <p>Twitter</p>
 
 </div>
 
 </div>
 
-<p class="copy">© 2025 SuperTech</p>
+<p class="copy">© 2025 SuperStore</p>
 
 </footer>
 
