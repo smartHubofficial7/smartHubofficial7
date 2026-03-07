@@ -1,19 +1,25 @@
-let cart=JSON.parse(localStorage.getItem("cart"))||[]
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let container=document.getElementById("cartItems")
+let items = document.getElementById("cart-items");
 
-let total=0
+let total = 0;
 
-cart.forEach(item=>{
+cart.forEach(p=>{
 
-container.innerHTML+=`
+items.innerHTML+=`
 
-<p>${item.name} - ₹${item.price}</p>
+<div>
 
-`
+<h3>${p.name}</h3>
 
-total+=item.price
+<p>₹${p.price}</p>
 
-})
+</div>
 
-container.innerHTML+=`<h2>Total ₹${total}</h2>`
+`;
+
+total += p.price;
+
+});
+
+document.getElementById("total").innerText = "Total: ₹"+total;
