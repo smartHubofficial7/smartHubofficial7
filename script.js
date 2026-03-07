@@ -1,38 +1,114 @@
-fetch("products.json")
-.then(res=>res.json())
-.then(data=>{
+let products = [
 
-let container=document.getElementById("products")
+{
+id:1,
+name:"Wireless Earbuds",
+price:999,
+image:"https://via.placeholder.com/200"
+},
 
-data.forEach(product=>{
+{
+id:2,
+name:"Smart Watch",
+price:1999,
+image:"https://via.placeholder.com/200"
+},
 
-container.innerHTML+=`
+{
+id:3,
+name:"Bluetooth Speaker",
+price:1499,
+image:"https://via.placeholder.com/200"
+}
+
+];
+
+function showProducts(){
+
+let list = document.getElementById("product-list");
+
+list.innerHTML="";
+
+products.forEach(p=>{
+
+list.innerHTML+=`
 
 <div class="product">
 
-<h3>${product.name}</h3>
-<p>₹${product.price}</p>
+<img src="${p.image}">
 
-<button onclick="addCart('${product.name}',${product.price})">
-Add to Cart
+<h3>${p.name}</h3>
+
+<p>₹${p.price}</p>
+
+<button onclick="addToCart(${p.id})">
+Add To Cart
 </button>
 
 </div>
 
-`
+`;
 
-})
+});
 
-})
+}
 
-function addCart(name,price){
+showProducts();
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[]
+function addToCart(id){
 
-cart.push({name,price})
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-localStorage.setItem("cart",JSON.stringify(cart))
+let product = products.find(p=>p.id==id);
 
-alert("Added to cart")
+cart.push(product);
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+updateCart();
+
+}
+
+function updateCart(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+document.getElementById("cart-count").innerText = cart.length;
+
+}
+
+updateCart();
+
+function searchProduct(){
+
+let search = document.getElementById("search").value.toLowerCase();
+
+let filtered = products.filter(p=>p.name.toLowerCase().includes(search));
+
+let list = document.getElementById("product-list");
+
+list.innerHTML="";
+
+filtered.forEach(p=>{
+
+list.innerHTML+=`
+
+<div class="product">
+
+<img src="${p.image}">
+
+<h3>${p.name}</h3>
+
+<p>₹${p.price}</p>
+
+<button onclick="addToCart(${p.id})">
+Add To Cart
+</button>
+
+</div>
+
+`;
+
+});
 
 }
