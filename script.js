@@ -1,91 +1,142 @@
-// CART DATA
+const products=[
 
-let cart = JSON.parse(localStorage.getItem("cart")) || []
+{
+name:"Smart Watch",
+price:1999,
+img:"https://via.placeholder.com/200"
+},
 
+{
+name:"Gaming Mouse",
+price:799,
+img:"https://via.placeholder.com/200"
+},
 
-// UPDATE CART COUNT
+{
+name:"Bluetooth Speaker",
+price:1499,
+img:"https://via.placeholder.com/200"
+},
 
-function updateCartCount(){
+{
+name:"Headphones",
+price:999,
+img:"https://via.placeholder.com/200"
+},
 
-document.getElementById("cartCount").innerText = cart.length
+{
+name:"Keyboard",
+price:899,
+img:"https://via.placeholder.com/200"
+},
 
+{
+name:"Laptop Stand",
+price:599,
+img:"https://via.placeholder.com/200"
+},
+
+{
+name:"Phone Charger",
+price:299,
+img:"https://via.placeholder.com/200"
+},
+
+{
+name:"Gaming Headset",
+price:1299,
+img:"https://via.placeholder.com/200"
+},
+
+{
+name:"USB Hub",
+price:499,
+img:"https://via.placeholder.com/200"
+},
+
+{
+name:"Smartphone",
+price:15999,
+img:"https://via.placeholder.com/200"
+},
+
+{
+name:"Tablet",
+price:18999,
+img:"https://via.placeholder.com/200"
+},
+
+{
+name:"Monitor",
+price:9999,
+img:"https://via.placeholder.com/200"
 }
 
-
-// ADD TO CART
-
-function addToCart(name, price){
-
-cart.push({name, price})
-
-localStorage.setItem("cart", JSON.stringify(cart))
-
-updateCartCount()
-
-alert("✅ " + name + " added to cart")
-
-}
+]
 
 
-// SEARCH PRODUCTS
+let cart=[]
 
-const searchBox = document.querySelector(".search")
+function showProducts(list){
 
-if(searchBox){
+const container=document.getElementById("products")
 
-searchBox.addEventListener("keyup", function(){
+container.innerHTML=""
 
-let value = this.value.toLowerCase()
+list.forEach((p,i)=>{
 
-document.querySelectorAll(".card").forEach(card => {
+container.innerHTML+=`
 
-card.style.display =
-card.innerText.toLowerCase().includes(value) ? "" : "none"
+<div class="card">
+
+<img src="${p.img}">
+
+<h3>${p.name}</h3>
+
+<p>₹${p.price}</p>
+
+<button onclick="addCart(${i})">Add To Cart</button>
+
+<button onclick="buyNow('${p.name}')">Buy</button>
+
+</div>
+
+`
 
 })
 
+}
+
+
+function addCart(i){
+
+cart.push(products[i])
+
+document.getElementById("cartCount").innerText=cart.length
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
+alert("Added to cart")
+
+}
+
+
+function buyNow(name){
+
+alert("Buying "+name)
+
+}
+
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let text=this.value.toLowerCase()
+
+let filtered=products.filter(p=>p.name.toLowerCase().includes(text))
+
+showProducts(filtered)
+
 })
 
-}
 
-
-// CATEGORY FILTER
-
-function filterCategory(type){
-
-document.querySelectorAll(".card").forEach(card => {
-
-if(type === "all"){
-
-card.style.display = ""
-
-}
-
-else{
-
-card.style.display =
-card.classList.contains(type) ? "" : "none"
-
-}
-
-})
-
-}
-
-
-// BUY BUTTON
-
-function buyProduct(name){
-
-alert("🛒 Buying: " + name)
-
-}
-
-
-// PAGE LOAD
-
-window.onload = function(){
-
-updateCartCount()
-
-}
+showProducts(products)
