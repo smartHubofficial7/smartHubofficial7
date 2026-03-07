@@ -371,21 +371,20 @@ let products=[
 
 {name:"iPhone 15",price:999,img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
 {name:"MacBook Pro",price:1999,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
-{name:"Gaming Laptop",price:1499,img:"https://images.unsplash.com/photo-1585386959984-a41552231658"},
+{name:"Gaming Laptop",price:1499,img:"https://images.unsplash.com/photo-1606813909023-0f2e29e7c8e6"},
 {name:"Smart Watch",price:299,img:"https://images.unsplash.com/photo-1518444065439-e933c06ce9cd"},
 {name:"Headphones",price:199,img:"https://images.unsplash.com/photo-1580894908361-967195033215"},
 {name:"Mechanical Keyboard",price:129,img:"https://images.unsplash.com/photo-1593640408182-31c70c8268f5"},
-{name:"Gaming Mouse",price:79,img:"https://images.unsplash.com/photo-1587202372775-e229f172b9d7"},
+{name:"Gaming Mouse",price:79,img:"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf"},
 {name:"Tablet",price:499,img:"https://images.unsplash.com/photo-1587614382346-ac9b2e5e3c40"},
 {name:"Monitor",price:399,img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3"},
 {name:"VR Headset",price:599,img:"https://images.unsplash.com/photo-1593508512255-86ab42a8e620"}
 
 ]
 
-/* CART */
-
 let cart=[]
 let orders=[]
+
 
 /* SHOW PAGE */
 
@@ -399,27 +398,28 @@ window.scrollTo(0,0)
 
 }
 
+
 /* LOAD PRODUCTS */
 
-function loadProducts(){
+function loadProducts(list=products){
 
 let grid=document.getElementById("productGrid")
 
 grid.innerHTML=""
 
-products.forEach((p,i)=>{
+list.forEach(product=>{
 
 grid.innerHTML+=`
 
 <div class="card">
 
-<img src="${p.img}">
+<img src="${product.img}">
 
-<h3>${p.name}</h3>
+<h3>${product.name}</h3>
 
-<div class="price">$${p.price}</div>
+<div class="price">$${product.price}</div>
 
-<button class="btn" onclick="addToCart(${i})">Add To Cart</button>
+<button class="btn" onclick='addToCart("${product.name}",${product.price})'>Add To Cart</button>
 
 </div>
 
@@ -431,48 +431,45 @@ grid.innerHTML+=`
 
 loadProducts()
 
+
+
 /* SEARCH */
 
 function searchProduct(text){
 
-let grid=document.getElementById("productGrid")
+let filtered=products.filter(p=>p.name.toLowerCase().includes(text.toLowerCase()))
 
-grid.innerHTML=""
-
-products.filter(p=>p.name.toLowerCase().includes(text.toLowerCase()))
-.forEach((p,i)=>{
-
-grid.innerHTML+=`
-
-<div class="card">
-
-<img src="${p.img}">
-
-<h3>${p.name}</h3>
-
-<div class="price">$${p.price}</div>
-
-<button class="btn" onclick="addToCart(${i})">Add</button>
-
-</div>
-
-`
-
-})
+loadProducts(filtered)
 
 }
 
-/* CART */
 
-function addToCart(i){
 
-cart.push(products[i])
+/* ADD TO CART */
+
+function addToCart(name,price){
+
+let item=cart.find(p=>p.name===name)
+
+if(item){
+
+item.qty++
+
+}else{
+
+cart.push({name,price,qty:1})
+
+}
 
 updateCart()
 
 alert("Added to cart")
 
 }
+
+
+
+/* UPDATE CART */
 
 function updateCart(){
 
@@ -484,15 +481,31 @@ let total=0
 
 cart.forEach((item,i)=>{
 
-total+=item.price
+total+=item.price*item.qty
 
 div.innerHTML+=`
 
 <div class="cart-item">
 
-${item.name} - $${item.price}
+<div>
+
+${item.name}
+
+<br>
+
+$${item.price} × ${item.qty}
+
+</div>
+
+<div>
+
+<button onclick="increase(${i})">+</button>
+
+<button onclick="decrease(${i})">-</button>
 
 <button onclick="removeItem(${i})">Remove</button>
+
+</div>
 
 </div>
 
@@ -504,6 +517,36 @@ document.getElementById("total").innerText="Total: $"+total
 
 }
 
+
+
+/* INCREASE */
+
+function increase(i){
+
+cart[i].qty++
+
+updateCart()
+
+}
+
+/* DECREASE */
+
+function decrease(i){
+
+cart[i].qty--
+
+if(cart[i].qty<=0){
+
+cart.splice(i,1)
+
+}
+
+updateCart()
+
+}
+
+
+
 /* REMOVE */
 
 function removeItem(i){
@@ -514,9 +557,37 @@ updateCart()
 
 }
 
+
+
+/* CHECKOUT */
+
+function goCheckout(){
+
+if(cart.length===0){
+
+alert("Cart is empty")
+
+return
+
+}
+
+showPage("checkout")
+
+}
+
+
+
 /* ORDER */
 
 function placeOrder(){
+
+if(cart.length===0){
+
+alert("Cart empty")
+
+return
+
+}
 
 orders.push([...cart])
 
@@ -532,6 +603,10 @@ showPage("orders")
 
 }
 
+
+
+/* ORDERS */
+
 function updateOrders(){
 
 let div=document.getElementById("orderList")
@@ -545,6 +620,8 @@ div.innerHTML+=`<p>Order ${i+1} - ${order.length} items</p>`
 })
 
 }
+
+
 
 /* LOGIN */
 
@@ -571,3 +648,4 @@ showPage("login")
 
 </body>
 </html>
+
