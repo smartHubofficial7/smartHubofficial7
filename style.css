@@ -1,291 +1,78 @@
-/* RESET */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
-/* BODY */
-
 body{
-background:#f4f4f4;
-color:#222;
-}
 
-/* HEADER */
+margin:0;
+font-family:Arial;
+background:#f4f4f4;
+
+}
 
 header{
-background:#0b1a2d;
-color:white;
+
 display:flex;
-align-items:center;
 justify-content:space-between;
-flex-wrap:wrap;
-padding:12px 20px;
-}
-
-.logo{
-display:flex;
 align-items:center;
-gap:10px;
-}
-
-.logo img{
-width:40px;
-}
-
-.search{
-padding:10px;
-border:none;
-border-radius:6px;
-width:40%;
-font-size:15px;
-}
-
-.top-buttons button{
-padding:10px 15px;
-border:none;
-background:#ff9800;
-color:white;
-border-radius:6px;
-cursor:pointer;
-margin:5px;
-transition:0.3s;
-}
-
-.top-buttons button:hover{
-background:#e68900;
-}
-
-#cartCount{
-background:red;
-padding:3px 7px;
-border-radius:50%;
-font-size:12px;
-margin-left:5px;
-}
-
-/* HERO SECTION */
-
-.hero{
-height:300px;
-background:linear-gradient(120deg,#0b1a2d,#1e3c72);
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-}
-
-.hero h1{
-font-size:42px;
-margin-bottom:10px;
-}
-
-.hero p{
-font-size:18px;
-}
-
-/* CATEGORY */
-
-.categories{
-background:white;
 padding:15px;
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:10px;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-
-.categories button{
-padding:8px 16px;
-background:#2196f3;
+background:#111;
 color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
-font-size:14px;
-transition:0.3s;
+
 }
 
-.categories button:hover{
-background:#0d7ae6;
+header input{
+
+padding:8px;
+width:200px;
+
 }
 
-/* PRODUCT GRID */
+.cart{
 
-.container{
+background:orange;
+padding:8px 12px;
+border-radius:5px;
+
+}
+
+.products{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
-padding:25px;
-}
+padding:20px;
 
-/* PRODUCT CARD */
+}
 
 .card{
-background:white;
-border-radius:12px;
-padding:15px;
-text-align:center;
-box-shadow:0 6px 18px rgba(0,0,0,0.08);
-transition:0.3s;
-position:relative;
-}
 
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+text-align:center;
+
 }
 
 .card img{
+
 width:100%;
-height:170px;
+height:150px;
 object-fit:contain;
-margin-bottom:10px;
+
 }
 
-/* PRODUCT TITLE */
+button{
 
-.card h3{
-font-size:18px;
-margin-bottom:6px;
-}
-
-/* PRICE */
-
-.price{
-color:#e53935;
-font-weight:bold;
-font-size:17px;
-margin:6px 0;
-}
-
-/* RATING */
-
-.rating{
-color:orange;
-font-size:14px;
-margin-bottom:8px;
-}
-
-/* DISCOUNT BADGE */
-
-.badge{
-position:absolute;
-top:10px;
-left:10px;
-background:red;
-color:white;
-font-size:12px;
-padding:4px 8px;
-border-radius:4px;
-}
-
-/* BUTTONS */
-
-.btn{
-padding:8px 12px;
-border:none;
-border-radius:6px;
-cursor:pointer;
-margin:3px;
-font-size:14px;
-}
-
-.cartbtn{
-background:#ff9800;
-color:white;
-}
-
-.cartbtn:hover{
-background:#e68900;
-}
-
-.buybtn{
-background:#4caf50;
-color:white;
-}
-
-.buybtn:hover{
-background:#3d9440;
-}
-
-/* FOOTER */
-
-footer{
-background:#0b1a2d;
-color:white;
-padding:30px 20px;
-margin-top:40px;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:25px;
-}
-
-footer h3{
-margin-bottom:10px;
-}
-
-footer p{
-font-size:14px;
-line-height:1.6;
-}
-
-/* NEWSLETTER */
-
-.newsletter{
-margin-top:20px;
-}
-
-.newsletter input{
-padding:10px;
-width:70%;
-border:none;
-border-radius:4px;
-margin-right:5px;
-}
-
-.newsletter button{
-padding:10px 15px;
-border:none;
-background:#ff9800;
-color:white;
-border-radius:4px;
-cursor:pointer;
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-header{
-flex-direction:column;
-align-items:flex-start;
-}
-
-.search{
-width:100%;
+padding:8px 10px;
 margin-top:10px;
-}
-
-.hero{
-height:220px;
-}
-
-.hero h1{
-font-size:30px;
-}
-
-.container{
-padding:15px;
-}
+border:none;
+background:orange;
+color:white;
+cursor:pointer;
+border-radius:5px;
 
 }
 
+button:hover{
+
+background:#ff6600;
+
+}
