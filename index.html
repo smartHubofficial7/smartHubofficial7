@@ -1,86 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SmartHub Electronics</title>
-
+<title>SmartHub</title>
 <link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="responsive.css">
 </head>
 
 <body>
 
-<div class="top-bar">
-🔥 Free Shipping on Orders Above $50
-</div>
-
-<header class="header">
-
-<h1 class="logo">SmartHub</h1>
-
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-
-<nav>
-<ul id="menu">
-
-<li>Home</li>
-<li>Products</li>
-<li>Deals</li>
-<li>Categories</li>
-<li>Contact</li>
-
-</ul>
-</nav>
-
-<div class="icons">
-
-<input id="search" type="text" placeholder="Search gadgets">
-
-<button onclick="toggleDark()">🌙</button>
-
-<a href="cart.html" class="cart">
-🛒 <span id="cart-count">0</span>
-</a>
-
-</div>
-
+<header>
+<h1>SmartHub Store</h1>
+<a href="cart.html">🛒 Cart</a>
 </header>
 
-
-<section class="hero">
-
-<h2>Latest Electronics Store</h2>
-
-<p>Best gadgets at best prices</p>
-
-<button>Shop Now</button>
-
-</section>
-
-
-<section class="products">
-
-<h2>Featured Products</h2>
-
-<div class="product-grid" id="product-list"></div>
-
-</section>
-
-
-<footer>
-
-<p>© 2026 SmartHub Electronics</p>
-
-</footer>
+<div id="products"></div>
 
 <script src="script.js"></script>
-
 </body>
-
 </html>
