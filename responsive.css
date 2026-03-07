@@ -1,33 +1,4 @@
-/* Tablet Screen */
-
-@media (max-width: 1000px){
-
-#products{
-
-grid-template-columns:repeat(3,1fr);
-
-}
-
-header{
-
-flex-direction:column;
-
-gap:10px;
-
-}
-
-header input{
-
-width:80%;
-
-}
-
-}
-
-
-/* Small Tablet */
-
-@media (max-width: 800px){
+@media(max-width:900px){
 
 #products{
 
@@ -37,36 +8,11 @@ grid-template-columns:repeat(2,1fr);
 
 }
 
-
-/* Mobile Screen */
-
-@media (max-width: 500px){
+@media(max-width:500px){
 
 #products{
 
 grid-template-columns:1fr;
-
-}
-
-nav{
-
-display:flex;
-
-flex-direction:column;
-
-gap:10px;
-
-}
-
-header{
-
-text-align:center;
-
-}
-
-header input{
-
-width:90%;
 
 }
 
