@@ -6,10 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MyShop</title>
+<title>Super Shop</title>
 
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
 
 </head>
 
@@ -18,7 +17,7 @@
 <header>
 
 <div class="logo">
-<h1>MyShop</h1>
+<h1>SuperShop</h1>
 </div>
 
 <nav>
@@ -28,25 +27,21 @@
 <li><a href="index.html">Home</a></li>
 <li><a href="products.html">Products</a></li>
 <li><a href="cart.html">Cart</a></li>
-<li><a href="about.html">About</a></li>
+<li><a href="login.html">Login</a></li>
 <li><a href="contact.html">Contact</a></li>
 
 </ul>
 
 </nav>
 
-<a href="login.html">
-<button class="btn">Login</button>
-</a>
-
 </header>
 
 
 <section class="hero">
 
-<h1>Welcome To MyShop</h1>
+<h1>Welcome To SuperShop</h1>
 
-<p>Best Online Store</p>
+<p>Best Store On Internet</p>
 
 <a href="products.html">
 <button class="btn">Shop Now</button>
@@ -55,40 +50,79 @@
 </section>
 
 
-<section class="features">
+<section class="products">
 
-<div class="feature">
+<h2>Featured Products</h2>
 
-<h3>Fast Delivery</h3>
+<div class="grid">
 
-<p>Delivery in 24 hours</p>
+<div class="product">
+
+<img src="https://picsum.photos/200">
+
+<h3>Phone</h3>
+
+<p>$500</p>
+
+<button onclick="addToCart('Phone',500)">Add To Cart</button>
 
 </div>
 
-<div class="feature">
 
-<h3>Best Price</h3>
 
-<p>Affordable price</p>
+<div class="product">
+
+<img src="https://picsum.photos/201">
+
+<h3>Laptop</h3>
+
+<p>$1200</p>
+
+<button onclick="addToCart('Laptop',1200)">Add To Cart</button>
 
 </div>
 
-<div class="feature">
 
-<h3>Quality Products</h3>
 
-<p>Trusted by customers</p>
+<div class="product">
+
+<img src="https://picsum.photos/202">
+
+<h3>Headphones</h3>
+
+<p>$150</p>
+
+<button onclick="addToCart('Headphones',150)">Add To Cart</button>
+
+</div>
+
+
+
+<div class="product">
+
+<img src="https://picsum.photos/203">
+
+<h3>Camera</h3>
+
+<p>$800</p>
+
+<button onclick="addToCart('Camera',800)">Add To Cart</button>
+
+</div>
 
 </div>
 
 </section>
 
 
+
 <footer>
 
-<p>© 2026 MyShop</p>
+<p>© 2026 SuperShop</p>
 
 </footer>
+
+<script src="js/cart.js"></script>
 
 </body>
 
