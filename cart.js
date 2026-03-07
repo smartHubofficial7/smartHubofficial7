@@ -1,25 +1,39 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart=JSON.parse(localStorage.getItem("cart")) || [];
 
-let items = document.getElementById("cart-items");
+let cartItems=document.getElementById("cartItems");
 
-let total = 0;
+let total=0;
 
-cart.forEach(p=>{
+cart.forEach(item=>{
 
-items.innerHTML+=`
+let li=document.createElement("li");
 
-<div>
+li.textContent=item.name+" ₹"+item.price;
 
-<h3>${p.name}</h3>
+cartItems.appendChild(li);
 
-<p>₹${p.price}</p>
-
-</div>
-
-`;
-
-total += p.price;
+total+=item.price;
 
 });
 
-document.getElementById("total").innerText = "Total: ₹"+total;
+document.getElementById("total").innerText="Total ₹"+total;
+
+function checkout(){
+
+window.location.href="checkout.html";
+
+}
+
+function placeOrder(){
+
+let message="Order:%0A";
+
+cart.forEach(item=>{
+
+message+=item.name+" ₹"+item.price+"%0A";
+
+});
+
+window.open("https://wa.me/91XXXXXXXXXX?text="+message);
+
+}
