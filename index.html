@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TechZone Pro Store</title>
+<title>TechHub </title>
 
 <style>
 
@@ -17,11 +17,28 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial;
+transition:0.2s;
 }
 
 body{
 background:#0f172a;
 color:white;
+}
+
+/* DARK MODE */
+
+.light{
+background:white;
+color:black;
+}
+
+.light header{
+background:#e5e7eb;
+}
+
+.light .card{
+background:white;
+color:black;
 }
 
 /* HEADER */
@@ -111,7 +128,6 @@ background:#020617;
 padding:20px;
 border-radius:12px;
 text-align:center;
-transition:0.3s;
 }
 
 .card:hover{
@@ -123,10 +139,6 @@ width:100%;
 height:200px;
 object-fit:cover;
 border-radius:10px;
-}
-
-.card h3{
-margin-top:10px;
 }
 
 .price{
@@ -143,6 +155,7 @@ border:none;
 padding:10px 20px;
 border-radius:5px;
 cursor:pointer;
+margin:4px;
 }
 
 .btn:hover{
@@ -158,12 +171,7 @@ margin:10px 0;
 border-radius:10px;
 display:flex;
 justify-content:space-between;
-align-items:center;
 flex-wrap:wrap;
-}
-
-.cart-buttons button{
-margin:3px;
 }
 
 /* INPUT */
@@ -196,21 +204,6 @@ padding:40px;
 text-align:center;
 }
 
-/* MOBILE */
-
-@media(max-width:700px){
-
-.hero h1{
-font-size:38px;
-}
-
-header{
-flex-direction:column;
-align-items:flex-start;
-}
-
-}
-
 </style>
 
 </head>
@@ -229,10 +222,10 @@ align-items:flex-start;
 <button onclick="showPage('home')">Home</button>
 <button onclick="showPage('shop')">Shop</button>
 <button onclick="showPage('cart')">Cart</button>
+<button onclick="showPage('wishlist')">Wishlist</button>
 <button onclick="showPage('orders')">Orders</button>
-<button onclick="showPage('login')">Login</button>
-<button onclick="showPage('register')">Register</button>
-<button onclick="showPage('about')">About</button>
+<button onclick="showPage('admin')">Admin</button>
+<button onclick="toggleTheme()">Theme</button>
 
 </nav>
 
@@ -242,17 +235,13 @@ align-items:flex-start;
 <div class="container">
 
 
-<!-- HOME -->
-
 <div id="home" class="page active">
 
 <div class="hero">
 
 <h1>Best Tech Store 2026</h1>
 
-<p>Buy laptops, phones, gaming gear and accessories</p>
-
-<br>
+<p>Buy laptops, phones, gaming gear</p>
 
 <button class="btn" onclick="showPage('shop')">Start Shopping</button>
 
@@ -261,20 +250,20 @@ align-items:flex-start;
 </div>
 
 
-
-<!-- SHOP -->
-
 <div id="shop" class="page">
 
-<h2>Tech Products</h2>
+<h2>Products</h2>
+
+<select onchange="filterPrice(this.value)">
+<option value="all">All</option>
+<option value="500">Under 500</option>
+<option value="1000">Under 1000</option>
+</select>
 
 <div id="productGrid" class="shop-grid"></div>
 
 </div>
 
-
-
-<!-- CART -->
 
 <div id="cart" class="page">
 
@@ -284,21 +273,23 @@ align-items:flex-start;
 
 <h3 id="total"></h3>
 
-<br>
-
 <button class="btn" onclick="goCheckout()">Checkout</button>
 
 </div>
 
 
+<div id="wishlist" class="page">
 
-<!-- CHECKOUT -->
+<h2>Wishlist</h2>
+
+<div id="wishlistItems"></div>
+
+</div>
+
 
 <div id="checkout" class="page">
 
 <h2>Checkout</h2>
-
-<p>Scan QR Code To Pay</p>
 
 <div class="qr">
 
@@ -306,15 +297,10 @@ align-items:flex-start;
 
 </div>
 
-<br>
-
 <button class="btn" onclick="placeOrder()">Payment Done</button>
 
 </div>
 
-
-
-<!-- ORDERS -->
 
 <div id="orders" class="page">
 
@@ -325,52 +311,15 @@ align-items:flex-start;
 </div>
 
 
+<div id="admin" class="page">
 
-<!-- LOGIN -->
+<h2>Admin Panel</h2>
 
-<div id="login" class="page">
+<input id="pname" placeholder="Product Name">
+<input id="pprice" placeholder="Price">
+<input id="pimg" placeholder="Image URL">
 
-<h2>Login</h2>
-
-<input placeholder="Email">
-<input type="password" placeholder="Password">
-
-<button class="btn" onclick="login()">Login</button>
-
-</div>
-
-
-
-<!-- REGISTER -->
-
-<div id="register" class="page">
-
-<h2>Create Account</h2>
-
-<input placeholder="Name">
-<input placeholder="Email">
-<input placeholder="Password">
-
-<button class="btn" onclick="register()">Register</button>
-
-</div>
-
-
-
-<!-- ABOUT -->
-
-<div id="about" class="page">
-
-<h2>About TechZone</h2>
-
-<p>
-
-TechZone Pro is a modern electronics store.
-
-Buy phones, gaming laptops, VR gear,
-accessories and high performance gadgets.
-
-</p>
+<button class="btn" onclick="addProduct()">Add Product</button>
 
 </div>
 
@@ -395,16 +344,12 @@ let products=[
 {name:"MacBook Pro",price:1999,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
 {name:"Gaming Laptop",price:1499,img:"https://images.unsplash.com/photo-1606813909023-0f2e29e7c8e6"},
 {name:"Smart Watch",price:299,img:"https://images.unsplash.com/photo-1518444065439-e933c06ce9cd"},
-{name:"Headphones",price:199,img:"https://images.unsplash.com/photo-1580894908361-967195033215"},
-{name:"Mechanical Keyboard",price:129,img:"https://images.unsplash.com/photo-1593640408182-31c70c8268f5"},
-{name:"Gaming Mouse",price:79,img:"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf"},
-{name:"Tablet",price:499,img:"https://images.unsplash.com/photo-1587614382346-ac9b2e5e3c40"},
-{name:"Monitor",price:399,img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3"},
-{name:"VR Headset",price:599,img:"https://images.unsplash.com/photo-1593508512255-86ab42a8e620"}
+{name:"Headphones",price:199,img:"https://images.unsplash.com/photo-1580894908361-967195033215"}
 
 ]
 
 let cart=[]
+let wishlist=[]
 let orders=[]
 
 /* PAGE SWITCH */
@@ -414,8 +359,6 @@ function showPage(page){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"))
 
 document.getElementById(page).classList.add("active")
-
-window.scrollTo(0,0)
 
 }
 
@@ -439,7 +382,11 @@ grid.innerHTML+=`
 
 <div class="price">$${p.price}</div>
 
-<button class="btn" onclick="addToCart('${p.name}',${p.price})">Add To Cart</button>
+<button class="btn" onclick="addToCart('${p.name}',${p.price})">Cart</button>
+
+<button class="btn" onclick="addWishlist('${p.name}',${p.price})">Wishlist</button>
+
+<button class="btn" onclick="rateProduct('${p.name}')">Rate</button>
 
 </div>
 
@@ -461,21 +408,14 @@ loadProducts(filtered)
 
 }
 
-/* ADD CART */
+/* CART */
 
 function addToCart(name,price){
 
 let item=cart.find(p=>p.name===name)
 
-if(item){
-
-item.qty++
-
-}else{
-
-cart.push({name,price,qty:1})
-
-}
+if(item) item.qty++
+else cart.push({name,price,qty:1})
 
 updateCart()
 
@@ -499,17 +439,7 @@ div.innerHTML+=`
 
 <div class="cart-item">
 
-<div>
-
-${item.name}
-
-<br>
-
-$${item.price} × ${item.qty}
-
-</div>
-
-<div class="cart-buttons">
+${item.name} $${item.price} × ${item.qty}
 
 <button onclick="increase(${i})">+</button>
 
@@ -519,13 +449,11 @@ $${item.price} × ${item.qty}
 
 </div>
 
-</div>
-
 `
 
 })
 
-document.getElementById("total").innerText="Total: $"+total
+document.getElementById("total").innerText="Total $"+total
 
 }
 
@@ -557,6 +485,60 @@ updateCart()
 
 }
 
+/* WISHLIST */
+
+function addWishlist(name,price){
+
+wishlist.push({name,price})
+
+updateWishlist()
+
+alert("Added to wishlist")
+
+}
+
+function updateWishlist(){
+
+let div=document.getElementById("wishlistItems")
+
+div.innerHTML=""
+
+wishlist.forEach(item=>{
+
+div.innerHTML+=`<p>${item.name} - $${item.price}</p>`
+
+})
+
+}
+
+/* RATING */
+
+function rateProduct(name){
+
+let rating=prompt("Rate "+name+" from 1-5")
+
+if(rating) alert("Thanks for rating "+name+" ⭐ "+rating)
+
+}
+
+/* FILTER */
+
+function filterPrice(value){
+
+if(value=="all"){
+
+loadProducts()
+
+return
+
+}
+
+let filtered=products.filter(p=>p.price<=value)
+
+loadProducts(filtered)
+
+}
+
 /* CHECKOUT */
 
 function goCheckout(){
@@ -585,7 +567,7 @@ updateCart()
 
 updateOrders()
 
-alert("Order placed!")
+alert("Order Placed")
 
 showPage("orders")
 
@@ -607,23 +589,27 @@ div.innerHTML+=`<p>Order ${i+1} - ${o.length} items</p>`
 
 }
 
-/* LOGIN */
+/* ADMIN */
 
-function login(){
+function addProduct(){
 
-alert("Login Successful")
+let name=document.getElementById("pname").value
+let price=document.getElementById("pprice").value
+let img=document.getElementById("pimg").value
 
-showPage("home")
+products.push({name,price,img})
+
+loadProducts()
+
+alert("Product Added")
 
 }
 
-/* REGISTER */
+/* THEME */
 
-function register(){
+function toggleTheme(){
 
-alert("Account Created")
-
-showPage("login")
+document.body.classList.toggle("light")
 
 }
 
@@ -631,3 +617,4 @@ showPage("login")
 
 </body>
 </html>
+
