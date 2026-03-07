@@ -7,17 +7,25 @@
 
 <body>
 
-<h1>Checkout</h1>
+<h2>Checkout</h2>
 
-<form>
+<input id="name" placeholder="Name"><br>
 
-<input placeholder="Name"><br><br>
+<input id="phone" placeholder="Phone"><br>
 
-<input placeholder="Address"><br><br>
+<textarea id="address" placeholder="Address"></textarea>
 
-<button>Place Order</button>
+<h3>Scan QR & Pay</h3>
 
-</form>
+<img src="qrcode.png" width="200">
+
+<br><br>
+
+<button onclick="sendOrder()">
+Confirm Order
+</button>
+
+<script src="checkout.js"></script>
 
 </body>
 </html>
