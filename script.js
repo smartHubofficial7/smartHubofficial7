@@ -1,11 +1,25 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let buttons=document.querySelectorAll(".product button")
 
-function addToCart(name,price){
+buttons.forEach(function(btn){
 
-cart.push({name,price});
+btn.addEventListener("click",function(){
 
-localStorage.setItem("cart",JSON.stringify(cart));
+alert("Product Added To Cart")
 
-alert(name + " added to cart");
+})
+
+})
+
+
+
+console.log("Website Loaded")
+
+
+
+function welcome(){
+
+console.log("Welcome User")
 
 }
+
+welcome()
