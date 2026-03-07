@@ -7,39 +7,40 @@ background:#f5f5f5;
 header{
 background:black;
 color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
+padding:20px;
+text-align:center;
 }
 
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-padding:20px;
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+}
+
+.hero{
+background:orange;
+padding:50px;
+text-align:center;
 }
 
 .product{
 background:white;
-padding:15px;
+padding:20px;
+margin:20px;
+width:200px;
+display:inline-block;
 border-radius:10px;
-text-align:center;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
 }
 
 button{
 background:black;
 color:white;
-border:none;
 padding:10px;
+border:none;
 cursor:pointer;
 }
 
-input{
-width:90%;
-margin:20px;
-padding:10px;
-}
-
-img{
-width:100%;
+button:hover{
+background:orange;
 }
