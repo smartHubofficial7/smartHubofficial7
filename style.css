@@ -12,9 +12,9 @@ display:flex;
 justify-content:space-between;
 }
 
-#products{
+.products{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
 padding:20px;
 }
@@ -27,9 +27,19 @@ text-align:center;
 }
 
 button{
-background:blue;
+background:black;
 color:white;
 border:none;
 padding:10px;
 cursor:pointer;
+}
+
+input{
+width:90%;
+margin:20px;
+padding:10px;
+}
+
+img{
+width:100%;
 }
