@@ -1,26 +1,25 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cartCount = 0;
 
-// page load hone par cart count show karega
+// page load hone par localStorage se count le lo
 document.addEventListener("DOMContentLoaded", function () {
-    updateCartCount();
+
+    let savedCart = localStorage.getItem("cartCount");
+
+    if(savedCart){
+        cartCount = parseInt(savedCart);
+    }
+
+    document.getElementById("cart-count").innerText = cartCount;
+
 });
 
-function addCart(productName, price) {
 
-    let product = {
-        name: productName,
-        price: price
-    };
+function addCart(){
 
-    cart.push(product);
+    cartCount++;
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    document.getElementById("cart-count").innerText = cartCount;
 
-    updateCartCount();
+    localStorage.setItem("cartCount", cartCount);
 
-    alert(productName + " added to cart!");
-}
-
-function updateCartCount() {
-    document.getElementById("cart-count").innerText = cart.length;
 }
