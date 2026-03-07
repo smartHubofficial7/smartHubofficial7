@@ -10,7 +10,7 @@
 
 <style>
 
-/* GLOBAL */
+/* RESET */
 
 *{
 margin:0;
@@ -28,7 +28,7 @@ color:white;
 
 header{
 background:#020617;
-padding:20px;
+padding:15px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -36,17 +36,22 @@ flex-wrap:wrap;
 }
 
 .logo{
-font-size:28px;
+font-size:26px;
 color:#38bdf8;
 font-weight:bold;
+}
+
+nav{
+display:flex;
+flex-wrap:wrap;
 }
 
 nav button{
 background:none;
 border:none;
 color:white;
-margin:8px;
-font-size:16px;
+margin:6px;
+font-size:15px;
 cursor:pointer;
 }
 
@@ -60,7 +65,7 @@ border-radius:5px;
 border:none;
 }
 
-/* PAGES */
+/* CONTAINER */
 
 .container{
 padding:40px;
@@ -82,7 +87,7 @@ padding:120px 20px;
 }
 
 .hero h1{
-font-size:60px;
+font-size:55px;
 }
 
 .hero p{
@@ -94,7 +99,7 @@ margin-top:20px;
 
 .shop-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
 gap:25px;
 margin-top:30px;
 }
@@ -104,13 +109,13 @@ margin-top:30px;
 .card{
 background:#020617;
 padding:20px;
-border-radius:10px;
+border-radius:12px;
 text-align:center;
 transition:0.3s;
 }
 
 .card:hover{
-transform:scale(1.05);
+transform:translateY(-5px);
 }
 
 .card img{
@@ -118,6 +123,10 @@ width:100%;
 height:200px;
 object-fit:cover;
 border-radius:10px;
+}
+
+.card h3{
+margin-top:10px;
 }
 
 .price{
@@ -150,6 +159,11 @@ border-radius:10px;
 display:flex;
 justify-content:space-between;
 align-items:center;
+flex-wrap:wrap;
+}
+
+.cart-buttons button{
+margin:3px;
 }
 
 /* INPUT */
@@ -182,6 +196,21 @@ padding:40px;
 text-align:center;
 }
 
+/* MOBILE */
+
+@media(max-width:700px){
+
+.hero h1{
+font-size:38px;
+}
+
+header{
+flex-direction:column;
+align-items:flex-start;
+}
+
+}
+
 </style>
 
 </head>
@@ -193,11 +222,7 @@ text-align:center;
 
 <div class="logo">TechZone Pro</div>
 
-<div>
-
 <input class="search" placeholder="Search product..." onkeyup="searchProduct(this.value)">
-
-</div>
 
 <nav>
 
@@ -215,6 +240,7 @@ text-align:center;
 
 
 <div class="container">
+
 
 <!-- HOME -->
 
@@ -260,7 +286,7 @@ text-align:center;
 
 <br>
 
-<button class="btn" onclick="showPage('checkout')">Checkout</button>
+<button class="btn" onclick="goCheckout()">Checkout</button>
 
 </div>
 
@@ -306,9 +332,8 @@ text-align:center;
 
 <h2>Login</h2>
 
-<input id="loginEmail" placeholder="Email">
-
-<input id="loginPass" type="password" placeholder="Password">
+<input placeholder="Email">
+<input type="password" placeholder="Password">
 
 <button class="btn" onclick="login()">Login</button>
 
@@ -322,11 +347,9 @@ text-align:center;
 
 <h2>Create Account</h2>
 
-<input id="regName" placeholder="Name">
-
-<input id="regEmail" placeholder="Email">
-
-<input id="regPass" placeholder="Password">
+<input placeholder="Name">
+<input placeholder="Email">
+<input placeholder="Password">
 
 <button class="btn" onclick="register()">Register</button>
 
@@ -342,11 +365,10 @@ text-align:center;
 
 <p>
 
-TechZone Pro is the next generation online tech marketplace.
+TechZone Pro is a modern electronics store.
 
-You can buy phones, gaming laptops, accessories and more.
-
-We provide best price and high quality gadgets.
+Buy phones, gaming laptops, VR gear,
+accessories and high performance gadgets.
 
 </p>
 
@@ -358,14 +380,14 @@ We provide best price and high quality gadgets.
 
 <footer>
 
-<p>© 2026 TechZone Pro</p>
+<p>© 2026 TechZone Pro Store</p>
 
 </footer>
 
 
 <script>
 
-/* PRODUCT DATA */
+/* PRODUCTS */
 
 let products=[
 
@@ -385,8 +407,7 @@ let products=[
 let cart=[]
 let orders=[]
 
-
-/* SHOW PAGE */
+/* PAGE SWITCH */
 
 function showPage(page){
 
@@ -398,7 +419,6 @@ window.scrollTo(0,0)
 
 }
 
-
 /* LOAD PRODUCTS */
 
 function loadProducts(list=products){
@@ -407,19 +427,19 @@ let grid=document.getElementById("productGrid")
 
 grid.innerHTML=""
 
-list.forEach(product=>{
+list.forEach(p=>{
 
 grid.innerHTML+=`
 
 <div class="card">
 
-<img src="${product.img}">
+<img src="${p.img}">
 
-<h3>${product.name}</h3>
+<h3>${p.name}</h3>
 
-<div class="price">$${product.price}</div>
+<div class="price">$${p.price}</div>
 
-<button class="btn" onclick='addToCart("${product.name}",${product.price})'>Add To Cart</button>
+<button class="btn" onclick="addToCart('${p.name}',${p.price})">Add To Cart</button>
 
 </div>
 
@@ -431,8 +451,6 @@ grid.innerHTML+=`
 
 loadProducts()
 
-
-
 /* SEARCH */
 
 function searchProduct(text){
@@ -443,9 +461,7 @@ loadProducts(filtered)
 
 }
 
-
-
-/* ADD TO CART */
+/* ADD CART */
 
 function addToCart(name,price){
 
@@ -463,11 +479,7 @@ cart.push({name,price,qty:1})
 
 updateCart()
 
-alert("Added to cart")
-
 }
-
-
 
 /* UPDATE CART */
 
@@ -497,7 +509,7 @@ $${item.price} × ${item.qty}
 
 </div>
 
-<div>
+<div class="cart-buttons">
 
 <button onclick="increase(${i})">+</button>
 
@@ -517,9 +529,7 @@ document.getElementById("total").innerText="Total: $"+total
 
 }
 
-
-
-/* INCREASE */
+/* CART CONTROLS */
 
 function increase(i){
 
@@ -529,25 +539,15 @@ updateCart()
 
 }
 
-/* DECREASE */
-
 function decrease(i){
 
 cart[i].qty--
 
-if(cart[i].qty<=0){
-
-cart.splice(i,1)
-
-}
+if(cart[i].qty<=0) cart.splice(i,1)
 
 updateCart()
 
 }
-
-
-
-/* REMOVE */
 
 function removeItem(i){
 
@@ -557,15 +557,13 @@ updateCart()
 
 }
 
-
-
 /* CHECKOUT */
 
 function goCheckout(){
 
-if(cart.length===0){
+if(cart.length==0){
 
-alert("Cart is empty")
+alert("Cart Empty")
 
 return
 
@@ -575,19 +573,9 @@ showPage("checkout")
 
 }
 
-
-
 /* ORDER */
 
 function placeOrder(){
-
-if(cart.length===0){
-
-alert("Cart empty")
-
-return
-
-}
 
 orders.push([...cart])
 
@@ -597,13 +585,11 @@ updateCart()
 
 updateOrders()
 
-alert("Order placed successfully!")
+alert("Order placed!")
 
 showPage("orders")
 
 }
-
-
 
 /* ORDERS */
 
@@ -613,15 +599,13 @@ let div=document.getElementById("orderList")
 
 div.innerHTML=""
 
-orders.forEach((order,i)=>{
+orders.forEach((o,i)=>{
 
-div.innerHTML+=`<p>Order ${i+1} - ${order.length} items</p>`
+div.innerHTML+=`<p>Order ${i+1} - ${o.length} items</p>`
 
 })
 
 }
-
-
 
 /* LOGIN */
 
@@ -645,7 +629,5 @@ showPage("login")
 
 </script>
 
-
 </body>
 </html>
-
