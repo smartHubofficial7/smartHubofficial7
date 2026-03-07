@@ -1,82 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SmartHub Store</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<header>
+<!-- HEADER -->
+
+<header class="header">
 
 <div class="logo">
 <h1>SmartHub</h1>
 </div>
 
-<nav>
-
+<nav class="navbar">
 <ul>
-
 <li><a href="#">Home</a></li>
 <li><a href="#">Products</a></li>
 <li><a href="#">Deals</a></li>
 <li><a href="#">Categories</a></li>
 <li><a href="#">Contact</a></li>
-
 </ul>
-
 </nav>
 
-<div class="search-box">
+<div class="header-right">
 
-<input type="text" id="searchInput" placeholder="Search products">
+<input type="text" placeholder="Search products">
 
-<button onclick="searchProduct()">Search</button>
+<button class="btn">Search</button>
 
-</div>
-
-<div class="icons">
-
-<button onclick="openLogin()">Login</button>
+<button class="login-btn">Login</button>
 
 <div class="cart">
-🛒 <span id="cartCount">0</span>
+🛒 <span>0</span>
 </div>
 
 </div>
 
 </header>
 
+<!-- HERO -->
+
 <section class="hero">
 
-<div class="hero-text">
+<div class="hero-content">
 
-<h2>Welcome to SmartHub Store</h2>
+<h2>Best Electronics Store</h2>
 
-<p>Best gadgets at best price</p>
+<p>Latest gadgets with best prices</p>
 
-<button>Shop Now</button>
+<button class="shop-btn">Shop Now</button>
 
 </div>
 
 </section>
 
+<!-- CATEGORIES -->
+
 <section class="categories">
 
-<h2>Categories</h2>
+<h2>Shop by Categories</h2>
 
 <div class="category-grid">
 
-<div class="category">Laptops</div>
-<div class="category">Mobiles</div>
-<div class="category">Headphones</div>
+<div class="category">Laptop</div>
+<div class="category">Mobile</div>
 <div class="category">Gaming</div>
+<div class="category">Headphones</div>
 <div class="category">Accessories</div>
 <div class="category">Smart Watch</div>
 
@@ -84,13 +82,15 @@
 
 </section>
 
+<!-- PRODUCTS -->
+
 <section class="products">
 
 <h2>Featured Products</h2>
 
-<div class="product-grid" id="productGrid">
+<div class="product-grid">
 
-<div class="product">
+<div class="product-card">
 
 <img src="https://via.placeholder.com/200">
 
@@ -98,11 +98,11 @@
 
 <p>$900</p>
 
-<button onclick="addToCart()">Add to Cart</button>
+<button>Add to Cart</button>
 
 </div>
 
-<div class="product">
+<div class="product-card">
 
 <img src="https://via.placeholder.com/200">
 
@@ -110,11 +110,11 @@
 
 <p>$60</p>
 
-<button onclick="addToCart()">Add to Cart</button>
+<button>Add to Cart</button>
 
 </div>
 
-<div class="product">
+<div class="product-card">
 
 <img src="https://via.placeholder.com/200">
 
@@ -122,11 +122,11 @@
 
 <p>$120</p>
 
-<button onclick="addToCart()">Add to Cart</button>
+<button>Add to Cart</button>
 
 </div>
 
-<div class="product">
+<div class="product-card">
 
 <img src="https://via.placeholder.com/200">
 
@@ -134,7 +134,7 @@
 
 <p>$70</p>
 
-<button onclick="addToCart()">Add to Cart</button>
+<button>Add to Cart</button>
 
 </div>
 
@@ -142,73 +142,62 @@
 
 </section>
 
+<!-- OFFER SECTION -->
+
+<section class="offer">
+
+<h2>Special Offer</h2>
+
+<p>Get 30% discount on selected gadgets</p>
+
+<button>Shop Deals</button>
+
+</section>
+
+<!-- NEWSLETTER -->
+
 <section class="newsletter">
 
-<h2>Subscribe</h2>
+<h2>Subscribe to Newsletter</h2>
 
-<input type="email" placeholder="Enter email">
+<input type="email" placeholder="Enter your email">
 
 <button>Subscribe</button>
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
 
-<div class="footer-grid">
+<div class="footer-container">
 
-<div>
-
-<h3>About</h3>
-
-<p>SmartHub best online electronics store.</p>
-
+<div class="footer-box">
+<h3>SmartHub</h3>
+<p>Best electronics store for gadgets and accessories.</p>
 </div>
 
-<div>
-
-<h3>Links</h3>
-
+<div class="footer-box">
+<h3>Quick Links</h3>
 <ul>
-
 <li>Home</li>
 <li>Products</li>
 <li>Deals</li>
-
+<li>Contact</li>
 </ul>
-
 </div>
 
-<div>
-
+<div class="footer-box">
 <h3>Contact</h3>
-
 <p>Email: support@smarthub.com</p>
-
+<p>Phone: +91 9999999999</p>
 </div>
 
 </div>
+
+<p class="copyright">© 2026 SmartHub Store</p>
 
 </footer>
-
-<div class="login-popup" id="loginPopup">
-
-<div class="login-box">
-
-<h2>Login</h2>
-
-<input type="text" placeholder="Username">
-
-<input type="password" placeholder="Password">
-
-<button>Login</button>
-
-<button onclick="closeLogin()">Close</button>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
 
 </body>
 </html>
