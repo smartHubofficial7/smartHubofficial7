@@ -6,7 +6,6 @@ cart.push({name,price});
 
 localStorage.setItem("cart",JSON.stringify(cart));
 
-alert("Product Added To Cart");
+alert(name + " added to cart");
 
 }
-
