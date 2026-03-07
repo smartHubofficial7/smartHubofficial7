@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SmartHub Electronics</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -24,210 +23,51 @@
 
 <nav>
 <ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">Products</a></li>
-<li><a href="#">Deals</a></li>
-<li><a href="#">Categories</a></li>
-<li><a href="#">Contact</a></li>
+<li>Home</li>
+<li>Products</li>
+<li>Deals</li>
+<li>Categories</li>
+<li>Contact</li>
 </ul>
 </nav>
 
 <div class="icons">
-<input type="text" placeholder="Search gadgets">
-<span>👤</span>
-<span>❤️</span>
-<span class="cart">🛒 <span id="cart-count">0</span></span>
+
+<input id="search" type="text" placeholder="Search gadgets">
+
+<span class="cart">
+🛒 <span id="cart-count">0</span>
+</span>
+
 </div>
 
 </header>
 
+
 <section class="hero">
 
-<div class="hero-text">
-
 <h2>Latest Electronics Store</h2>
-
 <p>Best gadgets at best prices</p>
 
 <button>Shop Now</button>
 
-</div>
-
 </section>
 
-<section class="categories">
-
-<h2>Shop by Categories</h2>
-
-<div class="category-grid">
-
-<div class="category">
-<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
-<h3>Laptops</h3>
-</div>
-
-<div class="category">
-<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
-<h3>Mobiles</h3>
-</div>
-
-<div class="category">
-<img src="https://images.unsplash.com/photo-1518443895914-3c5f4eaa3c5d">
-<h3>Smart Watches</h3>
-</div>
-
-<div class="category">
-<img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
-<h3>Headphones</h3>
-</div>
-
-</div>
-
-</section>
 
 <section class="products">
 
 <h2>Featured Products</h2>
 
-<div class="product-grid">
-
-<div class="product">
-
-<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
-
-<h3>Gaming Laptop</h3>
-
-<p>$1200</p>
-
-<button onclick="addCart()">Add to Cart</button>
-
-</div>
-
-<div class="product">
-
-<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9">
-
-<h3>Smart Phone</h3>
-
-<p>$700</p>
-
-<button onclick="addCart()">Add to Cart</button>
-
-</div>
-
-<div class="product">
-
-<img src="https://images.unsplash.com/photo-1518443895914-3c5f4eaa3c5d">
-
-<h3>Smart Watch</h3>
-
-<p>$150</p>
-
-<button onclick="addCart()">Add to Cart</button>
-
-</div>
-
-<div class="product">
-
-<img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
-
-<h3>Headphones</h3>
-
-<p>$80</p>
-
-<button onclick="addCart()">Add to Cart</button>
-
-</div>
+<div class="product-grid" id="product-list">
 
 </div>
 
 </section>
 
-<section class="deal">
-
-<h2>Deal of the Day</h2>
-
-<div class="deal-box">
-
-<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
-
-<div>
-
-<h3>High Performance Laptop</h3>
-
-<p>Powerful laptop for gaming and work.</p>
-
-<h4>$999</h4>
-
-<button onclick="addCart()">Buy Now</button>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="reviews">
-
-<h2>Customer Reviews</h2>
-
-<div class="review-grid">
-
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>Amazing electronics store.</p>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐
-<p>Great prices and fast delivery.</p>
-</div>
-
-<div class="review">
-⭐⭐⭐⭐⭐
-<p>I love shopping here.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="newsletter">
-
-<h2>Subscribe</h2>
-
-<input type="email" placeholder="Enter email">
-
-<button>Subscribe</button>
-
-</section>
 
 <footer>
 
-<div class="footer-grid">
-
-<div>
-<h3>About</h3>
-<p>Best electronics store.</p>
-</div>
-
-<div>
-<h3>Links</h3>
-<ul>
-<li>Home</li>
-<li>Products</li>
-<li>Deals</li>
-</ul>
-</div>
-
-<div>
-<h3>Support</h3>
-<p>Email: support@smarthub.com</p>
-</div>
-
-</div>
-
-<p class="copy">© 2026 SmartHub</p>
+<p>© 2026 SmartHub Electronics</p>
 
 </footer>
 
