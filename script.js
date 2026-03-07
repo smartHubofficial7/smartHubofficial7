@@ -1,86 +1,92 @@
-const products=[
 
-{name:"Smart Watch",price:1999,img:"https://via.placeholder.com/200"},
-{name:"Gaming Mouse",price:799,img:"https://via.placeholder.com/200"},
-{name:"Bluetooth Speaker",price:1499,img:"https://via.placeholder.com/200"},
-{name:"Headphones",price:999,img:"https://via.placeholder.com/200"},
-{name:"Gaming Keyboard",price:1299,img:"https://via.placeholder.com/200"},
-{name:"Laptop Stand",price:599,img:"https://via.placeholder.com/200"},
-{name:"USB Hub",price:499,img:"https://via.placeholder.com/200"},
-{name:"Phone Charger",price:299,img:"https://via.placeholder.com/200"},
-{name:"Gaming Headset",price:1299,img:"https://via.placeholder.com/200"},
-{name:"Smartphone",price:15999,img:"https://via.placeholder.com/200"},
-{name:"Tablet",price:8999,img:"https://via.placeholder.com/200"},
-{name:"Laptop",price:45999,img:"https://via.placeholder.com/200"},
-{name:"Monitor",price:9999,img:"https://via.placeholder.com/200"},
-{name:"SSD Drive",price:4999,img:"https://via.placeholder.com/200"},
-{name:"RAM 16GB",price:2999,img:"https://via.placeholder.com/200"},
-{name:"Gaming Chair",price:6999,img:"https://via.placeholder.com/200"},
-{name:"VR Headset",price:12999,img:"https://via.placeholder.com/200"},
-{name:"Smart Camera",price:5999,img:"https://via.placeholder.com/200"}
+let cart = 0
+
+function addToCart(){
+
+cart++
+
+document.getElementById("cartCount").innerText = cart
+
+alert("Product Added to Cart")
+
+}
+
+function searchProduct(){
+
+let input = document.getElementById("searchInput").value.toLowerCase()
+
+let products = document.querySelectorAll(".product")
+
+products.forEach(product=>{
+
+let name = product.innerText.toLowerCase()
+
+if(name.includes(input)){
+
+product.style.display="block"
+
+}else{
+
+product.style.display="none"
+
+}
+
+})
+
+}
+
+function openLogin(){
+
+document.getElementById("loginPopup").style.display="flex"
+
+}
+
+function closeLogin(){
+
+document.getElementById("loginPopup").style.display="none"
+
+}
+
+function slider(){
+
+let hero = document.querySelector(".hero")
+
+let images=[
+
+"url('https://via.placeholder.com/1200x400')",
+"url('https://via.placeholder.com/1200x400/111')",
+"url('https://via.placeholder.com/1200x400/333')"
 
 ]
 
-let cart=[]
+let i=0
 
-const container=document.getElementById("productContainer")
+setInterval(()=>{
 
-function displayProducts(list){
+hero.style.backgroundImage=images[i]
 
-container.innerHTML=""
+i++
 
-list.forEach((p,i)=>{
+if(i>=images.length){
 
-container.innerHTML+=`
-
-<div class="product">
-
-<img src="${p.img}">
-
-<h3>${p.name}</h3>
-
-<p>₹${p.price}</p>
-
-<button onclick="addCart(${i})">Add Cart</button>
-
-<button onclick="buyNow()">Buy</button>
-
-</div>
-
-`
-
-})
+i=0
 
 }
 
-function addCart(i){
-
-cart.push(products[i])
-
-document.getElementById("cartCount").innerText=cart.length
+},3000)
 
 }
 
-function buyNow(){
+slider()
 
-alert("Checkout coming soon")
+function wishlist(product){
+
+alert(product+" added to wishlist")
 
 }
 
-document.getElementById("search").addEventListener("keyup",function(){
-
-let value=this.value.toLowerCase()
-
-let filtered=products.filter(p=>p.name.toLowerCase().includes(value))
-
-displayProducts(filtered)
-
-})
-
-function toggleDark(){
+function darkMode(){
 
 document.body.classList.toggle("dark")
 
 }
-
-displayProducts(products)
