@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>TechHub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Big Website</title>
 
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="responsive.css">
@@ -14,65 +17,126 @@
 
 <header>
 
-<h1>TechHub</h1>
-
-<input type="text" placeholder="Search gadgets...">
+<div class="logo">
+<h1>MyShop</h1>
+</div>
 
 <nav>
 
-<a href="./index.html">Home</a>
-<a href="./products.html">Products</a>
-<a href="./cart.html">Cart</a>
-<a href="./login.html">Login</a>
-<a href="./about.html">About</a>
+<ul>
+
+<li><a href="index.html">Home</a></li>
+<li><a href="products.html">Products</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+
+</ul>
 
 </nav>
 
+<button class="btn">Login</button>
+
 </header>
+
+
 
 <section class="hero">
 
-<h2>Welcome to TechHub</h2>
+<h1>Welcome To My Online Store</h1>
 
-<p>Best Online Electronics Store</p>
+<p>Best Products With Best Price</p>
 
-<button onclick="location.href='products.html'">
-Shop Now
-</button>
+<button class="btn">Shop Now</button>
 
 </section>
 
-<section class="info">
 
-<h2>Why Choose Us</h2>
 
-<div class="info-grid">
+<section class="features">
 
-<div>
+<div class="box">
+
 <h3>Fast Delivery</h3>
-<p>Get your gadgets delivered quickly.</p>
+
+<p>We deliver products quickly.</p>
+
 </div>
 
-<div>
-<h3>Best Price</h3>
-<p>Affordable electronics at best price.</p>
+<div class="box">
+
+<h3>Best Quality</h3>
+
+<p>High quality guaranteed.</p>
+
 </div>
 
-<div>
-<h3>Secure Payment</h3>
-<p>Safe and secure checkout.</p>
+<div class="box">
+
+<h3>24/7 Support</h3>
+
+<p>Customer support always available.</p>
+
+</div>
+
+</section>
+
+
+
+<section class="home-products">
+
+<h2>Popular Products</h2>
+
+<div class="grid">
+
+<div class="product">
+
+<img src="https://picsum.photos/200">
+
+<h3>Product 1</h3>
+
+<p>$10</p>
+
+<button>Add To Cart</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://picsum.photos/201">
+
+<h3>Product 2</h3>
+
+<p>$20</p>
+
+<button>Add To Cart</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://picsum.photos/202">
+
+<h3>Product 3</h3>
+
+<p>$30</p>
+
+<button>Add To Cart</button>
+
 </div>
 
 </div>
 
 </section>
+
+
 
 <footer>
 
-<p>© 2025 TechHub Electronics Store</p>
+<p>© 2026 MyShop Website</p>
 
 </footer>
 
-</body>
+<script src="script.js"></script>
 
+</body>
 </html>
