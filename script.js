@@ -4,14 +4,20 @@ const products=[
 {name:"Gaming Mouse",price:799,img:"https://via.placeholder.com/200"},
 {name:"Bluetooth Speaker",price:1499,img:"https://via.placeholder.com/200"},
 {name:"Headphones",price:999,img:"https://via.placeholder.com/200"},
-{name:"Keyboard",price:899,img:"https://via.placeholder.com/200"},
+{name:"Gaming Keyboard",price:1299,img:"https://via.placeholder.com/200"},
 {name:"Laptop Stand",price:599,img:"https://via.placeholder.com/200"},
 {name:"USB Hub",price:499,img:"https://via.placeholder.com/200"},
 {name:"Phone Charger",price:299,img:"https://via.placeholder.com/200"},
 {name:"Gaming Headset",price:1299,img:"https://via.placeholder.com/200"},
 {name:"Smartphone",price:15999,img:"https://via.placeholder.com/200"},
 {name:"Tablet",price:8999,img:"https://via.placeholder.com/200"},
-{name:"Laptop",price:45999,img:"https://via.placeholder.com/200"}
+{name:"Laptop",price:45999,img:"https://via.placeholder.com/200"},
+{name:"Monitor",price:9999,img:"https://via.placeholder.com/200"},
+{name:"SSD Drive",price:4999,img:"https://via.placeholder.com/200"},
+{name:"RAM 16GB",price:2999,img:"https://via.placeholder.com/200"},
+{name:"Gaming Chair",price:6999,img:"https://via.placeholder.com/200"},
+{name:"VR Headset",price:12999,img:"https://via.placeholder.com/200"},
+{name:"Smart Camera",price:5999,img:"https://via.placeholder.com/200"}
 
 ]
 
@@ -61,15 +67,15 @@ alert("Checkout coming soon")
 
 }
 
-function searchProduct(){
+document.getElementById("search").addEventListener("keyup",function(){
 
-let value=document.getElementById("searchInput").value.toLowerCase()
+let value=this.value.toLowerCase()
 
 let filtered=products.filter(p=>p.name.toLowerCase().includes(value))
 
 displayProducts(filtered)
 
-}
+})
 
 function toggleDark(){
 
