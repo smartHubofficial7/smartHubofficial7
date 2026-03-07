@@ -47,9 +47,10 @@ padding:15px 25px;
 display:flex;
 align-items:center;
 justify-content:space-between;
+flex-wrap:wrap;
 }
 
-/* LEFT SIDE */
+/* LEFT */
 
 .left{
 display:flex;
@@ -57,14 +58,10 @@ align-items:center;
 gap:20px;
 }
 
-/* CART ICON */
-
 .cart-icon{
 font-size:22px;
 cursor:pointer;
 }
-
-/* LOGO */
 
 .logo{
 font-size:24px;
@@ -87,13 +84,21 @@ nav button:hover{
 color:#38bdf8;
 }
 
+/* SEARCH */
+
+.search{
+padding:8px;
+border:none;
+border-radius:5px;
+}
+
 /* CONTAINER */
 
 .container{
 padding:40px;
 }
 
-/* PAGES */
+/* PAGE */
 
 .page{
 display:none;
@@ -127,14 +132,44 @@ border:none;
 padding:10px 20px;
 border-radius:6px;
 cursor:pointer;
-margin-top:20px;
+margin-top:10px;
 }
 
 .btn:hover{
 background:#0ea5e9;
 }
 
-/* CART ITEMS */
+/* PRODUCTS GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:30px;
+}
+
+/* CARD */
+
+.card{
+background:#020617;
+padding:15px;
+border-radius:10px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:8px;
+}
+
+.price{
+color:#38bdf8;
+margin:8px 0;
+}
+
+/* CART */
 
 .cart-item{
 background:#020617;
@@ -143,15 +178,6 @@ margin:10px 0;
 border-radius:8px;
 display:flex;
 justify-content:space-between;
-}
-
-/* WISHLIST */
-
-#wishlistItems p{
-background:#020617;
-padding:10px;
-margin:8px 0;
-border-radius:6px;
 }
 
 /* QR */
@@ -191,9 +217,16 @@ text-align:center;
 
 </div>
 
+<div>
+
+<input class="search" placeholder="Search product..." onkeyup="searchProduct(this.value)">
+
+</div>
+
 <nav>
 
 <button onclick="showPage('home')">Home</button>
+<button onclick="showPage('shop')">Shop</button>
 <button onclick="showPage('wishlist')">Wishlist</button>
 <button onclick="showPage('orders')">Orders</button>
 <button onclick="toggleTheme()">Theme</button>
@@ -205,7 +238,6 @@ text-align:center;
 
 <div class="container">
 
-
 <!-- HOME -->
 
 <div id="home" class="page active">
@@ -214,11 +246,22 @@ text-align:center;
 
 <h1>Welcome To TechHub</h1>
 
-<p>Your Simple Tech Store</p>
+<p>Your Tech Store</p>
 
-<button class="btn" onclick="addSample()">Add Sample Item</button>
+<button class="btn" onclick="showPage('shop')">Shop Now</button>
 
 </div>
+
+</div>
+
+
+<!-- SHOP -->
+
+<div id="shop" class="page">
+
+<h2>Products</h2>
+
+<div id="productGrid" class="grid"></div>
 
 </div>
 
@@ -276,7 +319,6 @@ text-align:center;
 
 </div>
 
-
 </div>
 
 
@@ -289,14 +331,27 @@ text-align:center;
 
 <script>
 
-/* DATA */
+/* PRODUCTS */
+
+let products=[
+
+{name:"iPhone 15",price:999,img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
+{name:"MacBook Pro",price:1999,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
+{name:"Gaming Laptop",price:1499,img:"https://images.unsplash.com/photo-1606813909023-0f2e29e7c8e6"},
+{name:"Smart Watch",price:299,img:"https://images.unsplash.com/photo-1518444065439-e933c06ce9cd"},
+{name:"Headphones",price:199,img:"https://images.unsplash.com/photo-1580894908361-967195033215"},
+{name:"Gaming Mouse",price:79,img:"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf"},
+{name:"Mechanical Keyboard",price:129,img:"https://images.unsplash.com/photo-1593640408182-31c70c8268f5"},
+{name:"Monitor",price:399,img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3"}
+
+]
 
 let cart=[]
 let wishlist=[]
 let orders=[]
 
 
-/* PAGE SWITCH */
+/* PAGE */
 
 function showPage(page){
 
@@ -307,20 +362,53 @@ document.getElementById(page).classList.add("active")
 }
 
 
-/* SAMPLE ITEM */
+/* LOAD PRODUCTS */
 
-function addSample(){
+function loadProducts(list=products){
 
-addToCart("Sample Headphone",199)
+let grid=document.getElementById("productGrid")
 
-addWishlist("Sample Headphone",199)
+grid.innerHTML=""
 
-alert("Sample item added")
+list.forEach(p=>{
+
+grid.innerHTML+=`
+
+<div class="card">
+
+<img src="${p.img}">
+
+<h3>${p.name}</h3>
+
+<div class="price">$${p.price}</div>
+
+<button class="btn" onclick="addToCart('${p.name}',${p.price})">Add Cart</button>
+
+<button class="btn" onclick="addWishlist('${p.name}',${p.price})">Wishlist</button>
+
+</div>
+
+`
+
+})
+
+}
+
+loadProducts()
+
+
+/* SEARCH */
+
+function searchProduct(text){
+
+let filtered=products.filter(p=>p.name.toLowerCase().includes(text.toLowerCase()))
+
+loadProducts(filtered)
 
 }
 
 
-/* ADD TO CART */
+/* CART */
 
 function addToCart(name,price){
 
@@ -375,7 +463,7 @@ document.getElementById("total").innerText="Total $"+total
 }
 
 
-/* CART CONTROLS */
+/* CART BUTTONS */
 
 function increase(i){
 
@@ -446,7 +534,7 @@ showPage("checkout")
 }
 
 
-/* PLACE ORDER */
+/* ORDER */
 
 function placeOrder(){
 
@@ -465,7 +553,7 @@ showPage("orders")
 }
 
 
-/* ORDER LIST */
+/* ORDERS */
 
 function updateOrders(){
 
