@@ -1,25 +1,94 @@
-let cartCount = 0;
+const products = [
 
-// page load hone par localStorage se count le lo
-document.addEventListener("DOMContentLoaded", function () {
+{
+name:"Gaming Laptop",
+price:1200,
+image:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+},
 
-    let savedCart = localStorage.getItem("cartCount");
+{
+name:"Smart Phone",
+price:700,
+image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+},
 
-    if(savedCart){
-        cartCount = parseInt(savedCart);
-    }
+{
+name:"Smart Watch",
+price:150,
+image:"https://images.unsplash.com/photo-1518443895914-3c5f4eaa3c5d"
+},
 
-    document.getElementById("cart-count").innerText = cartCount;
+{
+name:"Headphones",
+price:80,
+image:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad"
+}
 
-});
+]
+
+let cart = JSON.parse(localStorage.getItem("cart")) || []
 
 
-function addCart(){
+function displayProducts(list){
 
-    cartCount++;
+const container = document.getElementById("product-list")
 
-    document.getElementById("cart-count").innerText = cartCount;
+container.innerHTML=""
 
-    localStorage.setItem("cartCount", cartCount);
+list.forEach((p,i)=>{
+
+container.innerHTML+=`
+
+<div class="product">
+
+<img src="${p.image}">
+
+<h3>${p.name}</h3>
+
+<p>$${p.price}</p>
+
+<button onclick="addCart(${i})">Add to Cart</button>
+
+</div>
+
+`
+
+})
 
 }
+
+
+function addCart(i){
+
+cart.push(products[i])
+
+localStorage.setItem("cart",JSON.stringify(cart))
+
+updateCart()
+
+alert(products[i].name+" added to cart")
+
+}
+
+
+function updateCart(){
+
+document.getElementById("cart-count").innerText=cart.length
+
+}
+
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase()
+
+let filtered=products.filter(p=>p.name.toLowerCase().includes(value))
+
+displayProducts(filtered)
+
+})
+
+
+displayProducts(products)
+
+updateCart()
