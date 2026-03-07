@@ -1,41 +1,18 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart=[]
 
-let container = document.getElementById("cartItems");
+function addToCart(name,price){
 
-let total = 0;
+let item={
 
-cart.forEach((item,index)=>{
+name:name,
+price:price
 
-let div = document.createElement("div");
+}
 
-div.className="product";
+cart.push(item)
 
-div.innerHTML=`
+localStorage.setItem("cart",JSON.stringify(cart))
 
-<h3>${item.name}</h3>
-
-<p>₹${item.price}</p>
-
-<button onclick="removeItem(${index})">
-Remove
-</button>
-
-`;
-
-container.appendChild(div);
-
-total += item.price;
-
-});
-
-document.getElementById("total").innerText="Total Price: ₹"+total;
-
-function removeItem(index){
-
-cart.splice(index,1);
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-location.reload();
+alert(name+" Added To Cart")
 
 }
