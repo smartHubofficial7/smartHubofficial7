@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SuperStore</title>
+<title>SmartHub Store</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -16,45 +15,57 @@
 
 <header>
 
-<div class="logo">SuperStore</div>
+<div class="logo">
+<h1>SmartHub</h1>
+</div>
 
 <nav>
 
-<a href="#">Home</a>
-<a href="#">Products</a>
-<a href="#">Deals</a>
-<a href="#">About</a>
-<a href="#">Contact</a>
+<ul>
+
+<li><a href="#">Home</a></li>
+<li><a href="#">Products</a></li>
+<li><a href="#">Deals</a></li>
+<li><a href="#">Categories</a></li>
+<li><a href="#">Contact</a></li>
+
+</ul>
 
 </nav>
 
-<div class="right">
+<div class="search-box">
 
-<input type="text" id="search" placeholder="Search product">
+<input type="text" id="searchInput" placeholder="Search products">
 
-<button onclick="toggleDark()">🌙</button>
+<button onclick="searchProduct()">Search</button>
+
+</div>
+
+<div class="icons">
+
+<button onclick="openLogin()">Login</button>
 
 <div class="cart">
-
-Cart <span id="cartCount">0</span>
-
+🛒 <span id="cartCount">0</span>
 </div>
 
 </div>
 
 </header>
 
-
 <section class="hero">
 
-<h1>Welcome to SuperStore</h1>
+<div class="hero-text">
 
-<p>Best Electronics Store Online</p>
+<h2>Welcome to SmartHub Store</h2>
+
+<p>Best gadgets at best price</p>
 
 <button>Shop Now</button>
 
-</section>
+</div>
 
+</section>
 
 <section class="categories">
 
@@ -62,63 +73,84 @@ Cart <span id="cartCount">0</span>
 
 <div class="category-grid">
 
-<div class="cat">Mobiles</div>
-<div class="cat">Laptops</div>
-<div class="cat">Gaming</div>
-<div class="cat">Accessories</div>
-<div class="cat">Headphones</div>
-<div class="cat">Smart Devices</div>
+<div class="category">Laptops</div>
+<div class="category">Mobiles</div>
+<div class="category">Headphones</div>
+<div class="category">Gaming</div>
+<div class="category">Accessories</div>
+<div class="category">Smart Watch</div>
 
 </div>
 
 </section>
-
 
 <section class="products">
 
-<h2>All Products</h2>
+<h2>Featured Products</h2>
 
-<div id="productContainer" class="product-grid"></div>
+<div class="product-grid" id="productGrid">
+
+<div class="product">
+
+<img src="https://via.placeholder.com/200">
+
+<h3>Laptop Pro</h3>
+
+<p>$900</p>
+
+<button onclick="addToCart()">Add to Cart</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://via.placeholder.com/200">
+
+<h3>Gaming Mouse</h3>
+
+<p>$60</p>
+
+<button onclick="addToCart()">Add to Cart</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://via.placeholder.com/200">
+
+<h3>Smart Watch</h3>
+
+<p>$120</p>
+
+<button onclick="addToCart()">Add to Cart</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://via.placeholder.com/200">
+
+<h3>Headphones</h3>
+
+<p>$70</p>
+
+<button onclick="addToCart()">Add to Cart</button>
+
+</div>
+
+</div>
 
 </section>
 
+<section class="newsletter">
 
-<section class="features">
+<h2>Subscribe</h2>
 
-<div class="feature">
+<input type="email" placeholder="Enter email">
 
-<h3>Free Shipping</h3>
-
-<p>Free delivery worldwide</p>
-
-</div>
-
-<div class="feature">
-
-<h3>Secure Payment</h3>
-
-<p>Safe checkout</p>
-
-</div>
-
-<div class="feature">
-
-<h3>Fast Delivery</h3>
-
-<p>Delivery in 2-5 days</p>
-
-</div>
-
-<div class="feature">
-
-<h3>24/7 Support</h3>
-
-<p>Customer support anytime</p>
-
-</div>
+<button>Subscribe</button>
 
 </section>
-
 
 <footer>
 
@@ -126,39 +158,55 @@ Cart <span id="cartCount">0</span>
 
 <div>
 
-<h3>Company</h3>
+<h3>About</h3>
 
-<p>About</p>
-<p>Careers</p>
-<p>Blog</p>
+<p>SmartHub best online electronics store.</p>
 
 </div>
 
 <div>
 
-<h3>Support</h3>
+<h3>Links</h3>
 
-<p>Help Center</p>
-<p>Returns</p>
-<p>Shipping</p>
+<ul>
+
+<li>Home</li>
+<li>Products</li>
+<li>Deals</li>
+
+</ul>
 
 </div>
 
 <div>
 
-<h3>Follow Us</h3>
+<h3>Contact</h3>
 
-<p>Instagram</p>
-<p>YouTube</p>
-<p>Twitter</p>
+<p>Email: support@smarthub.com</p>
 
 </div>
 
 </div>
-
-<p class="copy">© 2025 SuperStore</p>
 
 </footer>
+
+<div class="login-popup" id="loginPopup">
+
+<div class="login-box">
+
+<h2>Login</h2>
+
+<input type="text" placeholder="Username">
+
+<input type="password" placeholder="Password">
+
+<button>Login</button>
+
+<button onclick="closeLogin()">Close</button>
+
+</div>
+
+</div>
 
 <script src="script.js"></script>
 
