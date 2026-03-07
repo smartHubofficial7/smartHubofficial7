@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SmartHub Store</title>
-<link rel="stylesheet" href="style.css">
+<title>SmartHub</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -10,17 +10,55 @@
 <header>
 <h1>SmartHub Store</h1>
 
-<a href="cart.html">
-🛒 Cart (<span id="cart-count">0</span>)
-</a>
+<input type="text" id="search" placeholder="Search product...">
+
+<nav>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+<a href="login.html">Login</a>
+</nav>
 
 </header>
 
-<input type="text" id="search" placeholder="Search product..." onkeyup="searchProduct()">
+<section class="hero">
+<h2>Best Tech Deals</h2>
+<p>Shop smart gadgets</p>
+</section>
 
-<div class="products" id="product-list"></div>
+<section id="products">
 
-<script src="script.js"></script>
+<div class="product">
+
+<img src="https://via.placeholder.com/200">
+
+<h3>Wireless Earbuds</h3>
+
+<p>₹999</p>
+
+<button onclick="addToCart('Wireless Earbuds',999)">
+Add to Cart
+</button>
+
+</div>
+
+<div class="product">
+
+<img src="https://via.placeholder.com/200">
+
+<h3>Smart Watch</h3>
+
+<p>₹1999</p>
+
+<button onclick="addToCart('Smart Watch',1999)">
+Add to Cart
+</button>
+
+</div>
+
+</section>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>
