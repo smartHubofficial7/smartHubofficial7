@@ -1,92 +1,94 @@
+// CART SYSTEM
 
-let cart = 0
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart(){
+const buttons = document.querySelectorAll(".product button");
 
-cart++
+buttons.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
 
-document.getElementById("cartCount").innerText = cart
+        const product = btn.parentElement;
 
-alert("Product Added to Cart")
+        const name = product.querySelector("h3").innerText;
+        const price = product.querySelector("p").innerText;
+        const image = product.querySelector("img").src;
 
-}
+        const item = {
+            name,
+            price,
+            image
+        };
 
-function searchProduct(){
+        cart.push(item);
 
-let input = document.getElementById("searchInput").value.toLowerCase()
+        localStorage.setItem("cart", JSON.stringify(cart));
 
-let products = document.querySelectorAll(".product")
+        alert(name + " added to cart 🛒");
+    });
+});
 
-products.forEach(product=>{
 
-let name = product.innerText.toLowerCase()
+// SEARCH SYSTEM
 
-if(name.includes(input)){
+const searchBtn = document.querySelector(".header-icons button");
+const searchInput = document.querySelector(".header-icons input");
 
-product.style.display="block"
+searchBtn.addEventListener("click", () => {
 
-}else{
+    const value = searchInput.value.toLowerCase();
 
-product.style.display="none"
+    const products = document.querySelectorAll(".product");
 
-}
+    products.forEach(product => {
 
-})
+        const title = product.querySelector("h3").innerText.toLowerCase();
 
-}
+        if(title.includes(value)){
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
 
-function openLogin(){
+    });
 
-document.getElementById("loginPopup").style.display="flex"
+});
 
-}
 
-function closeLogin(){
+// NEWSLETTER
 
-document.getElementById("loginPopup").style.display="none"
+const subscribeBtn = document.querySelector(".newsletter button");
 
-}
+subscribeBtn.addEventListener("click", () => {
 
-function slider(){
+    const email = document.querySelector(".newsletter input").value;
 
-let hero = document.querySelector(".hero")
+    if(email === ""){
+        alert("Please enter email");
+        return;
+    }
 
-let images=[
+    alert("Subscribed successfully 🎉");
 
-"url('https://via.placeholder.com/1200x400')",
-"url('https://via.placeholder.com/1200x400/111')",
-"url('https://via.placeholder.com/1200x400/333')"
+});
 
-]
 
-let i=0
+// CART ICON CLICK
 
-setInterval(()=>{
+const cartIcon = document.querySelector(".header-icons span:last-child");
 
-hero.style.backgroundImage=images[i]
+cartIcon.addEventListener("click", () => {
 
-i++
+    if(cart.length === 0){
+        alert("Cart is empty");
+        return;
+    }
 
-if(i>=images.length){
+    let message = "Cart Items:\n\n";
 
-i=0
+    cart.forEach(item => {
+        message += item.name + " - " + item.price + "\n";
+    });
 
-}
+    alert(message);
 
-},3000)
-
-}
-
-slider()
-
-function wishlist(product){
-
-alert(product+" added to wishlist")
-
-}
-
-function darkMode(){
-
-document.body.classList.toggle("dark")
-
-}
+});
