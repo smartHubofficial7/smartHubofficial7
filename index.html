@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SmartHub Electronics</title>
 
 <link rel="stylesheet" href="style.css">
@@ -21,13 +24,17 @@
 
 <h1 class="logo">SmartHub</h1>
 
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
 <nav>
-<ul>
+<ul id="menu">
+
 <li>Home</li>
 <li>Products</li>
 <li>Deals</li>
 <li>Categories</li>
 <li>Contact</li>
+
 </ul>
 </nav>
 
@@ -35,9 +42,11 @@
 
 <input id="search" type="text" placeholder="Search gadgets">
 
-<span class="cart">
+<button onclick="toggleDark()">🌙</button>
+
+<a href="cart.html" class="cart">
 🛒 <span id="cart-count">0</span>
-</span>
+</a>
 
 </div>
 
@@ -47,6 +56,7 @@
 <section class="hero">
 
 <h2>Latest Electronics Store</h2>
+
 <p>Best gadgets at best prices</p>
 
 <button>Shop Now</button>
@@ -58,9 +68,7 @@
 
 <h2>Featured Products</h2>
 
-<div class="product-grid" id="product-list">
-
-</div>
+<div class="product-grid" id="product-list"></div>
 
 </section>
 
@@ -74,4 +82,5 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>
