@@ -1,8 +1,8 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || []
 
-const container = document.getElementById("cart-items")
+const container=document.getElementById("cart-items")
 
-let total = 0
+let total=0
 
 function displayCart(){
 
@@ -10,9 +10,9 @@ container.innerHTML=""
 
 cart.forEach((item,index)=>{
 
-total += item.price
+total+=item.price
 
-container.innerHTML += `
+container.innerHTML+=`
 
 <div class="product">
 
