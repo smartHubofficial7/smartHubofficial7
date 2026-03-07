@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SmartHub</title>
-<link rel="stylesheet" href="css/style.css">
+<title>SmartHub Store</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-<h1>SmartHub Store</h1>
+<header class="navbar">
 
-<input type="text" id="search" placeholder="Search product...">
+<div class="logo">
+SmartHub
+</div>
+
+<input class="search" type="text" placeholder="Search products...">
 
 <nav>
 <a href="index.html">Home</a>
@@ -22,11 +25,13 @@
 </header>
 
 <section class="hero">
-<h2>Best Tech Deals</h2>
+
+<h1>Best Tech Deals</h1>
 <p>Shop smart gadgets</p>
+
 </section>
 
-<section id="products">
+<section class="products">
 
 <div class="product">
 
@@ -34,7 +39,7 @@
 
 <h3>Wireless Earbuds</h3>
 
-<p>₹999</p>
+<p class="price">₹999</p>
 
 <button onclick="addToCart('Wireless Earbuds',999)">
 Add to Cart
@@ -48,7 +53,7 @@ Add to Cart
 
 <h3>Smart Watch</h3>
 
-<p>₹1999</p>
+<p class="price">₹1999</p>
 
 <button onclick="addToCart('Smart Watch',1999)">
 Add to Cart
@@ -56,9 +61,23 @@ Add to Cart
 
 </div>
 
+<div class="product">
+
+<img src="https://via.placeholder.com/200">
+
+<h3>Bluetooth Speaker</h3>
+
+<p class="price">₹1499</p>
+
+<button onclick="addToCart('Bluetooth Speaker',1499)">
+Add to Cart
+</button>
+
+</div>
+
 </section>
 
-<script src="js/script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
