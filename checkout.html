@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>Checkout</title>
-<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
 
-<h2>Checkout</h2>
+<h1>Checkout</h1>
 
-<input id="name" placeholder="Name"><br>
+<input placeholder="Name">
 
-<input id="phone" placeholder="Phone"><br>
+<input placeholder="Address">
 
-<textarea id="address" placeholder="Address"></textarea>
+<input placeholder="Phone">
 
-<h3>Scan QR & Pay</h3>
+<button onclick="placeOrder()">
 
-<img src="qrcode.png" width="200">
+Place Order
 
-<br><br>
-
-<button onclick="sendOrder()">
-Confirm Order
 </button>
 
-<script src="checkout.js"></script>
+<script src="js/cart.js"></script>
 
 </body>
 </html>
