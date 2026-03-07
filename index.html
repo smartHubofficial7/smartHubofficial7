@@ -95,6 +95,11 @@ border-radius:10px;
 padding:10px;
 text-align:center;
 box-shadow:0 2px 10px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.03);
 }
 
 .card img{
@@ -153,6 +158,7 @@ background:red;
 color:white;
 border:none;
 padding:4px;
+cursor:pointer;
 }
 
 /* LOGIN */
@@ -230,7 +236,7 @@ font-size:16px;
 
 <div class="top-buttons">
 <button onclick="openCart()">Cart <span id="cartCount">0</span></button>
-<button onclick="openLogin()">Login</button>
+<button onclick="openLogin()">Delivery</button>
 </div>
 
 </header>
@@ -248,9 +254,9 @@ font-size:16px;
 
 <div class="card phone">
 <img src="https://m.media-amazon.com/images/I/71geVdy6-OS._SX679_.jpg">
-<h3>Samsung Galaxy</h3>
+<h3>Samsung Galaxy A74</h3>
 <div class="price">₹24999</div>
-<button class="btn cartbtn" onclick="addCart('Samsung Galaxy',24999)">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Samsung Galaxy A74',24999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
@@ -258,7 +264,7 @@ font-size:16px;
 <img src="https://m.media-amazon.com/images/I/61cwywLZR-L.jpg">
 <h3>iPhone 14</h3>
 <div class="price">₹79999</div>
-<button class="btn cartbtn" onclick="addCart('iPhone',79999)">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('iPhone 14',79999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
@@ -267,6 +273,16 @@ font-size:16px;
 <h3>Redmi Note 12</h3>
 <div class="price">₹15999</div>
 <button class="btn cartbtn" onclick="addCart('Redmi Note 12',15999)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
+</div>
+
+<!-- NEW PHONE -->
+
+<div class="card phone">
+<img src="https://m.media-amazon.com/images/I/71xb2xkN5qL.jpg">
+<h3>Realme Narzo 60</h3>
+<div class="price">₹13999</div>
+<button class="btn cartbtn" onclick="addCart('Realme Narzo 60',13999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
@@ -284,7 +300,7 @@ font-size:16px;
 <img src="https://m.media-amazon.com/images/I/61Dw5Z8LzJL.jpg">
 <h3>Primebook Android Laptop</h3>
 <div class="price">₹18999</div>
-<button class="btn cartbtn" onclick="addCart('Android Laptop',18999)">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Primebook Laptop',18999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
@@ -310,15 +326,25 @@ font-size:16px;
 <img src="https://m.media-amazon.com/images/I/61y2VVWcGBL.jpg">
 <h3>Smart Watch</h3>
 <div class="price">₹1999</div>
-<button class="btn cartbtn" onclick="addCart('Watch',1999)">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Smart Watch',1999)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
 <div class="card accessory">
-<img src="https://m.media-amazon.com/images/I/61qQH6GQCAL.jpg">
+<img src="https://m.media-amazon.com/images/I/61LtuGzXeaL.jpg">
 <h3>Bluetooth Speaker</h3>
 <div class="price">₹1499</div>
-<button class="btn cartbtn" onclick="addCart('Speaker',1499)">Add To Cart</button>
+<button class="btn cartbtn" onclick="addCart('Bluetooth Speaker',1499)">Add To Cart</button>
+<button class="btn buybtn" onclick="buy()">Buy</button>
+</div>
+
+<!-- NEW ACCESSORY -->
+
+<div class="card accessory">
+<img src="https://m.media-amazon.com/images/I/61IMRs+o0iL.jpg">
+<h3>Gaming Mouse</h3>
+<div class="price">₹899</div>
+<button class="btn cartbtn" onclick="addCart('Gaming Mouse',899)">Add To Cart</button>
 <button class="btn buybtn" onclick="buy()">Buy</button>
 </div>
 
