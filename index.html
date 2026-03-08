@@ -1,14 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechZone Store</title>
 
-<title>TechZone Pro Store</title>
+<style>
 
-<link rel="stylesheet" href="style.css">
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+margin:0;
+}
+
+header{
+background:#020617;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:24px;
+color:#38bdf8;
+}
+
+nav button{
+background:none;
+border:none;
+color:white;
+margin:5px;
+cursor:pointer;
+font-size:15px;
+}
+
+nav button:hover{
+color:#38bdf8;
+}
+
+.container{
+padding:30px;
+}
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+.shop-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:#020617;
+padding:15px;
+border-radius:10px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.price{
+color:#38bdf8;
+font-size:20px;
+margin:10px;
+}
+
+.btn{
+background:#38bdf8;
+border:none;
+padding:10px 15px;
+border-radius:5px;
+cursor:pointer;
+color:white;
+}
+
+input{
+display:block;
+margin:10px 0;
+padding:10px;
+width:250px;
+}
+
+.cart-item{
+background:#020617;
+padding:15px;
+margin:10px 0;
+border-radius:8px;
+display:flex;
+justify-content:space-between;
+}
+
+</style>
 
 </head>
 
@@ -16,9 +111,7 @@
 
 <header>
 
-<div class="logo">TechZone Pro</div>
-
-<input class="search" placeholder="Search product..." onkeyup="searchProduct(this.value)">
+<div class="logo">TechZone</div>
 
 <nav>
 
@@ -30,6 +123,8 @@
 
 </nav>
 
+<div id="userBox"></div>
+
 </header>
 
 <div class="container">
@@ -38,31 +133,25 @@
 
 <div id="home" class="page active">
 
-<div class="hero">
+<h1>Welcome To TechZone</h1>
 
-<h1>Best Tech Store 2026</h1>
+<p>Best Tech Store</p>
 
-<p>Buy laptops, phones, gaming gear and accessories</p>
-
-<br>
-
-<button class="btn" onclick="showPage('shop')">Start Shopping</button>
+<button class="btn" onclick="showPage('shop')">Shop Now</button>
 
 </div>
-
-</div>
-
 
 <!-- SHOP -->
 
 <div id="shop" class="page">
 
-<h2>Tech Products</h2>
+<h2>Products</h2>
 
 <div id="productGrid" class="shop-grid"></div>
 
-</div>
+<button onclick="showPage('home')" class="btn">Back</button>
 
+</div>
 
 <!-- CART -->
 
@@ -74,33 +163,41 @@
 
 <h3 id="total"></h3>
 
-<br>
+<button class="btn" onclick="checkout()">Buy</button>
 
-<button class="btn" onclick="goCheckout()">Checkout</button>
-
-</div>
-
-
-<!-- CHECKOUT -->
-
-<div id="checkout" class="page">
-
-<h2>Checkout</h2>
-
-<p>Scan QR Code To Pay</p>
-
-<div class="qr">
-
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Payment">
+<button onclick="showPage('home')" class="btn">Back</button>
 
 </div>
 
-<br>
+<!-- LOGIN -->
 
-<button class="btn" onclick="placeOrder()">Payment Done</button>
+<div id="login" class="page">
+
+<h2>Login / Signup</h2>
+
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<input id="email" placeholder="Email">
+
+<button class="btn" onclick="login()">Login</button>
+
+<button onclick="showPage('home')" class="btn">Back</button>
 
 </div>
 
+<!-- PROFILE -->
+
+<div id="profile" class="page">
+
+<h2>My Account</h2>
+
+<div id="profileInfo"></div>
+
+<button class="btn" onclick="editProfile()">Edit</button>
+
+<button onclick="showPage('home')" class="btn">Back</button>
+
+</div>
 
 <!-- ORDERS -->
 
@@ -110,34 +207,261 @@
 
 <div id="orderList"></div>
 
-</div>
+<button onclick="showPage('home')" class="btn">Back</button>
 
+</div>
 
 <!-- ABOUT -->
 
 <div id="about" class="page">
 
-<h2>About TechZone</h2>
+<h2>About</h2>
 
-<p>
+<p>TechZone Electronics Store</p>
 
-TechZone Pro is a modern electronics store.
-Buy phones, gaming laptops, VR gear and accessories.
-
-</p>
+<button onclick="showPage('home')" class="btn">Back</button>
 
 </div>
 
 </div>
 
+<script>
 
-<footer>
+let products=[
 
-<p>© 2026 TechZone Pro Store</p>
+{name:"iPhone 15",price:999,img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
+{name:"MacBook Pro",price:1999,img:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
+{name:"Gaming Laptop",price:1499,img:"https://images.unsplash.com/photo-1603302576837-37561b2e2302"},
+{name:"Smart Watch",price:299,img:"https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b"},
+{name:"Headphones",price:199,img:"https://images.unsplash.com/photo-1580894908361-967195033215"},
+{name:"Keyboard",price:129,img:"https://images.unsplash.com/photo-1595225476474-87563907a212"},
+{name:"Gaming Mouse",price:79,img:"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf"},
+{name:"Tablet",price:499,img:"https://images.unsplash.com/photo-1587614382346-ac9b2e5e3c40"}
 
-</footer>
+]
 
-<script src="script.js"></script>
+let cart=[]
+let orders=[]
+
+function showPage(p){
+
+document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"))
+
+document.getElementById(p).classList.add("active")
+
+}
+
+function loadProducts(){
+
+let grid=document.getElementById("productGrid")
+
+grid.innerHTML=""
+
+products.forEach(p=>{
+
+grid.innerHTML+=`
+
+<div class="card">
+
+<img src="${p.img}">
+
+<h3>${p.name}</h3>
+
+<div class="price">$${p.price}</div>
+
+<button class="btn" onclick="addCart('${p.name}',${p.price})">Add To Cart</button>
+
+</div>
+
+`
+
+})
+
+}
+
+loadProducts()
+
+function addCart(name,price){
+
+let item=cart.find(p=>p.name===name)
+
+if(item){
+
+item.qty++
+
+}else{
+
+cart.push({name,price,qty:1})
+
+}
+
+updateCart()
+
+}
+
+function updateCart(){
+
+let div=document.getElementById("cartItems")
+
+div.innerHTML=""
+
+let total=0
+
+cart.forEach((item,i)=>{
+
+total+=item.price*item.qty
+
+div.innerHTML+=`
+
+<div class="cart-item">
+
+<div>
+
+${item.name}
+
+<br>
+
+$${item.price} × ${item.qty}
+
+</div>
+
+<div>
+
+<button onclick="item.qty++;updateCart()">+</button>
+
+<button onclick="removeItem(${i})">Remove</button>
+
+</div>
+
+</div>
+
+`
+
+})
+
+document.getElementById("total").innerText="Total: $"+total
+
+}
+
+function removeItem(i){
+
+cart.splice(i,1)
+
+updateCart()
+
+}
+
+function checkout(){
+
+let user=localStorage.getItem("user")
+
+if(!user){
+
+alert("Login first")
+
+showPage("login")
+
+return
+
+}
+
+placeOrder()
+
+}
+
+function login(){
+
+let name=document.getElementById("name").value
+let phone=document.getElementById("phone").value
+let email=document.getElementById("email").value
+
+let user={name,phone,email}
+
+localStorage.setItem("user",JSON.stringify(user))
+
+showUser()
+
+showPage("home")
+
+}
+
+function showUser(){
+
+let user=JSON.parse(localStorage.getItem("user"))
+
+if(!user) return
+
+document.getElementById("userBox").innerHTML=
+`<span onclick="showProfile()">👤 ${user.name}</span>`
+
+}
+
+showUser()
+
+function showProfile(){
+
+let user=JSON.parse(localStorage.getItem("user"))
+
+document.getElementById("profileInfo").innerHTML=
+
+`
+<p>Name: ${user.name}</p>
+<p>Phone: ${user.phone}</p>
+<p>Email: ${user.email}</p>
+`
+
+showPage("profile")
+
+}
+
+function editProfile(){
+
+let user=JSON.parse(localStorage.getItem("user"))
+
+let name=prompt("Name",user.name)
+let phone=prompt("Phone",user.phone)
+let email=prompt("Email",user.email)
+
+let newUser={name,phone,email}
+
+localStorage.setItem("user",JSON.stringify(newUser))
+
+showUser()
+
+showProfile()
+
+}
+
+function placeOrder(){
+
+let user=JSON.parse(localStorage.getItem("user"))
+
+let text="New Order %0A"
+
+cart.forEach(p=>{
+
+text+=p.name+" x "+p.qty+" %0A"
+
+})
+
+text+="Customer:"+user.name+" %0APhone:"+user.phone
+
+let url="https://wa.me/918481944109?text="+text
+
+window.open(url)
+
+orders.push([...cart])
+
+cart=[]
+
+updateCart()
+
+alert("Order placed!")
+
+}
+
+</script>
 
 </body>
+
 </html>
