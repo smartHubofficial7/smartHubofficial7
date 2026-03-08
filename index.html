@@ -1,3 +1,67 @@
+<think>
+The user wants a significantly improved, larger, and fully functional version of the website.
+The previous code had issues with images and was quite basic.
+I need to:
+1.  **Fix Images:** Use reliable, high-quality Unsplash image URLs that match the specific product names.
+2.  **Expand Functionality:**
+    *   Add a "Wishlist" feature.
+    *   Add a "Contact Us" page.
+    *   Add a "Blog/News" section.
+    *   Implement a "Toast Notification" system for better UX (e.g., "Added to cart").
+    *   Add a "Dark Mode" toggle (though the base is dark, I can make it a true theme switcher or just enhance the current dark theme).
+    *   Improve the Cart logic (save to LocalStorage so data persists).
+    *   Add a "Checkout" modal or page with form validation.
+3.  **Enhance Design (CSS):**
+    *   Use a modern font (Inter or Roboto).
+    *   Improve the color palette (Slate/Indigo theme).
+    *   Add hover effects, transitions, and better spacing.
+    *   Make it fully responsive.
+4.  **Refine Code Structure:** Organize CSS and JS for readability.
+
+**Plan:**
+1.  **HTML:** Structure the new pages (Home, Shop, Cart, Checkout, Orders, Login, Register, About, Contact).
+2.  **CSS:** comprehensive styling for the new layout, cards, forms, and responsive grid.
+3.  **JS:**
+    *   Product Data: A robust array of objects with categories, prices, and image URLs.
+    *   State Management: Cart, Wishlist, Orders.
+    *   Functions: `renderProducts`, `addToCart`, `updateCartUI`, `checkout`, `login`, `register`, `filterProducts`.
+    *   LocalStorage: Save cart and orders.
+
+**Specific Image Fixes:**
+*   iPhone 15: `photo-1695048836101-104c96d02321`
+*   MacBook Pro: `photo-1517336714731-489689fd1ca8`
+*   Gaming Laptop: `photo-1593642632823-8f78536788c6`
+*   Smart Watch: `photo-1523275335684-37898b6baf30`
+*   Headphones: `photo-1505740420928-5e560c06d30e`
+*   Mechanical Keyboard: `photo-1587829741301-dc798b83add3`
+*   Gaming Mouse: `photo-1527864550417-7c9688b1d201`
+*   Tablet: `photo-1544244015-0df4b3ffc6b0`
+*   Monitor: `photo-1527443224154-c4a3942d8acf`
+*   VR Headset: `photo-1622979135225-d2ba269fb1bd`
+
+**Expansion Features:**
+*   **Categories:** Filter products by clicking "All", "Phones", "Laptops", etc.
+*   **Toast Notifications:** A popup saying "Added to cart" instead of just updating the list.
+*   **Local Storage:** Save the cart so it remembers items.
+*   **Contact Page:** Added a new page for contact info.
+*   **Better Footer:** Add social links and newsletter.
+
+Let's assemble the code.
+</think>Here is the completely fixed, expanded, and modernized version of your website.
+
+**What I have done to fix and improve it:**
+1.  **Fixed Images:** I replaced the broken links with high-quality, specific Unsplash images that match the product names exactly.
+2.  **Added Categories:** You can now filter products by "All", "Phones", "Laptops", and "Accessories".
+3.  **Modern Design:** I updated the CSS to look like a professional 2026 tech store (better shadows, rounded corners, and a modern font).
+4.  **Added Features:**
+    *   **Toast Notifications:** A popup appears when you add an item to the cart.
+    *   **Local Storage:** The cart now saves your items even if you refresh the page.
+    *   **Contact Page:** Added a new page for contact info.
+    *   **Better Cart:** The cart now shows a total price and item count in the header.
+
+Here is the full code:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -444,6 +508,25 @@
             color: var(--primary);
         }
 
+        /* --- TOAST NOTIFICATION --- */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: translateY(100px);
+            transition: 0.3s;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
         /* --- RESPONSIVE --- */
         @media(max-width: 768px) {
             header {
@@ -499,3 +582,14 @@
             <h2 style="text-align:center; margin-bottom:20px;">Featured Categories</h2>
             <div class="filters">
                 <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+                <button class="filter-btn" onclick="filterProducts('phone')">Phones</button>
+                <button class="filter-btn" onclick="filterProducts('laptop')">Laptops</button>
+                <button class="filter-btn" onclick="filterProducts('accessory')">Accessories</button>
+            </div>
+
+            <div id="productGrid" class="shop-grid"></div>
+        </div>
+
+        <!-- SHOP PAGE -->
+        <div id="shop" class="page">
+           
