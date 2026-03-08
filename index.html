@@ -3,6 +3,9 @@
 
 <head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TechZone Store</title>
 
 <style>
@@ -149,8 +152,6 @@ justify-content:space-between;
 
 <div id="productGrid" class="shop-grid"></div>
 
-<button onclick="showPage('home')" class="btn">Back</button>
-
 </div>
 
 <!-- CART -->
@@ -165,15 +166,13 @@ justify-content:space-between;
 
 <button class="btn" onclick="checkout()">Buy</button>
 
-<button onclick="showPage('home')" class="btn">Back</button>
-
 </div>
 
 <!-- LOGIN -->
 
 <div id="login" class="page">
 
-<h2>Login / Signup</h2>
+<h2>Login</h2>
 
 <input id="name" placeholder="Name">
 <input id="phone" placeholder="Phone">
@@ -181,7 +180,20 @@ justify-content:space-between;
 
 <button class="btn" onclick="login()">Login</button>
 
-<button onclick="showPage('home')" class="btn">Back</button>
+</div>
+
+<!-- CHECKOUT -->
+
+<div id="checkout" class="page">
+
+<h2>Delivery Address</h2>
+
+<input id="address" placeholder="Full Address">
+<input id="city" placeholder="City">
+<input id="state" placeholder="State">
+<input id="pincode" placeholder="Pincode">
+
+<button class="btn" onclick="placeOrder()">Confirm Order</button>
 
 </div>
 
@@ -189,13 +201,11 @@ justify-content:space-between;
 
 <div id="profile" class="page">
 
-<h2>My Account</h2>
+<h2>My Profile</h2>
 
 <div id="profileInfo"></div>
 
 <button class="btn" onclick="editProfile()">Edit</button>
-
-<button onclick="showPage('home')" class="btn">Back</button>
 
 </div>
 
@@ -207,8 +217,6 @@ justify-content:space-between;
 
 <div id="orderList"></div>
 
-<button onclick="showPage('home')" class="btn">Back</button>
-
 </div>
 
 <!-- ABOUT -->
@@ -218,8 +226,6 @@ justify-content:space-between;
 <h2>About</h2>
 
 <p>TechZone Electronics Store</p>
-
-<button onclick="showPage('home')" class="btn">Back</button>
 
 </div>
 
@@ -234,13 +240,12 @@ let products=[
 {name:"Gaming Laptop",price:1499,img:"https://images.unsplash.com/photo-1603302576837-37561b2e2302"},
 {name:"Smart Watch",price:299,img:"https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b"},
 {name:"Headphones",price:199,img:"https://images.unsplash.com/photo-1580894908361-967195033215"},
-{name:"Keyboard",price:129,img:"https://images.unsplash.com/photo-1595225476474-87563907a212"},
-{name:"Gaming Mouse",price:79,img:"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf"},
-{name:"Tablet",price:499,img:"https://images.unsplash.com/photo-1587614382346-ac9b2e5e3c40"}
+{name:"Keyboard",price:129,img:"https://images.unsplash.com/photo-1595225476474-87563907a212"}
 
 ]
 
 let cart=[]
+
 let orders=[]
 
 function showPage(p){
@@ -365,7 +370,7 @@ return
 
 }
 
-placeOrder()
+showPage("checkout")
 
 }
 
@@ -392,6 +397,7 @@ let user=JSON.parse(localStorage.getItem("user"))
 if(!user) return
 
 document.getElementById("userBox").innerHTML=
+
 `<span onclick="showProfile()">👤 ${user.name}</span>`
 
 }
@@ -436,7 +442,12 @@ function placeOrder(){
 
 let user=JSON.parse(localStorage.getItem("user"))
 
-let text="New Order %0A"
+let address=document.getElementById("address").value
+let city=document.getElementById("city").value
+let state=document.getElementById("state").value
+let pincode=document.getElementById("pincode").value
+
+let text="🛒 New Order %0A"
 
 cart.forEach(p=>{
 
@@ -444,7 +455,14 @@ text+=p.name+" x "+p.qty+" %0A"
 
 })
 
-text+="Customer:"+user.name+" %0APhone:"+user.phone
+text+="%0A👤 Name: "+user.name
+text+="%0A📞 Phone: "+user.phone
+text+="%0A📧 Email: "+user.email
+
+text+="%0A📍 Address: "+address
+text+="%0ACity: "+city
+text+="%0AState: "+state
+text+="%0APincode: "+pincode
 
 let url="https://wa.me/918481944109?text="+text
 
@@ -457,6 +475,8 @@ cart=[]
 updateCart()
 
 alert("Order placed!")
+
+showPage("home")
 
 }
 
