@@ -54,6 +54,7 @@
             font-weight: 800;
             letter-spacing: -1px;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -216,6 +217,7 @@
             border: 1px solid #334155;
             transition: 0.3s;
             position: relative;
+            cursor: pointer;
         }
 
         .card:hover {
@@ -463,6 +465,72 @@
             transform: translateY(0);
         }
 
+        /* --- PRODUCT MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 90%;
+            display: flex;
+            gap: 30px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .modal-img {
+            width: 50%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .modal-info {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-info h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .modal-info .price {
+            font-size: 28px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .modal-info p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
         /* --- RESPONSIVE --- */
         @media(max-width: 768px) {
             header {
@@ -476,56 +544,4 @@
             }
 
             .cart-container {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 40px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <!-- HEADER -->
-    <header>
-        <div class="logo">TechZone Pro</div>
-        
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="searchProduct(this.value)">
-        </div>
-
-        <nav class="nav-links">
-            <button onclick="showPage('home')">Home</button>
-            <button onclick="showPage('shop')">Shop</button>
-            <button onclick="showPage('cart')">Cart <span class="cart-count" id="cartCount">0</span></button>
-            <button onclick="showPage('orders')">Orders</button>
-            <button onclick="showPage('login')">Login</button>
-        </nav>
-    </header>
-
-    <div class="container">
-
-        <!-- HOME PAGE -->
-        <div id="home" class="page active">
-            <div class="hero">
-                <h1>Future Tech is Here</h1>
-                <p>Discover the latest gadgets, high-performance laptops, and premium accessories. Upgrade your life with TechZone Pro.</p>
-                <button class="btn" onclick="showPage('shop')">Start Shopping</button>
-            </div>
-
-            <h2 style="text-align:center; margin-bottom:20px;">Featured Categories</h2>
-            <div class="filters">
-                <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
-                <button class="filter-btn" onclick="filterProducts('phone')">Phones</button>
-                <button class="filter-btn" onclick="filterProducts('laptop')">Laptops</button>
-                <button class="filter-btn" onclick="filterProducts('accessory')">Accessories</button>
-            </div>
-
-            <div id="productGrid" class="shop-grid"></div>
-        </div>
-
-        <!-- SHOP PAGE -->
-        <div id="shop" class="page">
-            <h2
+                grid
